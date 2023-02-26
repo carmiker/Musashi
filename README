@@ -36,10 +36,6 @@ You will have only one address space, no tracing, and no instruction prefetch.
 
 To implement the basic configuration:
 
-- Open m68kconf.h and verify that the settings for INLINE will work with your
-  compiler. (Currently set to "static __inline__", which works in gcc 2.9.
-  For C9X compliance, it should be "inline")
-
 - In your host program, implement the following functions:
     unsigned int  m68k_read_memory_8(unsigned int address);
     unsigned int  m68k_read_memory_16(unsigned int address);

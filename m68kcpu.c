@@ -40,7 +40,7 @@
 
 extern void m68040_fpu_op0(void);
 extern void m68040_fpu_op1(void);
-extern void m68881_mmu_ops();
+extern void m68881_mmu_ops(void);
 extern unsigned char m68ki_cycles[][0x10000];
 extern void (*m68ki_instruction_jump_table[0x10000])(void); /* opcode handler jump table */
 extern void m68ki_build_opcode_table(void);
@@ -67,7 +67,7 @@ const char *const m68ki_cpu_names[] =
 	"M68000",
 	"M68010",
 	"Invalid CPU",
-	"M68EC020"
+	"M68EC020",
 	"Invalid CPU",
 	"Invalid CPU",
 	"Invalid CPU",
@@ -735,12 +735,12 @@ void m68k_set_reset_instr_callback(void  (*callback)(void))
 	CALLBACK_RESET_INSTR = callback ? callback : default_reset_instr_callback;
 }
 
-void m68k_set_cmpild_instr_callback(void  (*callback)(unsigned int, int))
+static void m68k_set_cmpild_instr_callback(void  (*callback)(unsigned int, int))
 {
 	CALLBACK_CMPILD_INSTR = callback ? callback : default_cmpild_instr_callback;
 }
 
-void m68k_set_rte_instr_callback(void  (*callback)(void))
+static void m68k_set_rte_instr_callback(void  (*callback)(void))
 {
 	CALLBACK_RTE_INSTR = callback ? callback : default_rte_instr_callback;
 }
@@ -1145,7 +1145,7 @@ void m68k_pulse_halt(void)
 
 /* Get and set the current CPU context */
 /* This is to allow for multiple CPUs */
-unsigned int m68k_context_size()
+unsigned int m68k_context_size(void)
 {
 	return sizeof(m68ki_cpu_core);
 }

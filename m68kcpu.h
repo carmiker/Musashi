@@ -74,8 +74,13 @@ extern "C" {
 
 /* signed and unsigned int must be at least 32 bits wide */
 #define sint   signed   int
-#define uint   unsigned int
 
+/* OpenBSD and DragonFly BSD C libraries have a typedef for uint */
+#if defined(__OpenBSD__) || defined(__DragonFly__)
+#include <stdio.h>
+#else
+#define uint   unsigned int
+#endif
 
 #if M68K_USE_64_BIT
 #define sint64 signed   long long

@@ -21,6 +21,9 @@ static void fatalerror(char *format, ...) {
 #define DOUBLE_EXPONENT					(unsigned long long)(0x7ff0000000000000)
 #define DOUBLE_MANTISSA					(unsigned long long)(0x000fffffffffffff)
 
+union fu32 { float f; uint32 u; };
+union du64 { double d; uint64 u; };
+
 static inline void SET_CONDITION_CODES(fp_reg reg)
 {
 	REG_FPSR &= ~(FPCC_N|FPCC_Z|FPCC_I|FPCC_NAN);
@@ -77,10 +80,10 @@ static inline int TEST_CONDITION(int condition)
 	return r;
 }
 
-static uint8 READ_EA_8(int ea)
+static uint8 READ_EA_8(int ea_)
 {
-	int mode = (ea >> 3) & 0x7;
-	int reg = (ea & 0x7);
+	int mode = (ea_ >> 3) & 0x7;
+	int reg = (ea_ & 0x7);
 
 	switch (mode)
 	{
@@ -133,10 +136,10 @@ static uint8 READ_EA_8(int ea)
 	return 0;
 }
 
-static uint16 READ_EA_16(int ea)
+static uint16 READ_EA_16(int ea_)
 {
-	int mode = (ea >> 3) & 0x7;
-	int reg = (ea & 0x7);
+	int mode = (ea_ >> 3) & 0x7;
+	int reg = (ea_ & 0x7);
 
 	switch (mode)
 	{
@@ -190,10 +193,10 @@ static uint16 READ_EA_16(int ea)
 	return 0;
 }
 
-static uint32 READ_EA_32(int ea)
+static uint32 READ_EA_32(int ea_)
 {
-	int mode = (ea >> 3) & 0x7;
-	int reg = (ea & 0x7);
+	int mode = (ea_ >> 3) & 0x7;
+	int reg = (ea_ & 0x7);
 
 	switch (mode)
 	{
@@ -255,10 +258,10 @@ static uint32 READ_EA_32(int ea)
 	return 0;
 }
 
-static uint64 READ_EA_64(int ea)
+static uint64 READ_EA_64(int ea_)
 {
-	int mode = (ea >> 3) & 0x7;
-	int reg = (ea & 0x7);
+	int mode = (ea_ >> 3) & 0x7;
+	int reg = (ea_ & 0x7);
 	uint32 h1, h2;
 
 	switch (mode)
@@ -312,10 +315,10 @@ static uint64 READ_EA_64(int ea)
 	return 0;
 }
 
-static void WRITE_EA_8(int ea, uint8 data)
+static void WRITE_EA_8(int ea_, uint8 data)
 {
-	int mode = (ea >> 3) & 0x7;
-	int reg = (ea & 0x7);
+	int mode = (ea_ >> 3) & 0x7;
+	int reg = (ea_ & 0x7);
 
 	switch (mode)
 	{
@@ -380,10 +383,10 @@ static void WRITE_EA_8(int ea, uint8 data)
 	}
 }
 
-static void WRITE_EA_16(int ea, uint16 data)
+static void WRITE_EA_16(int ea_, uint16 data)
 {
-	int mode = (ea >> 3) & 0x7;
-	int reg = (ea & 0x7);
+	int mode = (ea_ >> 3) & 0x7;
+	int reg = (ea_ & 0x7);
 
 	switch (mode)
 	{
@@ -448,10 +451,10 @@ static void WRITE_EA_16(int ea, uint16 data)
 	}
 }
 
-static void WRITE_EA_32(int ea, uint32 data)
+static void WRITE_EA_32(int ea_, uint32 data)
 {
-	int mode = (ea >> 3) & 0x7;
-	int reg = (ea & 0x7);
+	int mode = (ea_ >> 3) & 0x7;
+	int reg = (ea_ & 0x7);
 
 	switch (mode)
 	{
@@ -521,10 +524,10 @@ static void WRITE_EA_32(int ea, uint32 data)
 	}
 }
 
-static void WRITE_EA_64(int ea, uint64 data)
+static void WRITE_EA_64(int ea_, uint64 data)
 {
-	int mode = (ea >> 3) & 0x7;
-	int reg = (ea & 0x7);
+	int mode = (ea_ >> 3) & 0x7;
+	int reg = (ea_ & 0x7);
 
 	switch (mode)
 	{
@@ -555,11 +558,11 @@ static void WRITE_EA_64(int ea, uint64 data)
 	}
 }
 
-static fp_reg READ_EA_FPE(int ea)
+static fp_reg READ_EA_FPE(int ea_)
 {
-	fp_reg r;
-	int mode = (ea >> 3) & 0x7;
-	int reg = (ea & 0x7);
+	fp_reg r = { 0 };
+	int mode = (ea_ >> 3) & 0x7;
+	int reg = (ea_ & 0x7);
 
 	// TODO: convert to extended floating-point!
 
@@ -582,10 +585,10 @@ static fp_reg READ_EA_FPE(int ea)
 	return r;
 }
 
-static void WRITE_EA_FPE(int ea, fp_reg fpr)
+static void WRITE_EA_FPE(int ea_, fp_reg fpr)
 {
-	int mode = (ea >> 3) & 0x7;
-	int reg = (ea & 0x7);
+	int mode = (ea_ >> 3) & 0x7;
+	int reg = (ea_ & 0x7);
 
 	// TODO: convert to extended floating-point!
 
@@ -627,8 +630,9 @@ static void fpgen_rm_reg(uint16 w2)
 			}
 			case 1:		// Single-precision Real
 			{
-				uint32 d = READ_EA_32(ea);
-				source = (double)(*(float*)&d);
+				union fu32 d;
+				d.u = READ_EA_32(ea);
+				source = (double)d.f;
 				break;
 			}
 			case 2:		// Extended-precision Real
@@ -649,8 +653,9 @@ static void fpgen_rm_reg(uint16 w2)
 			}
 			case 5:		// Double-precision Real
 			{
-				uint64 d = READ_EA_64(ea);
-				source = *(double*)&d;
+				union du64 d;
+				d.u = READ_EA_64(ea);
+				source = d.d;
 				break;
 			}
 			case 6:		// Byte Integer
@@ -761,9 +766,9 @@ static void fmove_reg_mem(uint16 w2)
 		}
 		case 1:		// Single-precision Real
 		{
-			float f = (float)(REG_FP[src].f);
-			uint32 d = *(uint32 *)&f;
-			WRITE_EA_32(ea, d);
+			union fu32 f;
+			f.f = (float)(REG_FP[src].f);
+			WRITE_EA_32(ea, f.u);
 			break;
 		}
 		case 2:		// Extended-precision Real

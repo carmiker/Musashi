@@ -3,7 +3,7 @@
 /* ======================================================================== */
 /*
  *                                  MUSASHI
- *                                Version 4.55
+ *                                Version 4.60
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:

@@ -1,10 +1,10 @@
                                     MUSASHI
                                     =======
 
-                                  Version 4.10
+                                  Version 4.55
 
              A portable Motorola M680x0 processor emulation engine.
-            Copyright 1998-2002 Karl Stenerud.  All rights reserved.
+            Copyright 1998-2019 Karl Stenerud.  All rights reserved.
 
 
 
@@ -26,7 +26,7 @@ and so has had time to mature.
 LICENSE AND COPYRIGHT:
 ---------------------
 
-Copyright © 1998-2001 Karl Stenerud
+Copyright © 1998-2019 Karl Stenerud
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -339,4 +339,3 @@ project. For this, pass -DMUSASHI_CNF="mycustomconfig.h" to gcc (or whatever
 compiler you use). Notice that if you use an unix shell (or make which uses
 the shell to launch its commands), then you need to escape the quotes like
 this : -DMUSASHI_CNF=\"mycustomconfig.h\"
-

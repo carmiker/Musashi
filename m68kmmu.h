@@ -40,11 +40,11 @@
 /*
 	pmmu_translate_addr: perform 68851/68030-style PMMU address translation
 */
-uint pmmu_translate_addr(uint addr_in)
+unsigned pmmu_translate_addr(unsigned addr_in)
 {
 	uint32 addr_out, tbl_entry = 0, tbl_entry2, tamode = 0, tbmode = 0, tcmode = 0;
-	uint root_aptr, root_limit, tofs, is, abits, bbits, cbits;
-	uint resolved, tptr, shift;
+	unsigned root_aptr, root_limit, tofs, is, abits, bbits, cbits;
+	unsigned resolved, tptr, shift;
 
 	resolved = 0;
 	addr_out = addr_in;

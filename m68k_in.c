@@ -938,10 +938,10 @@ M68KMAKE_OP(040fpu1, 32, ., .)
 
 M68KMAKE_OP(abcd, 8, rr, .)
 {
-	uint* r_dst = &DX;
-	uint src = DY;
-	uint dst = *r_dst;
-	uint res = LOW_NIBBLE(src) + LOW_NIBBLE(dst) + XFLAG_AS_1();
+	unsigned* r_dst = &DX;
+	unsigned src = DY;
+	unsigned dst = *r_dst;
+	unsigned res = LOW_NIBBLE(src) + LOW_NIBBLE(dst) + XFLAG_AS_1();
 
 	FLAG_V = ~res; /* Undefined V behavior */
 
@@ -964,10 +964,10 @@ M68KMAKE_OP(abcd, 8, rr, .)
 
 M68KMAKE_OP(abcd, 8, mm, ax7)
 {
-	uint src = OPER_AY_PD_8();
-	uint ea  = EA_A7_PD_8();
-	uint dst = m68ki_read_8(ea);
-	uint res = LOW_NIBBLE(src) + LOW_NIBBLE(dst) + XFLAG_AS_1();
+	unsigned src = OPER_AY_PD_8();
+	unsigned ea  = EA_A7_PD_8();
+	unsigned dst = m68ki_read_8(ea);
+	unsigned res = LOW_NIBBLE(src) + LOW_NIBBLE(dst) + XFLAG_AS_1();
 
 	FLAG_V = ~res; /* Undefined V behavior */
 
@@ -990,10 +990,10 @@ M68KMAKE_OP(abcd, 8, mm, ax7)
 
 M68KMAKE_OP(abcd, 8, mm, ay7)
 {
-	uint src = OPER_A7_PD_8();
-	uint ea  = EA_AX_PD_8();
-	uint dst = m68ki_read_8(ea);
-	uint res = LOW_NIBBLE(src) + LOW_NIBBLE(dst) + XFLAG_AS_1();
+	unsigned src = OPER_A7_PD_8();
+	unsigned ea  = EA_AX_PD_8();
+	unsigned dst = m68ki_read_8(ea);
+	unsigned res = LOW_NIBBLE(src) + LOW_NIBBLE(dst) + XFLAG_AS_1();
 
 	FLAG_V = ~res; /* Undefined V behavior */
 
@@ -1016,10 +1016,10 @@ M68KMAKE_OP(abcd, 8, mm, ay7)
 
 M68KMAKE_OP(abcd, 8, mm, axy7)
 {
-	uint src = OPER_A7_PD_8();
-	uint ea  = EA_A7_PD_8();
-	uint dst = m68ki_read_8(ea);
-	uint res = LOW_NIBBLE(src) + LOW_NIBBLE(dst) + XFLAG_AS_1();
+	unsigned src = OPER_A7_PD_8();
+	unsigned ea  = EA_A7_PD_8();
+	unsigned dst = m68ki_read_8(ea);
+	unsigned res = LOW_NIBBLE(src) + LOW_NIBBLE(dst) + XFLAG_AS_1();
 
 	FLAG_V = ~res; /* Undefined V behavior */
 
@@ -1042,10 +1042,10 @@ M68KMAKE_OP(abcd, 8, mm, axy7)
 
 M68KMAKE_OP(abcd, 8, mm, .)
 {
-	uint src = OPER_AY_PD_8();
-	uint ea  = EA_AX_PD_8();
-	uint dst = m68ki_read_8(ea);
-	uint res = LOW_NIBBLE(src) + LOW_NIBBLE(dst) + XFLAG_AS_1();
+	unsigned src = OPER_AY_PD_8();
+	unsigned ea  = EA_AX_PD_8();
+	unsigned dst = m68ki_read_8(ea);
+	unsigned res = LOW_NIBBLE(src) + LOW_NIBBLE(dst) + XFLAG_AS_1();
 
 	FLAG_V = ~res; /* Undefined V behavior */
 
@@ -1068,10 +1068,10 @@ M68KMAKE_OP(abcd, 8, mm, .)
 
 M68KMAKE_OP(add, 8, er, d)
 {
-	uint* r_dst = &DX;
-	uint src = MASK_OUT_ABOVE_8(DY);
-	uint dst = MASK_OUT_ABOVE_8(*r_dst);
-	uint res = src + dst;
+	unsigned* r_dst = &DX;
+	unsigned src = MASK_OUT_ABOVE_8(DY);
+	unsigned dst = MASK_OUT_ABOVE_8(*r_dst);
+	unsigned res = src + dst;
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_V = VFLAG_ADD_8(src, dst, res);
@@ -1084,10 +1084,10 @@ M68KMAKE_OP(add, 8, er, d)
 
 M68KMAKE_OP(add, 8, er, .)
 {
-	uint* r_dst = &DX;
-	uint src = M68KMAKE_GET_OPER_AY_8;
-	uint dst = MASK_OUT_ABOVE_8(*r_dst);
-	uint res = src + dst;
+	unsigned* r_dst = &DX;
+	unsigned src = M68KMAKE_GET_OPER_AY_8;
+	unsigned dst = MASK_OUT_ABOVE_8(*r_dst);
+	unsigned res = src + dst;
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_V = VFLAG_ADD_8(src, dst, res);
@@ -1100,10 +1100,10 @@ M68KMAKE_OP(add, 8, er, .)
 
 M68KMAKE_OP(add, 16, er, d)
 {
-	uint* r_dst = &DX;
-	uint src = MASK_OUT_ABOVE_16(DY);
-	uint dst = MASK_OUT_ABOVE_16(*r_dst);
-	uint res = src + dst;
+	unsigned* r_dst = &DX;
+	unsigned src = MASK_OUT_ABOVE_16(DY);
+	unsigned dst = MASK_OUT_ABOVE_16(*r_dst);
+	unsigned res = src + dst;
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_V = VFLAG_ADD_16(src, dst, res);
@@ -1116,10 +1116,10 @@ M68KMAKE_OP(add, 16, er, d)
 
 M68KMAKE_OP(add, 16, er, a)
 {
-	uint* r_dst = &DX;
-	uint src = MASK_OUT_ABOVE_16(AY);
-	uint dst = MASK_OUT_ABOVE_16(*r_dst);
-	uint res = src + dst;
+	unsigned* r_dst = &DX;
+	unsigned src = MASK_OUT_ABOVE_16(AY);
+	unsigned dst = MASK_OUT_ABOVE_16(*r_dst);
+	unsigned res = src + dst;
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_V = VFLAG_ADD_16(src, dst, res);
@@ -1132,10 +1132,10 @@ M68KMAKE_OP(add, 16, er, a)
 
 M68KMAKE_OP(add, 16, er, .)
 {
-	uint* r_dst = &DX;
-	uint src = M68KMAKE_GET_OPER_AY_16;
-	uint dst = MASK_OUT_ABOVE_16(*r_dst);
-	uint res = src + dst;
+	unsigned* r_dst = &DX;
+	unsigned src = M68KMAKE_GET_OPER_AY_16;
+	unsigned dst = MASK_OUT_ABOVE_16(*r_dst);
+	unsigned res = src + dst;
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_V = VFLAG_ADD_16(src, dst, res);
@@ -1148,10 +1148,10 @@ M68KMAKE_OP(add, 16, er, .)
 
 M68KMAKE_OP(add, 32, er, d)
 {
-	uint* r_dst = &DX;
-	uint src = DY;
-	uint dst = *r_dst;
-	uint res = src + dst;
+	unsigned* r_dst = &DX;
+	unsigned src = DY;
+	unsigned dst = *r_dst;
+	unsigned res = src + dst;
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_V = VFLAG_ADD_32(src, dst, res);
@@ -1164,10 +1164,10 @@ M68KMAKE_OP(add, 32, er, d)
 
 M68KMAKE_OP(add, 32, er, a)
 {
-	uint* r_dst = &DX;
-	uint src = AY;
-	uint dst = *r_dst;
-	uint res = src + dst;
+	unsigned* r_dst = &DX;
+	unsigned src = AY;
+	unsigned dst = *r_dst;
+	unsigned res = src + dst;
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_V = VFLAG_ADD_32(src, dst, res);
@@ -1180,10 +1180,10 @@ M68KMAKE_OP(add, 32, er, a)
 
 M68KMAKE_OP(add, 32, er, .)
 {
-	uint* r_dst = &DX;
-	uint src = M68KMAKE_GET_OPER_AY_32;
-	uint dst = *r_dst;
-	uint res = src + dst;
+	unsigned* r_dst = &DX;
+	unsigned src = M68KMAKE_GET_OPER_AY_32;
+	unsigned dst = *r_dst;
+	unsigned res = src + dst;
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_V = VFLAG_ADD_32(src, dst, res);
@@ -1196,10 +1196,10 @@ M68KMAKE_OP(add, 32, er, .)
 
 M68KMAKE_OP(add, 8, re, .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_8;
-	uint src = MASK_OUT_ABOVE_8(DX);
-	uint dst = m68ki_read_8(ea);
-	uint res = src + dst;
+	unsigned ea = M68KMAKE_GET_EA_AY_8;
+	unsigned src = MASK_OUT_ABOVE_8(DX);
+	unsigned dst = m68ki_read_8(ea);
+	unsigned res = src + dst;
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_V = VFLAG_ADD_8(src, dst, res);
@@ -1212,10 +1212,10 @@ M68KMAKE_OP(add, 8, re, .)
 
 M68KMAKE_OP(add, 16, re, .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_16;
-	uint src = MASK_OUT_ABOVE_16(DX);
-	uint dst = m68ki_read_16(ea);
-	uint res = src + dst;
+	unsigned ea = M68KMAKE_GET_EA_AY_16;
+	unsigned src = MASK_OUT_ABOVE_16(DX);
+	unsigned dst = m68ki_read_16(ea);
+	unsigned res = src + dst;
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_V = VFLAG_ADD_16(src, dst, res);
@@ -1228,10 +1228,10 @@ M68KMAKE_OP(add, 16, re, .)
 
 M68KMAKE_OP(add, 32, re, .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_32;
-	uint src = DX;
-	uint dst = m68ki_read_32(ea);
-	uint res = src + dst;
+	unsigned ea = M68KMAKE_GET_EA_AY_32;
+	unsigned src = DX;
+	unsigned dst = m68ki_read_32(ea);
+	unsigned res = src + dst;
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_V = VFLAG_ADD_32(src, dst, res);
@@ -1244,7 +1244,7 @@ M68KMAKE_OP(add, 32, re, .)
 
 M68KMAKE_OP(adda, 16, ., d)
 {
-	uint* r_dst = &AX;
+	unsigned* r_dst = &AX;
 
 	*r_dst = MASK_OUT_ABOVE_32(*r_dst + MAKE_INT_16(DY));
 }
@@ -1252,7 +1252,7 @@ M68KMAKE_OP(adda, 16, ., d)
 
 M68KMAKE_OP(adda, 16, ., a)
 {
-	uint* r_dst = &AX;
+	unsigned* r_dst = &AX;
 
 	*r_dst = MASK_OUT_ABOVE_32(*r_dst + MAKE_INT_16(AY));
 }
@@ -1260,8 +1260,8 @@ M68KMAKE_OP(adda, 16, ., a)
 
 M68KMAKE_OP(adda, 16, ., .)
 {
-	uint* r_dst = &AX;
-	uint src = MAKE_INT_16(M68KMAKE_GET_OPER_AY_16);
+	unsigned* r_dst = &AX;
+	unsigned src = MAKE_INT_16(M68KMAKE_GET_OPER_AY_16);
 
 	*r_dst = MASK_OUT_ABOVE_32(*r_dst + src);
 }
@@ -1269,7 +1269,7 @@ M68KMAKE_OP(adda, 16, ., .)
 
 M68KMAKE_OP(adda, 32, ., d)
 {
-	uint* r_dst = &AX;
+	unsigned* r_dst = &AX;
 
 	*r_dst = MASK_OUT_ABOVE_32(*r_dst + DY);
 }
@@ -1277,7 +1277,7 @@ M68KMAKE_OP(adda, 32, ., d)
 
 M68KMAKE_OP(adda, 32, ., a)
 {
-	uint* r_dst = &AX;
+	unsigned* r_dst = &AX;
 
 	*r_dst = MASK_OUT_ABOVE_32(*r_dst + AY);
 }
@@ -1285,8 +1285,8 @@ M68KMAKE_OP(adda, 32, ., a)
 
 M68KMAKE_OP(adda, 32, ., .)
 {
-	uint src = M68KMAKE_GET_OPER_AY_32;
-	uint* r_dst = &AX;
+	unsigned src = M68KMAKE_GET_OPER_AY_32;
+	unsigned* r_dst = &AX;
 
 	*r_dst = MASK_OUT_ABOVE_32(*r_dst + src);
 }
@@ -1294,10 +1294,10 @@ M68KMAKE_OP(adda, 32, ., .)
 
 M68KMAKE_OP(addi, 8, ., d)
 {
-	uint* r_dst = &DY;
-	uint src = OPER_I_8();
-	uint dst = MASK_OUT_ABOVE_8(*r_dst);
-	uint res = src + dst;
+	unsigned* r_dst = &DY;
+	unsigned src = OPER_I_8();
+	unsigned dst = MASK_OUT_ABOVE_8(*r_dst);
+	unsigned res = src + dst;
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_V = VFLAG_ADD_8(src, dst, res);
@@ -1310,10 +1310,10 @@ M68KMAKE_OP(addi, 8, ., d)
 
 M68KMAKE_OP(addi, 8, ., .)
 {
-	uint src = OPER_I_8();
-	uint ea = M68KMAKE_GET_EA_AY_8;
-	uint dst = m68ki_read_8(ea);
-	uint res = src + dst;
+	unsigned src = OPER_I_8();
+	unsigned ea = M68KMAKE_GET_EA_AY_8;
+	unsigned dst = m68ki_read_8(ea);
+	unsigned res = src + dst;
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_V = VFLAG_ADD_8(src, dst, res);
@@ -1326,10 +1326,10 @@ M68KMAKE_OP(addi, 8, ., .)
 
 M68KMAKE_OP(addi, 16, ., d)
 {
-	uint* r_dst = &DY;
-	uint src = OPER_I_16();
-	uint dst = MASK_OUT_ABOVE_16(*r_dst);
-	uint res = src + dst;
+	unsigned* r_dst = &DY;
+	unsigned src = OPER_I_16();
+	unsigned dst = MASK_OUT_ABOVE_16(*r_dst);
+	unsigned res = src + dst;
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_V = VFLAG_ADD_16(src, dst, res);
@@ -1342,10 +1342,10 @@ M68KMAKE_OP(addi, 16, ., d)
 
 M68KMAKE_OP(addi, 16, ., .)
 {
-	uint src = OPER_I_16();
-	uint ea = M68KMAKE_GET_EA_AY_16;
-	uint dst = m68ki_read_16(ea);
-	uint res = src + dst;
+	unsigned src = OPER_I_16();
+	unsigned ea = M68KMAKE_GET_EA_AY_16;
+	unsigned dst = m68ki_read_16(ea);
+	unsigned res = src + dst;
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_V = VFLAG_ADD_16(src, dst, res);
@@ -1358,10 +1358,10 @@ M68KMAKE_OP(addi, 16, ., .)
 
 M68KMAKE_OP(addi, 32, ., d)
 {
-	uint* r_dst = &DY;
-	uint src = OPER_I_32();
-	uint dst = *r_dst;
-	uint res = src + dst;
+	unsigned* r_dst = &DY;
+	unsigned src = OPER_I_32();
+	unsigned dst = *r_dst;
+	unsigned res = src + dst;
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_V = VFLAG_ADD_32(src, dst, res);
@@ -1374,10 +1374,10 @@ M68KMAKE_OP(addi, 32, ., d)
 
 M68KMAKE_OP(addi, 32, ., .)
 {
-	uint src = OPER_I_32();
-	uint ea = M68KMAKE_GET_EA_AY_32;
-	uint dst = m68ki_read_32(ea);
-	uint res = src + dst;
+	unsigned src = OPER_I_32();
+	unsigned ea = M68KMAKE_GET_EA_AY_32;
+	unsigned dst = m68ki_read_32(ea);
+	unsigned res = src + dst;
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_V = VFLAG_ADD_32(src, dst, res);
@@ -1390,10 +1390,10 @@ M68KMAKE_OP(addi, 32, ., .)
 
 M68KMAKE_OP(addq, 8, ., d)
 {
-	uint* r_dst = &DY;
-	uint src = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint dst = MASK_OUT_ABOVE_8(*r_dst);
-	uint res = src + dst;
+	unsigned* r_dst = &DY;
+	unsigned src = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned dst = MASK_OUT_ABOVE_8(*r_dst);
+	unsigned res = src + dst;
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_V = VFLAG_ADD_8(src, dst, res);
@@ -1406,10 +1406,10 @@ M68KMAKE_OP(addq, 8, ., d)
 
 M68KMAKE_OP(addq, 8, ., .)
 {
-	uint src = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint ea = M68KMAKE_GET_EA_AY_8;
-	uint dst = m68ki_read_8(ea);
-	uint res = src + dst;
+	unsigned src = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned ea = M68KMAKE_GET_EA_AY_8;
+	unsigned dst = m68ki_read_8(ea);
+	unsigned res = src + dst;
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_V = VFLAG_ADD_8(src, dst, res);
@@ -1422,10 +1422,10 @@ M68KMAKE_OP(addq, 8, ., .)
 
 M68KMAKE_OP(addq, 16, ., d)
 {
-	uint* r_dst = &DY;
-	uint src = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint dst = MASK_OUT_ABOVE_16(*r_dst);
-	uint res = src + dst;
+	unsigned* r_dst = &DY;
+	unsigned src = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned dst = MASK_OUT_ABOVE_16(*r_dst);
+	unsigned res = src + dst;
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_V = VFLAG_ADD_16(src, dst, res);
@@ -1438,7 +1438,7 @@ M68KMAKE_OP(addq, 16, ., d)
 
 M68KMAKE_OP(addq, 16, ., a)
 {
-	uint* r_dst = &AY;
+	unsigned* r_dst = &AY;
 
 	*r_dst = MASK_OUT_ABOVE_32(*r_dst + (((REG_IR >> 9) - 1) & 7) + 1);
 }
@@ -1446,10 +1446,10 @@ M68KMAKE_OP(addq, 16, ., a)
 
 M68KMAKE_OP(addq, 16, ., .)
 {
-	uint src = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint ea = M68KMAKE_GET_EA_AY_16;
-	uint dst = m68ki_read_16(ea);
-	uint res = src + dst;
+	unsigned src = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned ea = M68KMAKE_GET_EA_AY_16;
+	unsigned dst = m68ki_read_16(ea);
+	unsigned res = src + dst;
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_V = VFLAG_ADD_16(src, dst, res);
@@ -1462,10 +1462,10 @@ M68KMAKE_OP(addq, 16, ., .)
 
 M68KMAKE_OP(addq, 32, ., d)
 {
-	uint* r_dst = &DY;
-	uint src = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint dst = *r_dst;
-	uint res = src + dst;
+	unsigned* r_dst = &DY;
+	unsigned src = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned dst = *r_dst;
+	unsigned res = src + dst;
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_V = VFLAG_ADD_32(src, dst, res);
@@ -1478,7 +1478,7 @@ M68KMAKE_OP(addq, 32, ., d)
 
 M68KMAKE_OP(addq, 32, ., a)
 {
-	uint* r_dst = &AY;
+	unsigned* r_dst = &AY;
 
 	*r_dst = MASK_OUT_ABOVE_32(*r_dst + (((REG_IR >> 9) - 1) & 7) + 1);
 }
@@ -1486,10 +1486,10 @@ M68KMAKE_OP(addq, 32, ., a)
 
 M68KMAKE_OP(addq, 32, ., .)
 {
-	uint src = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint ea = M68KMAKE_GET_EA_AY_32;
-	uint dst = m68ki_read_32(ea);
-	uint res = src + dst;
+	unsigned src = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned ea = M68KMAKE_GET_EA_AY_32;
+	unsigned dst = m68ki_read_32(ea);
+	unsigned res = src + dst;
 
 
 	FLAG_N = NFLAG_32(res);
@@ -1503,10 +1503,10 @@ M68KMAKE_OP(addq, 32, ., .)
 
 M68KMAKE_OP(addx, 8, rr, .)
 {
-	uint* r_dst = &DX;
-	uint src = MASK_OUT_ABOVE_8(DY);
-	uint dst = MASK_OUT_ABOVE_8(*r_dst);
-	uint res = src + dst + XFLAG_AS_1();
+	unsigned* r_dst = &DX;
+	unsigned src = MASK_OUT_ABOVE_8(DY);
+	unsigned dst = MASK_OUT_ABOVE_8(*r_dst);
+	unsigned res = src + dst + XFLAG_AS_1();
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_V = VFLAG_ADD_8(src, dst, res);
@@ -1521,10 +1521,10 @@ M68KMAKE_OP(addx, 8, rr, .)
 
 M68KMAKE_OP(addx, 16, rr, .)
 {
-	uint* r_dst = &DX;
-	uint src = MASK_OUT_ABOVE_16(DY);
-	uint dst = MASK_OUT_ABOVE_16(*r_dst);
-	uint res = src + dst + XFLAG_AS_1();
+	unsigned* r_dst = &DX;
+	unsigned src = MASK_OUT_ABOVE_16(DY);
+	unsigned dst = MASK_OUT_ABOVE_16(*r_dst);
+	unsigned res = src + dst + XFLAG_AS_1();
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_V = VFLAG_ADD_16(src, dst, res);
@@ -1539,10 +1539,10 @@ M68KMAKE_OP(addx, 16, rr, .)
 
 M68KMAKE_OP(addx, 32, rr, .)
 {
-	uint* r_dst = &DX;
-	uint src = DY;
-	uint dst = *r_dst;
-	uint res = src + dst + XFLAG_AS_1();
+	unsigned* r_dst = &DX;
+	unsigned src = DY;
+	unsigned dst = *r_dst;
+	unsigned res = src + dst + XFLAG_AS_1();
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_V = VFLAG_ADD_32(src, dst, res);
@@ -1557,10 +1557,10 @@ M68KMAKE_OP(addx, 32, rr, .)
 
 M68KMAKE_OP(addx, 8, mm, ax7)
 {
-	uint src = OPER_AY_PD_8();
-	uint ea  = EA_A7_PD_8();
-	uint dst = m68ki_read_8(ea);
-	uint res = src + dst + XFLAG_AS_1();
+	unsigned src = OPER_AY_PD_8();
+	unsigned ea  = EA_A7_PD_8();
+	unsigned dst = m68ki_read_8(ea);
+	unsigned res = src + dst + XFLAG_AS_1();
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_V = VFLAG_ADD_8(src, dst, res);
@@ -1575,10 +1575,10 @@ M68KMAKE_OP(addx, 8, mm, ax7)
 
 M68KMAKE_OP(addx, 8, mm, ay7)
 {
-	uint src = OPER_A7_PD_8();
-	uint ea  = EA_AX_PD_8();
-	uint dst = m68ki_read_8(ea);
-	uint res = src + dst + XFLAG_AS_1();
+	unsigned src = OPER_A7_PD_8();
+	unsigned ea  = EA_AX_PD_8();
+	unsigned dst = m68ki_read_8(ea);
+	unsigned res = src + dst + XFLAG_AS_1();
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_V = VFLAG_ADD_8(src, dst, res);
@@ -1593,10 +1593,10 @@ M68KMAKE_OP(addx, 8, mm, ay7)
 
 M68KMAKE_OP(addx, 8, mm, axy7)
 {
-	uint src = OPER_A7_PD_8();
-	uint ea  = EA_A7_PD_8();
-	uint dst = m68ki_read_8(ea);
-	uint res = src + dst + XFLAG_AS_1();
+	unsigned src = OPER_A7_PD_8();
+	unsigned ea  = EA_A7_PD_8();
+	unsigned dst = m68ki_read_8(ea);
+	unsigned res = src + dst + XFLAG_AS_1();
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_V = VFLAG_ADD_8(src, dst, res);
@@ -1611,10 +1611,10 @@ M68KMAKE_OP(addx, 8, mm, axy7)
 
 M68KMAKE_OP(addx, 8, mm, .)
 {
-	uint src = OPER_AY_PD_8();
-	uint ea  = EA_AX_PD_8();
-	uint dst = m68ki_read_8(ea);
-	uint res = src + dst + XFLAG_AS_1();
+	unsigned src = OPER_AY_PD_8();
+	unsigned ea  = EA_AX_PD_8();
+	unsigned dst = m68ki_read_8(ea);
+	unsigned res = src + dst + XFLAG_AS_1();
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_V = VFLAG_ADD_8(src, dst, res);
@@ -1629,10 +1629,10 @@ M68KMAKE_OP(addx, 8, mm, .)
 
 M68KMAKE_OP(addx, 16, mm, .)
 {
-	uint src = OPER_AY_PD_16();
-	uint ea  = EA_AX_PD_16();
-	uint dst = m68ki_read_16(ea);
-	uint res = src + dst + XFLAG_AS_1();
+	unsigned src = OPER_AY_PD_16();
+	unsigned ea  = EA_AX_PD_16();
+	unsigned dst = m68ki_read_16(ea);
+	unsigned res = src + dst + XFLAG_AS_1();
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_V = VFLAG_ADD_16(src, dst, res);
@@ -1647,10 +1647,10 @@ M68KMAKE_OP(addx, 16, mm, .)
 
 M68KMAKE_OP(addx, 32, mm, .)
 {
-	uint src = OPER_AY_PD_32();
-	uint ea  = EA_AX_PD_32();
-	uint dst = m68ki_read_32(ea);
-	uint res = src + dst + XFLAG_AS_1();
+	unsigned src = OPER_AY_PD_32();
+	unsigned ea  = EA_AX_PD_32();
+	unsigned dst = m68ki_read_32(ea);
+	unsigned res = src + dst + XFLAG_AS_1();
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_V = VFLAG_ADD_32(src, dst, res);
@@ -1725,8 +1725,8 @@ M68KMAKE_OP(and, 32, er, .)
 
 M68KMAKE_OP(and, 8, re, .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_8;
-	uint res = DX & m68ki_read_8(ea);
+	unsigned ea = M68KMAKE_GET_EA_AY_8;
+	unsigned res = DX & m68ki_read_8(ea);
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_C = CFLAG_CLEAR;
@@ -1739,8 +1739,8 @@ M68KMAKE_OP(and, 8, re, .)
 
 M68KMAKE_OP(and, 16, re, .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_16;
-	uint res = DX & m68ki_read_16(ea);
+	unsigned ea = M68KMAKE_GET_EA_AY_16;
+	unsigned res = DX & m68ki_read_16(ea);
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_C = CFLAG_CLEAR;
@@ -1753,8 +1753,8 @@ M68KMAKE_OP(and, 16, re, .)
 
 M68KMAKE_OP(and, 32, re, .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_32;
-	uint res = DX & m68ki_read_32(ea);
+	unsigned ea = M68KMAKE_GET_EA_AY_32;
+	unsigned res = DX & m68ki_read_32(ea);
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_Z = res;
@@ -1777,9 +1777,9 @@ M68KMAKE_OP(andi, 8, ., d)
 
 M68KMAKE_OP(andi, 8, ., .)
 {
-	uint src = OPER_I_8();
-	uint ea = M68KMAKE_GET_EA_AY_8;
-	uint res = src & m68ki_read_8(ea);
+	unsigned src = OPER_I_8();
+	unsigned ea = M68KMAKE_GET_EA_AY_8;
+	unsigned res = src & m68ki_read_8(ea);
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_Z = res;
@@ -1802,9 +1802,9 @@ M68KMAKE_OP(andi, 16, ., d)
 
 M68KMAKE_OP(andi, 16, ., .)
 {
-	uint src = OPER_I_16();
-	uint ea = M68KMAKE_GET_EA_AY_16;
-	uint res = src & m68ki_read_16(ea);
+	unsigned src = OPER_I_16();
+	unsigned ea = M68KMAKE_GET_EA_AY_16;
+	unsigned res = src & m68ki_read_16(ea);
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_Z = res;
@@ -1827,9 +1827,9 @@ M68KMAKE_OP(andi, 32, ., d)
 
 M68KMAKE_OP(andi, 32, ., .)
 {
-	uint src = OPER_I_32();
-	uint ea = M68KMAKE_GET_EA_AY_32;
-	uint res = src & m68ki_read_32(ea);
+	unsigned src = OPER_I_32();
+	unsigned ea = M68KMAKE_GET_EA_AY_32;
+	unsigned res = src & m68ki_read_32(ea);
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_Z = res;
@@ -1850,7 +1850,7 @@ M68KMAKE_OP(andi, 16, tos, .)
 {
 	if(FLAG_S)
 	{
-		uint src = OPER_I_16();
+		unsigned src = OPER_I_16();
 		m68ki_trace_t0();			   /* auto-disable (see m68kcpu.h) */
 		m68ki_set_sr(m68ki_get_sr() & src);
 		return;
@@ -1861,10 +1861,10 @@ M68KMAKE_OP(andi, 16, tos, .)
 
 M68KMAKE_OP(asr, 8, s, .)
 {
-	uint* r_dst = &DY;
-	uint shift = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint src = MASK_OUT_ABOVE_8(*r_dst);
-	uint res = src >> shift;
+	unsigned* r_dst = &DY;
+	unsigned shift = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned src = MASK_OUT_ABOVE_8(*r_dst);
+	unsigned res = src >> shift;
 
 	if(shift != 0)
 		USE_CYCLES(shift<<CYC_SHIFT);
@@ -1883,10 +1883,10 @@ M68KMAKE_OP(asr, 8, s, .)
 
 M68KMAKE_OP(asr, 16, s, .)
 {
-	uint* r_dst = &DY;
-	uint shift = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint src = MASK_OUT_ABOVE_16(*r_dst);
-	uint res = src >> shift;
+	unsigned* r_dst = &DY;
+	unsigned shift = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned src = MASK_OUT_ABOVE_16(*r_dst);
+	unsigned res = src >> shift;
 
 	if(shift != 0)
 		USE_CYCLES(shift<<CYC_SHIFT);
@@ -1905,10 +1905,10 @@ M68KMAKE_OP(asr, 16, s, .)
 
 M68KMAKE_OP(asr, 32, s, .)
 {
-	uint* r_dst = &DY;
-	uint shift = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint src = *r_dst;
-	uint res = src >> shift;
+	unsigned* r_dst = &DY;
+	unsigned shift = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned src = *r_dst;
+	unsigned res = src >> shift;
 
 	if(shift != 0)
 		USE_CYCLES(shift<<CYC_SHIFT);
@@ -1927,10 +1927,10 @@ M68KMAKE_OP(asr, 32, s, .)
 
 M68KMAKE_OP(asr, 8, r, .)
 {
-	uint* r_dst = &DY;
-	uint shift = DX & 0x3f;
-	uint src = MASK_OUT_ABOVE_8(*r_dst);
-	uint res = src >> shift;
+	unsigned* r_dst = &DY;
+	unsigned shift = DX & 0x3f;
+	unsigned src = MASK_OUT_ABOVE_8(*r_dst);
+	unsigned res = src >> shift;
 
 	if(shift != 0)
 	{
@@ -1979,10 +1979,10 @@ M68KMAKE_OP(asr, 8, r, .)
 
 M68KMAKE_OP(asr, 16, r, .)
 {
-	uint* r_dst = &DY;
-	uint shift = DX & 0x3f;
-	uint src = MASK_OUT_ABOVE_16(*r_dst);
-	uint res = src >> shift;
+	unsigned* r_dst = &DY;
+	unsigned shift = DX & 0x3f;
+	unsigned src = MASK_OUT_ABOVE_16(*r_dst);
+	unsigned res = src >> shift;
 
 	if(shift != 0)
 	{
@@ -2031,10 +2031,10 @@ M68KMAKE_OP(asr, 16, r, .)
 
 M68KMAKE_OP(asr, 32, r, .)
 {
-	uint* r_dst = &DY;
-	uint shift = DX & 0x3f;
-	uint src = *r_dst;
-	uint res = src >> shift;
+	unsigned* r_dst = &DY;
+	unsigned shift = DX & 0x3f;
+	unsigned src = *r_dst;
+	unsigned res = src >> shift;
 
 	if(shift != 0)
 	{
@@ -2083,9 +2083,9 @@ M68KMAKE_OP(asr, 32, r, .)
 
 M68KMAKE_OP(asr, 16, ., .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_16;
-	uint src = m68ki_read_16(ea);
-	uint res = src >> 1;
+	unsigned ea = M68KMAKE_GET_EA_AY_16;
+	unsigned src = m68ki_read_16(ea);
+	unsigned res = src >> 1;
 
 	if(GET_MSB_16(src))
 		res |= 0x8000;
@@ -2101,10 +2101,10 @@ M68KMAKE_OP(asr, 16, ., .)
 
 M68KMAKE_OP(asl, 8, s, .)
 {
-	uint* r_dst = &DY;
-	uint shift = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint src = MASK_OUT_ABOVE_8(*r_dst);
-	uint res = MASK_OUT_ABOVE_8(src << shift);
+	unsigned* r_dst = &DY;
+	unsigned shift = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned src = MASK_OUT_ABOVE_8(*r_dst);
+	unsigned res = MASK_OUT_ABOVE_8(src << shift);
 
 	if(shift != 0)
 		USE_CYCLES(shift<<CYC_SHIFT);
@@ -2121,10 +2121,10 @@ M68KMAKE_OP(asl, 8, s, .)
 
 M68KMAKE_OP(asl, 16, s, .)
 {
-	uint* r_dst = &DY;
-	uint shift = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint src = MASK_OUT_ABOVE_16(*r_dst);
-	uint res = MASK_OUT_ABOVE_16(src << shift);
+	unsigned* r_dst = &DY;
+	unsigned shift = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned src = MASK_OUT_ABOVE_16(*r_dst);
+	unsigned res = MASK_OUT_ABOVE_16(src << shift);
 
 	if(shift != 0)
 		USE_CYCLES(shift<<CYC_SHIFT);
@@ -2141,10 +2141,10 @@ M68KMAKE_OP(asl, 16, s, .)
 
 M68KMAKE_OP(asl, 32, s, .)
 {
-	uint* r_dst = &DY;
-	uint shift = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint src = *r_dst;
-	uint res = MASK_OUT_ABOVE_32(src << shift);
+	unsigned* r_dst = &DY;
+	unsigned shift = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned src = *r_dst;
+	unsigned res = MASK_OUT_ABOVE_32(src << shift);
 
 	if(shift != 0)
 		USE_CYCLES(shift<<CYC_SHIFT);
@@ -2161,10 +2161,10 @@ M68KMAKE_OP(asl, 32, s, .)
 
 M68KMAKE_OP(asl, 8, r, .)
 {
-	uint* r_dst = &DY;
-	uint shift = DX & 0x3f;
-	uint src = MASK_OUT_ABOVE_8(*r_dst);
-	uint res = MASK_OUT_ABOVE_8(src << shift);
+	unsigned* r_dst = &DY;
+	unsigned shift = DX & 0x3f;
+	unsigned src = MASK_OUT_ABOVE_8(*r_dst);
+	unsigned res = MASK_OUT_ABOVE_8(src << shift);
 
 	if(shift != 0)
 	{
@@ -2198,10 +2198,10 @@ M68KMAKE_OP(asl, 8, r, .)
 
 M68KMAKE_OP(asl, 16, r, .)
 {
-	uint* r_dst = &DY;
-	uint shift = DX & 0x3f;
-	uint src = MASK_OUT_ABOVE_16(*r_dst);
-	uint res = MASK_OUT_ABOVE_16(src << shift);
+	unsigned* r_dst = &DY;
+	unsigned shift = DX & 0x3f;
+	unsigned src = MASK_OUT_ABOVE_16(*r_dst);
+	unsigned res = MASK_OUT_ABOVE_16(src << shift);
 
 	if(shift != 0)
 	{
@@ -2235,10 +2235,10 @@ M68KMAKE_OP(asl, 16, r, .)
 
 M68KMAKE_OP(asl, 32, r, .)
 {
-	uint* r_dst = &DY;
-	uint shift = DX & 0x3f;
-	uint src = *r_dst;
-	uint res = MASK_OUT_ABOVE_32(src << shift);
+	unsigned* r_dst = &DY;
+	unsigned shift = DX & 0x3f;
+	unsigned src = *r_dst;
+	unsigned res = MASK_OUT_ABOVE_32(src << shift);
 
 	if(shift != 0)
 	{
@@ -2272,9 +2272,9 @@ M68KMAKE_OP(asl, 32, r, .)
 
 M68KMAKE_OP(asl, 16, ., .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_16;
-	uint src = m68ki_read_16(ea);
-	uint res = MASK_OUT_ABOVE_16(src << 1);
+	unsigned ea = M68KMAKE_GET_EA_AY_16;
+	unsigned src = m68ki_read_16(ea);
+	unsigned res = MASK_OUT_ABOVE_16(src << 1);
 
 	m68ki_write_16(ea, res);
 
@@ -2302,7 +2302,7 @@ M68KMAKE_OP(bcc, 16, ., .)
 {
 	if(M68KMAKE_CC)
 	{
-		uint offset = OPER_I_16();
+		unsigned offset = OPER_I_16();
 		REG_PC -= 2;
 		m68ki_trace_t0();			   /* auto-disable (see m68kcpu.h) */
 		m68ki_branch_16(offset);
@@ -2319,7 +2319,7 @@ M68KMAKE_OP(bcc, 32, ., .)
 	{
 		if(M68KMAKE_CC)
 		{
-			uint offset = OPER_I_32();
+			unsigned offset = OPER_I_32();
 			REG_PC -= 4;
 			m68ki_trace_t0();			   /* auto-disable (see m68kcpu.h) */
 			m68ki_branch_32(offset);
@@ -2343,8 +2343,8 @@ M68KMAKE_OP(bcc, 32, ., .)
 
 M68KMAKE_OP(bchg, 32, r, d)
 {
-	uint* r_dst = &DY;
-	uint mask = 1 << (DX & 0x1f);
+	unsigned* r_dst = &DY;
+	unsigned mask = 1 << (DX & 0x1f);
 
 	FLAG_Z = *r_dst & mask;
 	*r_dst ^= mask;
@@ -2353,9 +2353,9 @@ M68KMAKE_OP(bchg, 32, r, d)
 
 M68KMAKE_OP(bchg, 8, r, .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_8;
-	uint src = m68ki_read_8(ea);
-	uint mask = 1 << (DX & 7);
+	unsigned ea = M68KMAKE_GET_EA_AY_8;
+	unsigned src = m68ki_read_8(ea);
+	unsigned mask = 1 << (DX & 7);
 
 	FLAG_Z = src & mask;
 	m68ki_write_8(ea, src ^ mask);
@@ -2364,8 +2364,8 @@ M68KMAKE_OP(bchg, 8, r, .)
 
 M68KMAKE_OP(bchg, 32, s, d)
 {
-	uint* r_dst = &DY;
-	uint mask = 1 << (OPER_I_8() & 0x1f);
+	unsigned* r_dst = &DY;
+	unsigned mask = 1 << (OPER_I_8() & 0x1f);
 
 	FLAG_Z = *r_dst & mask;
 	*r_dst ^= mask;
@@ -2374,9 +2374,9 @@ M68KMAKE_OP(bchg, 32, s, d)
 
 M68KMAKE_OP(bchg, 8, s, .)
 {
-	uint mask = 1 << (OPER_I_8() & 7);
-	uint ea = M68KMAKE_GET_EA_AY_8;
-	uint src = m68ki_read_8(ea);
+	unsigned mask = 1 << (OPER_I_8() & 7);
+	unsigned ea = M68KMAKE_GET_EA_AY_8;
+	unsigned src = m68ki_read_8(ea);
 
 	FLAG_Z = src & mask;
 	m68ki_write_8(ea, src ^ mask);
@@ -2385,8 +2385,8 @@ M68KMAKE_OP(bchg, 8, s, .)
 
 M68KMAKE_OP(bclr, 32, r, d)
 {
-	uint* r_dst = &DY;
-	uint mask = 1 << (DX & 0x1f);
+	unsigned* r_dst = &DY;
+	unsigned mask = 1 << (DX & 0x1f);
 
 	FLAG_Z = *r_dst & mask;
 	*r_dst &= ~mask;
@@ -2395,9 +2395,9 @@ M68KMAKE_OP(bclr, 32, r, d)
 
 M68KMAKE_OP(bclr, 8, r, .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_8;
-	uint src = m68ki_read_8(ea);
-	uint mask = 1 << (DX & 7);
+	unsigned ea = M68KMAKE_GET_EA_AY_8;
+	unsigned src = m68ki_read_8(ea);
+	unsigned mask = 1 << (DX & 7);
 
 	FLAG_Z = src & mask;
 	m68ki_write_8(ea, src & ~mask);
@@ -2406,8 +2406,8 @@ M68KMAKE_OP(bclr, 8, r, .)
 
 M68KMAKE_OP(bclr, 32, s, d)
 {
-	uint* r_dst = &DY;
-	uint mask = 1 << (OPER_I_8() & 0x1f);
+	unsigned* r_dst = &DY;
+	unsigned mask = 1 << (OPER_I_8() & 0x1f);
 
 	FLAG_Z = *r_dst & mask;
 	*r_dst &= ~mask;
@@ -2416,9 +2416,9 @@ M68KMAKE_OP(bclr, 32, s, d)
 
 M68KMAKE_OP(bclr, 8, s, .)
 {
-	uint mask = 1 << (OPER_I_8() & 7);
-	uint ea = M68KMAKE_GET_EA_AY_8;
-	uint src = m68ki_read_8(ea);
+	unsigned mask = 1 << (OPER_I_8() & 7);
+	unsigned ea = M68KMAKE_GET_EA_AY_8;
+	unsigned src = m68ki_read_8(ea);
 
 	FLAG_Z = src & mask;
 	m68ki_write_8(ea, src & ~mask);
@@ -2429,10 +2429,10 @@ M68KMAKE_OP(bfchg, 32, ., d)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
-		uint offset = (word2>>6)&31;
-		uint width = word2;
-		uint* data = &DY;
+		unsigned word2 = OPER_I_16();
+		unsigned offset = (word2>>6)&31;
+		unsigned width = word2;
+		unsigned* data = &DY;
 		uint64 mask;
 
 
@@ -2464,15 +2464,15 @@ M68KMAKE_OP(bfchg, 32, ., .)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
+		unsigned word2 = OPER_I_16();
 		sint offset = (word2>>6)&31;
-		uint width = word2;
-		uint mask_base;
-		uint data_long;
-		uint mask_long;
-		uint data_byte = 0;
-		uint mask_byte = 0;
-		uint ea = M68KMAKE_GET_EA_AY_8;
+		unsigned width = word2;
+		unsigned mask_base;
+		unsigned data_long;
+		unsigned mask_long;
+		unsigned data_byte = 0;
+		unsigned mask_byte = 0;
+		unsigned ea = M68KMAKE_GET_EA_AY_8;
 
 
 		if(BIT_B(word2))
@@ -2518,10 +2518,10 @@ M68KMAKE_OP(bfclr, 32, ., d)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
-		uint offset = (word2>>6)&31;
-		uint width = word2;
-		uint* data = &DY;
+		unsigned word2 = OPER_I_16();
+		unsigned offset = (word2>>6)&31;
+		unsigned width = word2;
+		unsigned* data = &DY;
 		uint64 mask;
 
 
@@ -2555,15 +2555,15 @@ M68KMAKE_OP(bfclr, 32, ., .)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
+		unsigned word2 = OPER_I_16();
 		sint offset = (word2>>6)&31;
-		uint width = word2;
-		uint mask_base;
-		uint data_long;
-		uint mask_long;
-		uint data_byte = 0;
-		uint mask_byte = 0;
-		uint ea = M68KMAKE_GET_EA_AY_8;
+		unsigned width = word2;
+		unsigned mask_base;
+		unsigned data_long;
+		unsigned mask_long;
+		unsigned data_byte = 0;
+		unsigned mask_byte = 0;
+		unsigned ea = M68KMAKE_GET_EA_AY_8;
 
 
 		if(BIT_B(word2))
@@ -2609,9 +2609,9 @@ M68KMAKE_OP(bfexts, 32, ., d)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
-		uint offset = (word2>>6)&31;
-		uint width = word2;
+		unsigned word2 = OPER_I_16();
+		unsigned offset = (word2>>6)&31;
+		unsigned width = word2;
 		uint64 data = DY;
 
 
@@ -2643,11 +2643,11 @@ M68KMAKE_OP(bfexts, 32, ., .)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
+		unsigned word2 = OPER_I_16();
 		sint offset = (word2>>6)&31;
-		uint width = word2;
-		uint data;
-		uint ea = M68KMAKE_GET_EA_AY_8;
+		unsigned width = word2;
+		unsigned data;
+		unsigned ea = M68KMAKE_GET_EA_AY_8;
 
 
 		if(BIT_B(word2))
@@ -2691,9 +2691,9 @@ M68KMAKE_OP(bfextu, 32, ., d)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
-		uint offset = (word2>>6)&31;
-		uint width = word2;
+		unsigned word2 = OPER_I_16();
+		unsigned offset = (word2>>6)&31;
+		unsigned width = word2;
 		uint64 data = DY;
 
 
@@ -2725,11 +2725,11 @@ M68KMAKE_OP(bfextu, 32, ., .)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
+		unsigned word2 = OPER_I_16();
 		sint offset = (word2>>6)&31;
-		uint width = word2;
-		uint data;
-		uint ea = M68KMAKE_GET_EA_AY_8;
+		unsigned width = word2;
+		unsigned data;
+		unsigned ea = M68KMAKE_GET_EA_AY_8;
 
 
 		if(BIT_B(word2))
@@ -2772,11 +2772,11 @@ M68KMAKE_OP(bfffo, 32, ., d)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
-		uint offset = (word2>>6)&31;
-		uint width = word2;
+		unsigned word2 = OPER_I_16();
+		unsigned offset = (word2>>6)&31;
+		unsigned width = word2;
 		uint64 data = DY;
-		uint bit;
+		unsigned bit;
 
 
 		if(BIT_B(word2))
@@ -2810,13 +2810,13 @@ M68KMAKE_OP(bfffo, 32, ., .)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
+		unsigned word2 = OPER_I_16();
 		sint offset = (word2>>6)&31;
 		sint local_offset;
-		uint width = word2;
-		uint data;
-		uint bit;
-		uint ea = M68KMAKE_GET_EA_AY_8;
+		unsigned width = word2;
+		unsigned data;
+		unsigned bit;
+		unsigned ea = M68KMAKE_GET_EA_AY_8;
 
 
 		if(BIT_B(word2))
@@ -2862,10 +2862,10 @@ M68KMAKE_OP(bfins, 32, ., d)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
-		uint offset = (word2>>6)&31;
-		uint width = word2;
-		uint* data = &DY;
+		unsigned word2 = OPER_I_16();
+		unsigned offset = (word2>>6)&31;
+		unsigned width = word2;
+		unsigned* data = &DY;
 		uint64 mask;
 		uint64 insert = REG_D[(word2>>12)&7];
 
@@ -2904,18 +2904,18 @@ M68KMAKE_OP(bfins, 32, ., .)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
+		unsigned word2 = OPER_I_16();
 		sint offset = (word2>>6)&31;
-		uint width = word2;
-		uint insert_base = REG_D[(word2>>12)&7];
-		uint insert_long;
-		uint insert_byte;
-		uint mask_base;
-		uint data_long;
-		uint mask_long;
-		uint data_byte = 0;
-		uint mask_byte = 0;
-		uint ea = M68KMAKE_GET_EA_AY_8;
+		unsigned width = word2;
+		unsigned insert_base = REG_D[(word2>>12)&7];
+		unsigned insert_long;
+		unsigned insert_byte;
+		unsigned mask_base;
+		unsigned data_long;
+		unsigned mask_long;
+		unsigned data_byte = 0;
+		unsigned mask_byte = 0;
+		unsigned ea = M68KMAKE_GET_EA_AY_8;
 
 
 		if(BIT_B(word2))
@@ -2965,10 +2965,10 @@ M68KMAKE_OP(bfset, 32, ., d)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
-		uint offset = (word2>>6)&31;
-		uint width = word2;
-		uint* data = &DY;
+		unsigned word2 = OPER_I_16();
+		unsigned offset = (word2>>6)&31;
+		unsigned width = word2;
+		unsigned* data = &DY;
 		uint64 mask;
 
 
@@ -3002,15 +3002,15 @@ M68KMAKE_OP(bfset, 32, ., .)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
+		unsigned word2 = OPER_I_16();
 		sint offset = (word2>>6)&31;
-		uint width = word2;
-		uint mask_base;
-		uint data_long;
-		uint mask_long;
-		uint data_byte = 0;
-		uint mask_byte = 0;
-		uint ea = M68KMAKE_GET_EA_AY_8;
+		unsigned width = word2;
+		unsigned mask_base;
+		unsigned data_long;
+		unsigned mask_long;
+		unsigned data_byte = 0;
+		unsigned mask_byte = 0;
+		unsigned ea = M68KMAKE_GET_EA_AY_8;
 
 
 		if(BIT_B(word2))
@@ -3057,10 +3057,10 @@ M68KMAKE_OP(bftst, 32, ., d)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
-		uint offset = (word2>>6)&31;
-		uint width = word2;
-		uint* data = &DY;
+		unsigned word2 = OPER_I_16();
+		unsigned offset = (word2>>6)&31;
+		unsigned width = word2;
+		unsigned* data = &DY;
 		uint64 mask;
 
 
@@ -3092,15 +3092,15 @@ M68KMAKE_OP(bftst, 32, ., .)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
+		unsigned word2 = OPER_I_16();
 		sint offset = (word2>>6)&31;
-		uint width = word2;
-		uint mask_base;
-		uint data_long;
-		uint mask_long;
-		uint data_byte = 0;
-		uint mask_byte = 0;
-		uint ea = M68KMAKE_GET_EA_AY_8;
+		unsigned width = word2;
+		unsigned mask_base;
+		unsigned data_long;
+		unsigned mask_long;
+		unsigned data_byte = 0;
+		unsigned mask_byte = 0;
+		unsigned ea = M68KMAKE_GET_EA_AY_8;
 
 		if(BIT_B(word2))
 			offset = MAKE_INT_32(REG_D[offset&7]);
@@ -3160,7 +3160,7 @@ M68KMAKE_OP(bra, 8, ., .)
 
 M68KMAKE_OP(bra, 16, ., .)
 {
-	uint offset = OPER_I_16();
+	unsigned offset = OPER_I_16();
 	REG_PC -= 2;
 	m68ki_trace_t0();			   /* auto-disable (see m68kcpu.h) */
 	m68ki_branch_16(offset);
@@ -3173,7 +3173,7 @@ M68KMAKE_OP(bra, 32, ., .)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint offset = OPER_I_32();
+		unsigned offset = OPER_I_32();
 		REG_PC -= 4;
 		m68ki_trace_t0();			   /* auto-disable (see m68kcpu.h) */
 		m68ki_branch_32(offset);
@@ -3193,8 +3193,8 @@ M68KMAKE_OP(bra, 32, ., .)
 
 M68KMAKE_OP(bset, 32, r, d)
 {
-	uint* r_dst = &DY;
-	uint mask = 1 << (DX & 0x1f);
+	unsigned* r_dst = &DY;
+	unsigned mask = 1 << (DX & 0x1f);
 
 	FLAG_Z = *r_dst & mask;
 	*r_dst |= mask;
@@ -3203,9 +3203,9 @@ M68KMAKE_OP(bset, 32, r, d)
 
 M68KMAKE_OP(bset, 8, r, .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_8;
-	uint src = m68ki_read_8(ea);
-	uint mask = 1 << (DX & 7);
+	unsigned ea = M68KMAKE_GET_EA_AY_8;
+	unsigned src = m68ki_read_8(ea);
+	unsigned mask = 1 << (DX & 7);
 
 	FLAG_Z = src & mask;
 	m68ki_write_8(ea, src | mask);
@@ -3214,8 +3214,8 @@ M68KMAKE_OP(bset, 8, r, .)
 
 M68KMAKE_OP(bset, 32, s, d)
 {
-	uint* r_dst = &DY;
-	uint mask = 1 << (OPER_I_8() & 0x1f);
+	unsigned* r_dst = &DY;
+	unsigned mask = 1 << (OPER_I_8() & 0x1f);
 
 	FLAG_Z = *r_dst & mask;
 	*r_dst |= mask;
@@ -3224,9 +3224,9 @@ M68KMAKE_OP(bset, 32, s, d)
 
 M68KMAKE_OP(bset, 8, s, .)
 {
-	uint mask = 1 << (OPER_I_8() & 7);
-	uint ea = M68KMAKE_GET_EA_AY_8;
-	uint src = m68ki_read_8(ea);
+	unsigned mask = 1 << (OPER_I_8() & 7);
+	unsigned ea = M68KMAKE_GET_EA_AY_8;
+	unsigned src = m68ki_read_8(ea);
 
 	FLAG_Z = src & mask;
 	m68ki_write_8(ea, src | mask);
@@ -3243,7 +3243,7 @@ M68KMAKE_OP(bsr, 8, ., .)
 
 M68KMAKE_OP(bsr, 16, ., .)
 {
-	uint offset = OPER_I_16();
+	unsigned offset = OPER_I_16();
 	m68ki_trace_t0();			   /* auto-disable (see m68kcpu.h) */
 	m68ki_push_32(REG_PC);
 	REG_PC -= 2;
@@ -3255,7 +3255,7 @@ M68KMAKE_OP(bsr, 32, ., .)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint offset = OPER_I_32();
+		unsigned offset = OPER_I_32();
 		m68ki_trace_t0();			   /* auto-disable (see m68kcpu.h) */
 		m68ki_push_32(REG_PC);
 		REG_PC -= 4;
@@ -3291,7 +3291,7 @@ M68KMAKE_OP(btst, 32, s, d)
 
 M68KMAKE_OP(btst, 8, s, .)
 {
-	uint bit = OPER_I_8() & 7;
+	unsigned bit = OPER_I_8() & 7;
 
 	FLAG_Z = M68KMAKE_GET_OPER_AY_8 & (1 << bit);
 }
@@ -3302,7 +3302,7 @@ M68KMAKE_OP(callm, 32, ., .)
 	/* note: watch out for pcrelative modes */
 	if(CPU_TYPE_IS_020_VARIANT(CPU_TYPE))
 	{
-		uint ea = M68KMAKE_GET_EA_AY_32;
+		unsigned ea = M68KMAKE_GET_EA_AY_32;
 
 		m68ki_trace_t0();			   /* auto-disable (see m68kcpu.h) */
 		REG_PC += 2;
@@ -3320,11 +3320,11 @@ M68KMAKE_OP(cas, 8, ., .)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
-		uint ea = M68KMAKE_GET_EA_AY_8;
-		uint dest = m68ki_read_8(ea);
-		uint* compare = &REG_D[word2 & 7];
-		uint res = dest - MASK_OUT_ABOVE_8(*compare);
+		unsigned word2 = OPER_I_16();
+		unsigned ea = M68KMAKE_GET_EA_AY_8;
+		unsigned dest = m68ki_read_8(ea);
+		unsigned* compare = &REG_D[word2 & 7];
+		unsigned res = dest - MASK_OUT_ABOVE_8(*compare);
 
 		m68ki_trace_t0();			   /* auto-disable (see m68kcpu.h) */
 		FLAG_N = NFLAG_8(res);
@@ -3349,11 +3349,11 @@ M68KMAKE_OP(cas, 16, ., .)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
-		uint ea = M68KMAKE_GET_EA_AY_16;
-		uint dest = m68ki_read_16(ea);
-		uint* compare = &REG_D[word2 & 7];
-		uint res = dest - MASK_OUT_ABOVE_16(*compare);
+		unsigned word2 = OPER_I_16();
+		unsigned ea = M68KMAKE_GET_EA_AY_16;
+		unsigned dest = m68ki_read_16(ea);
+		unsigned* compare = &REG_D[word2 & 7];
+		unsigned res = dest - MASK_OUT_ABOVE_16(*compare);
 
 		m68ki_trace_t0();			   /* auto-disable (see m68kcpu.h) */
 		FLAG_N = NFLAG_16(res);
@@ -3378,11 +3378,11 @@ M68KMAKE_OP(cas, 32, ., .)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
-		uint ea = M68KMAKE_GET_EA_AY_32;
-		uint dest = m68ki_read_32(ea);
-		uint* compare = &REG_D[word2 & 7];
-		uint res = dest - *compare;
+		unsigned word2 = OPER_I_16();
+		unsigned ea = M68KMAKE_GET_EA_AY_32;
+		unsigned dest = m68ki_read_32(ea);
+		unsigned* compare = &REG_D[word2 & 7];
+		unsigned res = dest - *compare;
 
 		m68ki_trace_t0();			   /* auto-disable (see m68kcpu.h) */
 		FLAG_N = NFLAG_32(res);
@@ -3407,15 +3407,15 @@ M68KMAKE_OP(cas2, 16, ., .)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_32();
-		uint* compare1 = &REG_D[(word2 >> 16) & 7];
-		uint ea1 = REG_DA[(word2 >> 28) & 15];
-		uint dest1 = m68ki_read_16(ea1);
-		uint res1 = dest1 - MASK_OUT_ABOVE_16(*compare1);
-		uint* compare2 = &REG_D[word2 & 7];
-		uint ea2 = REG_DA[(word2 >> 12) & 15];
-		uint dest2 = m68ki_read_16(ea2);
-		uint res2;
+		unsigned word2 = OPER_I_32();
+		unsigned* compare1 = &REG_D[(word2 >> 16) & 7];
+		unsigned ea1 = REG_DA[(word2 >> 28) & 15];
+		unsigned dest1 = m68ki_read_16(ea1);
+		unsigned res1 = dest1 - MASK_OUT_ABOVE_16(*compare1);
+		unsigned* compare2 = &REG_D[word2 & 7];
+		unsigned ea2 = REG_DA[(word2 >> 12) & 15];
+		unsigned dest2 = m68ki_read_16(ea2);
+		unsigned res2;
 
 		m68ki_trace_t0();			   /* auto-disable (see m68kcpu.h) */
 		FLAG_N = NFLAG_16(res1);
@@ -3440,8 +3440,8 @@ M68KMAKE_OP(cas2, 16, ., .)
 				return;
 			}
 		}
-		*compare1 = BIT_1F(word2) ? (uint)MAKE_INT_16(dest1) : MASK_OUT_BELOW_16(*compare1) | dest1;
-		*compare2 = BIT_F(word2) ? (uint)MAKE_INT_16(dest2) : MASK_OUT_BELOW_16(*compare2) | dest2;
+		*compare1 = BIT_1F(word2) ? (unsigned)MAKE_INT_16(dest1) : MASK_OUT_BELOW_16(*compare1) | dest1;
+		*compare2 = BIT_F(word2) ? (unsigned)MAKE_INT_16(dest2) : MASK_OUT_BELOW_16(*compare2) | dest2;
 		return;
 	}
 	m68ki_exception_illegal();
@@ -3452,15 +3452,15 @@ M68KMAKE_OP(cas2, 32, ., .)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_32();
-		uint* compare1 = &REG_D[(word2 >> 16) & 7];
-		uint ea1 = REG_DA[(word2 >> 28) & 15];
-		uint dest1 = m68ki_read_32(ea1);
-		uint res1 = dest1 - *compare1;
-		uint* compare2 = &REG_D[word2 & 7];
-		uint ea2 = REG_DA[(word2 >> 12) & 15];
-		uint dest2 = m68ki_read_32(ea2);
-		uint res2;
+		unsigned word2 = OPER_I_32();
+		unsigned* compare1 = &REG_D[(word2 >> 16) & 7];
+		unsigned ea1 = REG_DA[(word2 >> 28) & 15];
+		unsigned dest1 = m68ki_read_32(ea1);
+		unsigned res1 = dest1 - *compare1;
+		unsigned* compare2 = &REG_D[word2 & 7];
+		unsigned ea2 = REG_DA[(word2 >> 12) & 15];
+		unsigned dest2 = m68ki_read_32(ea2);
+		unsigned res2;
 
 		m68ki_trace_t0();			   /* auto-disable (see m68kcpu.h) */
 		FLAG_N = NFLAG_32(res1);
@@ -3579,11 +3579,11 @@ M68KMAKE_OP(chk2cmp2, 8, ., pcdi)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
-		uint compare = REG_DA[(word2 >> 12) & 15]&0xff;
-		uint ea = EA_PCDI_8();
-		uint lower_bound = m68ki_read_pcrel_8(ea);
-		uint upper_bound = m68ki_read_pcrel_8(ea + 1);
+		unsigned word2 = OPER_I_16();
+		unsigned compare = REG_DA[(word2 >> 12) & 15]&0xff;
+		unsigned ea = EA_PCDI_8();
+		unsigned lower_bound = m68ki_read_pcrel_8(ea);
+		unsigned upper_bound = m68ki_read_pcrel_8(ea + 1);
 
 		if(!BIT_F(word2))
 			FLAG_C = MAKE_INT_8(compare) - MAKE_INT_8(lower_bound);
@@ -3610,11 +3610,11 @@ M68KMAKE_OP(chk2cmp2, 8, ., pcix)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
-		uint compare = REG_DA[(word2 >> 12) & 15]&0xff;
-		uint ea = EA_PCIX_8();
-		uint lower_bound = m68ki_read_pcrel_8(ea);
-		uint upper_bound = m68ki_read_pcrel_8(ea + 1);
+		unsigned word2 = OPER_I_16();
+		unsigned compare = REG_DA[(word2 >> 12) & 15]&0xff;
+		unsigned ea = EA_PCIX_8();
+		unsigned lower_bound = m68ki_read_pcrel_8(ea);
+		unsigned upper_bound = m68ki_read_pcrel_8(ea + 1);
 
 		if(!BIT_F(word2))
 			FLAG_C = MAKE_INT_8(compare) - MAKE_INT_8(lower_bound);
@@ -3641,11 +3641,11 @@ M68KMAKE_OP(chk2cmp2, 8, ., .)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
-		uint compare = REG_DA[(word2 >> 12) & 15]&0xff;
-		uint ea = M68KMAKE_GET_EA_AY_8;
-		uint lower_bound = m68ki_read_8(ea);
-		uint upper_bound = m68ki_read_8(ea + 1);
+		unsigned word2 = OPER_I_16();
+		unsigned compare = REG_DA[(word2 >> 12) & 15]&0xff;
+		unsigned ea = M68KMAKE_GET_EA_AY_8;
+		unsigned lower_bound = m68ki_read_8(ea);
+		unsigned upper_bound = m68ki_read_8(ea + 1);
 
 		if(!BIT_F(word2))
 			FLAG_C = MAKE_INT_8(compare) - MAKE_INT_8(lower_bound);
@@ -3672,11 +3672,11 @@ M68KMAKE_OP(chk2cmp2, 16, ., pcdi)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
-		uint compare = REG_DA[(word2 >> 12) & 15]&0xffff;
-		uint ea = EA_PCDI_16();
-		uint lower_bound = m68ki_read_pcrel_16(ea);
-		uint upper_bound = m68ki_read_pcrel_16(ea + 2);
+		unsigned word2 = OPER_I_16();
+		unsigned compare = REG_DA[(word2 >> 12) & 15]&0xffff;
+		unsigned ea = EA_PCDI_16();
+		unsigned lower_bound = m68ki_read_pcrel_16(ea);
+		unsigned upper_bound = m68ki_read_pcrel_16(ea + 2);
 
 		if(!BIT_F(word2))
 			FLAG_C = MAKE_INT_16(compare) - MAKE_INT_16(lower_bound);
@@ -3708,11 +3708,11 @@ M68KMAKE_OP(chk2cmp2, 16, ., pcix)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
-		uint compare = REG_DA[(word2 >> 12) & 15]&0xffff;
-		uint ea = EA_PCIX_16();
-		uint lower_bound = m68ki_read_pcrel_16(ea);
-		uint upper_bound = m68ki_read_pcrel_16(ea + 2);
+		unsigned word2 = OPER_I_16();
+		unsigned compare = REG_DA[(word2 >> 12) & 15]&0xffff;
+		unsigned ea = EA_PCIX_16();
+		unsigned lower_bound = m68ki_read_pcrel_16(ea);
+		unsigned upper_bound = m68ki_read_pcrel_16(ea + 2);
 
 		if(!BIT_F(word2))
 			FLAG_C = MAKE_INT_16(compare) - MAKE_INT_16(lower_bound);
@@ -3744,11 +3744,11 @@ M68KMAKE_OP(chk2cmp2, 16, ., .)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
-		uint compare = REG_DA[(word2 >> 12) & 15]&0xffff;
-		uint ea = M68KMAKE_GET_EA_AY_16;
-		uint lower_bound = m68ki_read_16(ea);
-		uint upper_bound = m68ki_read_16(ea + 2);
+		unsigned word2 = OPER_I_16();
+		unsigned compare = REG_DA[(word2 >> 12) & 15]&0xffff;
+		unsigned ea = M68KMAKE_GET_EA_AY_16;
+		unsigned lower_bound = m68ki_read_16(ea);
+		unsigned upper_bound = m68ki_read_16(ea + 2);
 
 		if(!BIT_F(word2))
 			FLAG_C = MAKE_INT_16(compare) - MAKE_INT_16(lower_bound);
@@ -3781,11 +3781,11 @@ M68KMAKE_OP(chk2cmp2, 32, ., pcdi)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
-		uint compare = REG_DA[(word2 >> 12) & 15];
-		uint ea = EA_PCDI_32();
-		uint lower_bound = m68ki_read_pcrel_32(ea);
-		uint upper_bound = m68ki_read_pcrel_32(ea + 4);
+		unsigned word2 = OPER_I_16();
+		unsigned compare = REG_DA[(word2 >> 12) & 15];
+		unsigned ea = EA_PCDI_32();
+		unsigned lower_bound = m68ki_read_pcrel_32(ea);
+		unsigned upper_bound = m68ki_read_pcrel_32(ea + 4);
 
 		FLAG_C = compare - lower_bound;
 		FLAG_Z = !((upper_bound==compare) | (lower_bound==compare));
@@ -3811,11 +3811,11 @@ M68KMAKE_OP(chk2cmp2, 32, ., pcix)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
-		uint compare = REG_DA[(word2 >> 12) & 15];
-		uint ea = EA_PCIX_32();
-		uint lower_bound = m68ki_read_pcrel_32(ea);
-		uint upper_bound = m68ki_read_pcrel_32(ea + 4);
+		unsigned word2 = OPER_I_16();
+		unsigned compare = REG_DA[(word2 >> 12) & 15];
+		unsigned ea = EA_PCIX_32();
+		unsigned lower_bound = m68ki_read_pcrel_32(ea);
+		unsigned upper_bound = m68ki_read_pcrel_32(ea + 4);
 
 		FLAG_C = compare - lower_bound;
 		FLAG_Z = !((upper_bound==compare) | (lower_bound==compare));
@@ -3841,11 +3841,11 @@ M68KMAKE_OP(chk2cmp2, 32, ., .)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
-		uint compare = REG_DA[(word2 >> 12) & 15];
-		uint ea = M68KMAKE_GET_EA_AY_32;
-		uint lower_bound = m68ki_read_32(ea);
-		uint upper_bound = m68ki_read_32(ea + 4);
+		unsigned word2 = OPER_I_16();
+		unsigned compare = REG_DA[(word2 >> 12) & 15];
+		unsigned ea = M68KMAKE_GET_EA_AY_32;
+		unsigned lower_bound = m68ki_read_32(ea);
+		unsigned upper_bound = m68ki_read_32(ea + 4);
 
 		FLAG_C = compare - lower_bound;
 		FLAG_Z = !((upper_bound==compare) | (lower_bound==compare));
@@ -3935,9 +3935,9 @@ M68KMAKE_OP(clr, 32, ., .)
 
 M68KMAKE_OP(cmp, 8, ., d)
 {
-	uint src = MASK_OUT_ABOVE_8(DY);
-	uint dst = MASK_OUT_ABOVE_8(DX);
-	uint res = dst - src;
+	unsigned src = MASK_OUT_ABOVE_8(DY);
+	unsigned dst = MASK_OUT_ABOVE_8(DX);
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_Z = MASK_OUT_ABOVE_8(res);
@@ -3948,9 +3948,9 @@ M68KMAKE_OP(cmp, 8, ., d)
 
 M68KMAKE_OP(cmp, 8, ., .)
 {
-	uint src = M68KMAKE_GET_OPER_AY_8;
-	uint dst = MASK_OUT_ABOVE_8(DX);
-	uint res = dst - src;
+	unsigned src = M68KMAKE_GET_OPER_AY_8;
+	unsigned dst = MASK_OUT_ABOVE_8(DX);
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_Z = MASK_OUT_ABOVE_8(res);
@@ -3961,9 +3961,9 @@ M68KMAKE_OP(cmp, 8, ., .)
 
 M68KMAKE_OP(cmp, 16, ., d)
 {
-	uint src = MASK_OUT_ABOVE_16(DY);
-	uint dst = MASK_OUT_ABOVE_16(DX);
-	uint res = dst - src;
+	unsigned src = MASK_OUT_ABOVE_16(DY);
+	unsigned dst = MASK_OUT_ABOVE_16(DX);
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_Z = MASK_OUT_ABOVE_16(res);
@@ -3974,9 +3974,9 @@ M68KMAKE_OP(cmp, 16, ., d)
 
 M68KMAKE_OP(cmp, 16, ., a)
 {
-	uint src = MASK_OUT_ABOVE_16(AY);
-	uint dst = MASK_OUT_ABOVE_16(DX);
-	uint res = dst - src;
+	unsigned src = MASK_OUT_ABOVE_16(AY);
+	unsigned dst = MASK_OUT_ABOVE_16(DX);
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_Z = MASK_OUT_ABOVE_16(res);
@@ -3987,9 +3987,9 @@ M68KMAKE_OP(cmp, 16, ., a)
 
 M68KMAKE_OP(cmp, 16, ., .)
 {
-	uint src = M68KMAKE_GET_OPER_AY_16;
-	uint dst = MASK_OUT_ABOVE_16(DX);
-	uint res = dst - src;
+	unsigned src = M68KMAKE_GET_OPER_AY_16;
+	unsigned dst = MASK_OUT_ABOVE_16(DX);
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_Z = MASK_OUT_ABOVE_16(res);
@@ -4000,9 +4000,9 @@ M68KMAKE_OP(cmp, 16, ., .)
 
 M68KMAKE_OP(cmp, 32, ., d)
 {
-	uint src = DY;
-	uint dst = DX;
-	uint res = dst - src;
+	unsigned src = DY;
+	unsigned dst = DX;
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_Z = MASK_OUT_ABOVE_32(res);
@@ -4013,9 +4013,9 @@ M68KMAKE_OP(cmp, 32, ., d)
 
 M68KMAKE_OP(cmp, 32, ., a)
 {
-	uint src = AY;
-	uint dst = DX;
-	uint res = dst - src;
+	unsigned src = AY;
+	unsigned dst = DX;
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_Z = MASK_OUT_ABOVE_32(res);
@@ -4026,9 +4026,9 @@ M68KMAKE_OP(cmp, 32, ., a)
 
 M68KMAKE_OP(cmp, 32, ., .)
 {
-	uint src = M68KMAKE_GET_OPER_AY_32;
-	uint dst = DX;
-	uint res = dst - src;
+	unsigned src = M68KMAKE_GET_OPER_AY_32;
+	unsigned dst = DX;
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_Z = MASK_OUT_ABOVE_32(res);
@@ -4039,9 +4039,9 @@ M68KMAKE_OP(cmp, 32, ., .)
 
 M68KMAKE_OP(cmpa, 16, ., d)
 {
-	uint src = MAKE_INT_16(DY);
-	uint dst = AX;
-	uint res = dst - src;
+	unsigned src = MAKE_INT_16(DY);
+	unsigned dst = AX;
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_Z = MASK_OUT_ABOVE_32(res);
@@ -4052,9 +4052,9 @@ M68KMAKE_OP(cmpa, 16, ., d)
 
 M68KMAKE_OP(cmpa, 16, ., a)
 {
-	uint src = MAKE_INT_16(AY);
-	uint dst = AX;
-	uint res = dst - src;
+	unsigned src = MAKE_INT_16(AY);
+	unsigned dst = AX;
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_Z = MASK_OUT_ABOVE_32(res);
@@ -4065,9 +4065,9 @@ M68KMAKE_OP(cmpa, 16, ., a)
 
 M68KMAKE_OP(cmpa, 16, ., .)
 {
-	uint src = MAKE_INT_16(M68KMAKE_GET_OPER_AY_16);
-	uint dst = AX;
-	uint res = dst - src;
+	unsigned src = MAKE_INT_16(M68KMAKE_GET_OPER_AY_16);
+	unsigned dst = AX;
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_Z = MASK_OUT_ABOVE_32(res);
@@ -4078,9 +4078,9 @@ M68KMAKE_OP(cmpa, 16, ., .)
 
 M68KMAKE_OP(cmpa, 32, ., d)
 {
-	uint src = DY;
-	uint dst = AX;
-	uint res = dst - src;
+	unsigned src = DY;
+	unsigned dst = AX;
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_Z = MASK_OUT_ABOVE_32(res);
@@ -4091,9 +4091,9 @@ M68KMAKE_OP(cmpa, 32, ., d)
 
 M68KMAKE_OP(cmpa, 32, ., a)
 {
-	uint src = AY;
-	uint dst = AX;
-	uint res = dst - src;
+	unsigned src = AY;
+	unsigned dst = AX;
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_Z = MASK_OUT_ABOVE_32(res);
@@ -4104,9 +4104,9 @@ M68KMAKE_OP(cmpa, 32, ., a)
 
 M68KMAKE_OP(cmpa, 32, ., .)
 {
-	uint src = M68KMAKE_GET_OPER_AY_32;
-	uint dst = AX;
-	uint res = dst - src;
+	unsigned src = M68KMAKE_GET_OPER_AY_32;
+	unsigned dst = AX;
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_Z = MASK_OUT_ABOVE_32(res);
@@ -4117,9 +4117,9 @@ M68KMAKE_OP(cmpa, 32, ., .)
 
 M68KMAKE_OP(cmpi, 8, ., d)
 {
-	uint src = OPER_I_8();
-	uint dst = MASK_OUT_ABOVE_8(DY);
-	uint res = dst - src;
+	unsigned src = OPER_I_8();
+	unsigned dst = MASK_OUT_ABOVE_8(DY);
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_Z = MASK_OUT_ABOVE_8(res);
@@ -4130,9 +4130,9 @@ M68KMAKE_OP(cmpi, 8, ., d)
 
 M68KMAKE_OP(cmpi, 8, ., .)
 {
-	uint src = OPER_I_8();
-	uint dst = M68KMAKE_GET_OPER_AY_8;
-	uint res = dst - src;
+	unsigned src = OPER_I_8();
+	unsigned dst = M68KMAKE_GET_OPER_AY_8;
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_Z = MASK_OUT_ABOVE_8(res);
@@ -4145,9 +4145,9 @@ M68KMAKE_OP(cmpi, 8, ., pcdi)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint src = OPER_I_8();
-		uint dst = OPER_PCDI_8();
-		uint res = dst - src;
+		unsigned src = OPER_I_8();
+		unsigned dst = OPER_PCDI_8();
+		unsigned res = dst - src;
 
 		FLAG_N = NFLAG_8(res);
 		FLAG_Z = MASK_OUT_ABOVE_8(res);
@@ -4163,9 +4163,9 @@ M68KMAKE_OP(cmpi, 8, ., pcix)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint src = OPER_I_8();
-		uint dst = OPER_PCIX_8();
-		uint res = dst - src;
+		unsigned src = OPER_I_8();
+		unsigned dst = OPER_PCIX_8();
+		unsigned res = dst - src;
 
 		FLAG_N = NFLAG_8(res);
 		FLAG_Z = MASK_OUT_ABOVE_8(res);
@@ -4179,9 +4179,9 @@ M68KMAKE_OP(cmpi, 8, ., pcix)
 
 M68KMAKE_OP(cmpi, 16, ., d)
 {
-	uint src = OPER_I_16();
-	uint dst = MASK_OUT_ABOVE_16(DY);
-	uint res = dst - src;
+	unsigned src = OPER_I_16();
+	unsigned dst = MASK_OUT_ABOVE_16(DY);
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_Z = MASK_OUT_ABOVE_16(res);
@@ -4192,9 +4192,9 @@ M68KMAKE_OP(cmpi, 16, ., d)
 
 M68KMAKE_OP(cmpi, 16, ., .)
 {
-	uint src = OPER_I_16();
-	uint dst = M68KMAKE_GET_OPER_AY_16;
-	uint res = dst - src;
+	unsigned src = OPER_I_16();
+	unsigned dst = M68KMAKE_GET_OPER_AY_16;
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_Z = MASK_OUT_ABOVE_16(res);
@@ -4207,9 +4207,9 @@ M68KMAKE_OP(cmpi, 16, ., pcdi)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint src = OPER_I_16();
-		uint dst = OPER_PCDI_16();
-		uint res = dst - src;
+		unsigned src = OPER_I_16();
+		unsigned dst = OPER_PCDI_16();
+		unsigned res = dst - src;
 
 		FLAG_N = NFLAG_16(res);
 		FLAG_Z = MASK_OUT_ABOVE_16(res);
@@ -4225,9 +4225,9 @@ M68KMAKE_OP(cmpi, 16, ., pcix)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint src = OPER_I_16();
-		uint dst = OPER_PCIX_16();
-		uint res = dst - src;
+		unsigned src = OPER_I_16();
+		unsigned dst = OPER_PCIX_16();
+		unsigned res = dst - src;
 
 		FLAG_N = NFLAG_16(res);
 		FLAG_Z = MASK_OUT_ABOVE_16(res);
@@ -4241,9 +4241,9 @@ M68KMAKE_OP(cmpi, 16, ., pcix)
 
 M68KMAKE_OP(cmpi, 32, ., d)
 {
-	uint src = OPER_I_32();
-	uint dst = DY;
-	uint res = dst - src;
+	unsigned src = OPER_I_32();
+	unsigned dst = DY;
+	unsigned res = dst - src;
 
 	m68ki_cmpild_callback(src, REG_IR & 7);		   /* auto-disable (see m68kcpu.h) */
 	FLAG_N = NFLAG_32(res);
@@ -4255,9 +4255,9 @@ M68KMAKE_OP(cmpi, 32, ., d)
 
 M68KMAKE_OP(cmpi, 32, ., .)
 {
-	uint src = OPER_I_32();
-	uint dst = M68KMAKE_GET_OPER_AY_32;
-	uint res = dst - src;
+	unsigned src = OPER_I_32();
+	unsigned dst = M68KMAKE_GET_OPER_AY_32;
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_Z = MASK_OUT_ABOVE_32(res);
@@ -4270,9 +4270,9 @@ M68KMAKE_OP(cmpi, 32, ., pcdi)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint src = OPER_I_32();
-		uint dst = OPER_PCDI_32();
-		uint res = dst - src;
+		unsigned src = OPER_I_32();
+		unsigned dst = OPER_PCDI_32();
+		unsigned res = dst - src;
 
 		FLAG_N = NFLAG_32(res);
 		FLAG_Z = MASK_OUT_ABOVE_32(res);
@@ -4288,9 +4288,9 @@ M68KMAKE_OP(cmpi, 32, ., pcix)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint src = OPER_I_32();
-		uint dst = OPER_PCIX_32();
-		uint res = dst - src;
+		unsigned src = OPER_I_32();
+		unsigned dst = OPER_PCIX_32();
+		unsigned res = dst - src;
 
 		FLAG_N = NFLAG_32(res);
 		FLAG_Z = MASK_OUT_ABOVE_32(res);
@@ -4304,9 +4304,9 @@ M68KMAKE_OP(cmpi, 32, ., pcix)
 
 M68KMAKE_OP(cmpm, 8, ., ax7)
 {
-	uint src = OPER_AY_PI_8();
-	uint dst = OPER_A7_PI_8();
-	uint res = dst - src;
+	unsigned src = OPER_AY_PI_8();
+	unsigned dst = OPER_A7_PI_8();
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_Z = MASK_OUT_ABOVE_8(res);
@@ -4317,9 +4317,9 @@ M68KMAKE_OP(cmpm, 8, ., ax7)
 
 M68KMAKE_OP(cmpm, 8, ., ay7)
 {
-	uint src = OPER_A7_PI_8();
-	uint dst = OPER_AX_PI_8();
-	uint res = dst - src;
+	unsigned src = OPER_A7_PI_8();
+	unsigned dst = OPER_AX_PI_8();
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_Z = MASK_OUT_ABOVE_8(res);
@@ -4330,9 +4330,9 @@ M68KMAKE_OP(cmpm, 8, ., ay7)
 
 M68KMAKE_OP(cmpm, 8, ., axy7)
 {
-	uint src = OPER_A7_PI_8();
-	uint dst = OPER_A7_PI_8();
-	uint res = dst - src;
+	unsigned src = OPER_A7_PI_8();
+	unsigned dst = OPER_A7_PI_8();
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_Z = MASK_OUT_ABOVE_8(res);
@@ -4343,9 +4343,9 @@ M68KMAKE_OP(cmpm, 8, ., axy7)
 
 M68KMAKE_OP(cmpm, 8, ., .)
 {
-	uint src = OPER_AY_PI_8();
-	uint dst = OPER_AX_PI_8();
-	uint res = dst - src;
+	unsigned src = OPER_AY_PI_8();
+	unsigned dst = OPER_AX_PI_8();
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_Z = MASK_OUT_ABOVE_8(res);
@@ -4356,9 +4356,9 @@ M68KMAKE_OP(cmpm, 8, ., .)
 
 M68KMAKE_OP(cmpm, 16, ., .)
 {
-	uint src = OPER_AY_PI_16();
-	uint dst = OPER_AX_PI_16();
-	uint res = dst - src;
+	unsigned src = OPER_AY_PI_16();
+	unsigned dst = OPER_AX_PI_16();
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_Z = MASK_OUT_ABOVE_16(res);
@@ -4369,9 +4369,9 @@ M68KMAKE_OP(cmpm, 16, ., .)
 
 M68KMAKE_OP(cmpm, 32, ., .)
 {
-	uint src = OPER_AY_PI_32();
-	uint dst = OPER_AX_PI_32();
-	uint res = dst - src;
+	unsigned src = OPER_AY_PI_32();
+	unsigned dst = OPER_AX_PI_32();
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_Z = MASK_OUT_ABOVE_32(res);
@@ -4453,13 +4453,13 @@ M68KMAKE_OP(dbt, 16, ., .)
 
 M68KMAKE_OP(dbf, 16, ., .)
 {
-	uint* r_dst = &DY;
-	uint res = MASK_OUT_ABOVE_16(*r_dst - 1);
+	unsigned* r_dst = &DY;
+	unsigned res = MASK_OUT_ABOVE_16(*r_dst - 1);
 
 	*r_dst = MASK_OUT_BELOW_16(*r_dst) | res;
 	if(res != 0xffff)
 	{
-		uint offset = OPER_I_16();
+		unsigned offset = OPER_I_16();
 		REG_PC -= 2;
 		m68ki_trace_t0();			   /* auto-disable (see m68kcpu.h) */
 		m68ki_branch_16(offset);
@@ -4475,13 +4475,13 @@ M68KMAKE_OP(dbcc, 16, ., .)
 {
 	if(M68KMAKE_NOT_CC)
 	{
-		uint* r_dst = &DY;
-		uint res = MASK_OUT_ABOVE_16(*r_dst - 1);
+		unsigned* r_dst = &DY;
+		unsigned res = MASK_OUT_ABOVE_16(*r_dst - 1);
 
 		*r_dst = MASK_OUT_BELOW_16(*r_dst) | res;
 		if(res != 0xffff)
 		{
-			uint offset = OPER_I_16();
+			unsigned offset = OPER_I_16();
 			REG_PC -= 2;
 			m68ki_trace_t0();			   /* auto-disable (see m68kcpu.h) */
 			m68ki_branch_16(offset);
@@ -4498,7 +4498,7 @@ M68KMAKE_OP(dbcc, 16, ., .)
 
 M68KMAKE_OP(divs, 16, ., d)
 {
-	uint* r_dst = &DX;
+	unsigned* r_dst = &DX;
 	sint src = MAKE_INT_16(DY);
 	sint quotient;
 	sint remainder;
@@ -4536,7 +4536,7 @@ M68KMAKE_OP(divs, 16, ., d)
 
 M68KMAKE_OP(divs, 16, ., .)
 {
-	uint* r_dst = &DX;
+	unsigned* r_dst = &DX;
 	sint src = MAKE_INT_16(M68KMAKE_GET_OPER_AY_16);
 	sint quotient;
 	sint remainder;
@@ -4574,13 +4574,13 @@ M68KMAKE_OP(divs, 16, ., .)
 
 M68KMAKE_OP(divu, 16, ., d)
 {
-	uint* r_dst = &DX;
-	uint src = MASK_OUT_ABOVE_16(DY);
+	unsigned* r_dst = &DX;
+	unsigned src = MASK_OUT_ABOVE_16(DY);
 
 	if(src != 0)
 	{
-		uint quotient = *r_dst / src;
-		uint remainder = *r_dst % src;
+		unsigned quotient = *r_dst / src;
+		unsigned remainder = *r_dst % src;
 
 		if(quotient < 0x10000)
 		{
@@ -4600,13 +4600,13 @@ M68KMAKE_OP(divu, 16, ., d)
 
 M68KMAKE_OP(divu, 16, ., .)
 {
-	uint* r_dst = &DX;
-	uint src = M68KMAKE_GET_OPER_AY_16;
+	unsigned* r_dst = &DX;
+	unsigned src = M68KMAKE_GET_OPER_AY_16;
 
 	if(src != 0)
 	{
-		uint quotient = *r_dst / src;
-		uint remainder = *r_dst % src;
+		unsigned quotient = *r_dst / src;
+		unsigned remainder = *r_dst % src;
 
 		if(quotient < 0x10000)
 		{
@@ -4630,7 +4630,7 @@ M68KMAKE_OP(divl, 32, ., d)
 
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
+		unsigned word2 = OPER_I_16();
 		uint64 divisor   = DY;
 		uint64 dividend  = 0;
 		uint64 quotient  = 0;
@@ -4698,16 +4698,16 @@ M68KMAKE_OP(divl, 32, ., d)
 
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
-		uint divisor = DY;
-		uint dividend_hi = REG_D[word2 & 7];
-		uint dividend_lo = REG_D[(word2 >> 12) & 7];
-		uint quotient = 0;
-		uint remainder = 0;
-		uint dividend_neg = 0;
-		uint divisor_neg = 0;
+		unsigned word2 = OPER_I_16();
+		unsigned divisor = DY;
+		unsigned dividend_hi = REG_D[word2 & 7];
+		unsigned dividend_lo = REG_D[(word2 >> 12) & 7];
+		unsigned quotient = 0;
+		unsigned remainder = 0;
+		unsigned dividend_neg = 0;
+		unsigned divisor_neg = 0;
 		sint i;
-		uint overflow;
+		unsigned overflow;
 
 		if(divisor != 0)
 		{
@@ -4731,13 +4731,13 @@ M68KMAKE_OP(divl, 32, ., d)
 					if(GET_MSB_32(dividend_hi))
 					{
 						dividend_neg = 1;
-						dividend_hi = (uint)MASK_OUT_ABOVE_32((-(sint)dividend_hi) - (dividend_lo != 0));
-						dividend_lo = (uint)MASK_OUT_ABOVE_32(-(sint)dividend_lo);
+						dividend_hi = (unsigned)MASK_OUT_ABOVE_32((-(sint)dividend_hi) - (dividend_lo != 0));
+						dividend_lo = (unsigned)MASK_OUT_ABOVE_32(-(sint)dividend_lo);
 					}
 					if(GET_MSB_32(divisor))
 					{
 						divisor_neg = 1;
-						divisor = (uint)MASK_OUT_ABOVE_32(-(sint)divisor);
+						divisor = (unsigned)MASK_OUT_ABOVE_32(-(sint)divisor);
 
 					}
 				}
@@ -4780,11 +4780,11 @@ M68KMAKE_OP(divl, 32, ., d)
 					}
 					if(dividend_neg)
 					{
-						remainder = (uint)MASK_OUT_ABOVE_32(-(sint)remainder);
-						quotient = (uint)MASK_OUT_ABOVE_32(-(sint)quotient);
+						remainder = (unsigned)MASK_OUT_ABOVE_32(-(sint)remainder);
+						quotient = (unsigned)MASK_OUT_ABOVE_32(-(sint)quotient);
 					}
 					if(divisor_neg)
-						quotient = (uint)MASK_OUT_ABOVE_32(-(sint)quotient);
+						quotient = (unsigned)MASK_OUT_ABOVE_32(-(sint)quotient);
 				}
 
 				REG_D[word2 & 7] = remainder;
@@ -4841,7 +4841,7 @@ M68KMAKE_OP(divl, 32, ., .)
 
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
+		unsigned word2 = OPER_I_16();
 		uint64 divisor = M68KMAKE_GET_OPER_AY_32;
 		uint64 dividend  = 0;
 		uint64 quotient  = 0;
@@ -4909,16 +4909,16 @@ M68KMAKE_OP(divl, 32, ., .)
 
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
-		uint divisor = M68KMAKE_GET_OPER_AY_32;
-		uint dividend_hi = REG_D[word2 & 7];
-		uint dividend_lo = REG_D[(word2 >> 12) & 7];
-		uint quotient = 0;
-		uint remainder = 0;
-		uint dividend_neg = 0;
-		uint divisor_neg = 0;
+		unsigned word2 = OPER_I_16();
+		unsigned divisor = M68KMAKE_GET_OPER_AY_32;
+		unsigned dividend_hi = REG_D[word2 & 7];
+		unsigned dividend_lo = REG_D[(word2 >> 12) & 7];
+		unsigned quotient = 0;
+		unsigned remainder = 0;
+		unsigned dividend_neg = 0;
+		unsigned divisor_neg = 0;
 		sint i;
-		uint overflow;
+		unsigned overflow;
 
 		if(divisor != 0)
 		{
@@ -4942,13 +4942,13 @@ M68KMAKE_OP(divl, 32, ., .)
 					if(GET_MSB_32(dividend_hi))
 					{
 						dividend_neg = 1;
-						dividend_hi = (uint)MASK_OUT_ABOVE_32((-(sint)dividend_hi) - (dividend_lo != 0));
-						dividend_lo = (uint)MASK_OUT_ABOVE_32(-(sint)dividend_lo);
+						dividend_hi = (unsigned)MASK_OUT_ABOVE_32((-(sint)dividend_hi) - (dividend_lo != 0));
+						dividend_lo = (unsigned)MASK_OUT_ABOVE_32(-(sint)dividend_lo);
 					}
 					if(GET_MSB_32(divisor))
 					{
 						divisor_neg = 1;
-						divisor = (uint)MASK_OUT_ABOVE_32(-(sint)divisor);
+						divisor = (unsigned)MASK_OUT_ABOVE_32(-(sint)divisor);
 
 					}
 				}
@@ -4991,11 +4991,11 @@ M68KMAKE_OP(divl, 32, ., .)
 					}
 					if(dividend_neg)
 					{
-						remainder = (uint)MASK_OUT_ABOVE_32(-(sint)remainder);
-						quotient = (uint)MASK_OUT_ABOVE_32(-(sint)quotient);
+						remainder = (unsigned)MASK_OUT_ABOVE_32(-(sint)remainder);
+						quotient = (unsigned)MASK_OUT_ABOVE_32(-(sint)quotient);
 					}
 					if(divisor_neg)
-						quotient = (uint)MASK_OUT_ABOVE_32(-(sint)quotient);
+						quotient = (unsigned)MASK_OUT_ABOVE_32(-(sint)quotient);
 				}
 
 				REG_D[word2 & 7] = remainder;
@@ -5048,7 +5048,7 @@ M68KMAKE_OP(divl, 32, ., .)
 
 M68KMAKE_OP(eor, 8, ., d)
 {
-	uint res = MASK_OUT_ABOVE_8(DY ^= MASK_OUT_ABOVE_8(DX));
+	unsigned res = MASK_OUT_ABOVE_8(DY ^= MASK_OUT_ABOVE_8(DX));
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_Z = res;
@@ -5059,8 +5059,8 @@ M68KMAKE_OP(eor, 8, ., d)
 
 M68KMAKE_OP(eor, 8, ., .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_8;
-	uint res = MASK_OUT_ABOVE_8(DX ^ m68ki_read_8(ea));
+	unsigned ea = M68KMAKE_GET_EA_AY_8;
+	unsigned res = MASK_OUT_ABOVE_8(DX ^ m68ki_read_8(ea));
 
 	m68ki_write_8(ea, res);
 
@@ -5073,7 +5073,7 @@ M68KMAKE_OP(eor, 8, ., .)
 
 M68KMAKE_OP(eor, 16, ., d)
 {
-	uint res = MASK_OUT_ABOVE_16(DY ^= MASK_OUT_ABOVE_16(DX));
+	unsigned res = MASK_OUT_ABOVE_16(DY ^= MASK_OUT_ABOVE_16(DX));
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_Z = res;
@@ -5084,8 +5084,8 @@ M68KMAKE_OP(eor, 16, ., d)
 
 M68KMAKE_OP(eor, 16, ., .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_16;
-	uint res = MASK_OUT_ABOVE_16(DX ^ m68ki_read_16(ea));
+	unsigned ea = M68KMAKE_GET_EA_AY_16;
+	unsigned res = MASK_OUT_ABOVE_16(DX ^ m68ki_read_16(ea));
 
 	m68ki_write_16(ea, res);
 
@@ -5098,7 +5098,7 @@ M68KMAKE_OP(eor, 16, ., .)
 
 M68KMAKE_OP(eor, 32, ., d)
 {
-	uint res = DY ^= DX;
+	unsigned res = DY ^= DX;
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_Z = res;
@@ -5109,8 +5109,8 @@ M68KMAKE_OP(eor, 32, ., d)
 
 M68KMAKE_OP(eor, 32, ., .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_32;
-	uint res = DX ^ m68ki_read_32(ea);
+	unsigned ea = M68KMAKE_GET_EA_AY_32;
+	unsigned res = DX ^ m68ki_read_32(ea);
 
 	m68ki_write_32(ea, res);
 
@@ -5123,7 +5123,7 @@ M68KMAKE_OP(eor, 32, ., .)
 
 M68KMAKE_OP(eori, 8, ., d)
 {
-	uint res = MASK_OUT_ABOVE_8(DY ^= OPER_I_8());
+	unsigned res = MASK_OUT_ABOVE_8(DY ^= OPER_I_8());
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_Z = res;
@@ -5134,9 +5134,9 @@ M68KMAKE_OP(eori, 8, ., d)
 
 M68KMAKE_OP(eori, 8, ., .)
 {
-	uint src = OPER_I_8();
-	uint ea = M68KMAKE_GET_EA_AY_8;
-	uint res = src ^ m68ki_read_8(ea);
+	unsigned src = OPER_I_8();
+	unsigned ea = M68KMAKE_GET_EA_AY_8;
+	unsigned res = src ^ m68ki_read_8(ea);
 
 	m68ki_write_8(ea, res);
 
@@ -5149,7 +5149,7 @@ M68KMAKE_OP(eori, 8, ., .)
 
 M68KMAKE_OP(eori, 16, ., d)
 {
-	uint res = MASK_OUT_ABOVE_16(DY ^= OPER_I_16());
+	unsigned res = MASK_OUT_ABOVE_16(DY ^= OPER_I_16());
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_Z = res;
@@ -5160,9 +5160,9 @@ M68KMAKE_OP(eori, 16, ., d)
 
 M68KMAKE_OP(eori, 16, ., .)
 {
-	uint src = OPER_I_16();
-	uint ea = M68KMAKE_GET_EA_AY_16;
-	uint res = src ^ m68ki_read_16(ea);
+	unsigned src = OPER_I_16();
+	unsigned ea = M68KMAKE_GET_EA_AY_16;
+	unsigned res = src ^ m68ki_read_16(ea);
 
 	m68ki_write_16(ea, res);
 
@@ -5175,7 +5175,7 @@ M68KMAKE_OP(eori, 16, ., .)
 
 M68KMAKE_OP(eori, 32, ., d)
 {
-	uint res = DY ^= OPER_I_32();
+	unsigned res = DY ^= OPER_I_32();
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_Z = res;
@@ -5186,9 +5186,9 @@ M68KMAKE_OP(eori, 32, ., d)
 
 M68KMAKE_OP(eori, 32, ., .)
 {
-	uint src = OPER_I_32();
-	uint ea = M68KMAKE_GET_EA_AY_32;
-	uint res = src ^ m68ki_read_32(ea);
+	unsigned src = OPER_I_32();
+	unsigned ea = M68KMAKE_GET_EA_AY_32;
+	unsigned res = src ^ m68ki_read_32(ea);
 
 	m68ki_write_32(ea, res);
 
@@ -5209,7 +5209,7 @@ M68KMAKE_OP(eori, 16, tos, .)
 {
 	if(FLAG_S)
 	{
-		uint src = OPER_I_16();
+		unsigned src = OPER_I_16();
 		m68ki_trace_t0();			   /* auto-disable (see m68kcpu.h) */
 		m68ki_set_sr(m68ki_get_sr() ^ src);
 		return;
@@ -5220,9 +5220,9 @@ M68KMAKE_OP(eori, 16, tos, .)
 
 M68KMAKE_OP(exg, 32, dd, .)
 {
-	uint* reg_a = &DX;
-	uint* reg_b = &DY;
-	uint tmp = *reg_a;
+	unsigned* reg_a = &DX;
+	unsigned* reg_b = &DY;
+	unsigned tmp = *reg_a;
 	*reg_a = *reg_b;
 	*reg_b = tmp;
 }
@@ -5230,9 +5230,9 @@ M68KMAKE_OP(exg, 32, dd, .)
 
 M68KMAKE_OP(exg, 32, aa, .)
 {
-	uint* reg_a = &AX;
-	uint* reg_b = &AY;
-	uint tmp = *reg_a;
+	unsigned* reg_a = &AX;
+	unsigned* reg_b = &AY;
+	unsigned tmp = *reg_a;
 	*reg_a = *reg_b;
 	*reg_b = tmp;
 }
@@ -5240,9 +5240,9 @@ M68KMAKE_OP(exg, 32, aa, .)
 
 M68KMAKE_OP(exg, 32, da, .)
 {
-	uint* reg_a = &DX;
-	uint* reg_b = &AY;
-	uint tmp = *reg_a;
+	unsigned* reg_a = &DX;
+	unsigned* reg_b = &AY;
+	unsigned tmp = *reg_a;
 	*reg_a = *reg_b;
 	*reg_b = tmp;
 }
@@ -5250,7 +5250,7 @@ M68KMAKE_OP(exg, 32, da, .)
 
 M68KMAKE_OP(ext, 16, ., .)
 {
-	uint* r_dst = &DY;
+	unsigned* r_dst = &DY;
 
 	*r_dst = MASK_OUT_BELOW_16(*r_dst) | MASK_OUT_ABOVE_8(*r_dst) | (GET_MSB_8(*r_dst) ? 0xff00 : 0);
 
@@ -5263,7 +5263,7 @@ M68KMAKE_OP(ext, 16, ., .)
 
 M68KMAKE_OP(ext, 32, ., .)
 {
-	uint* r_dst = &DY;
+	unsigned* r_dst = &DY;
 
 	*r_dst = MASK_OUT_ABOVE_16(*r_dst) | (GET_MSB_16(*r_dst) ? 0xffff0000 : 0);
 
@@ -5278,7 +5278,7 @@ M68KMAKE_OP(extb, 32, ., .)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint* r_dst = &DY;
+		unsigned* r_dst = &DY;
 
 		*r_dst = MASK_OUT_ABOVE_8(*r_dst) | (GET_MSB_8(*r_dst) ? 0xffffff00 : 0);
 
@@ -5308,7 +5308,7 @@ M68KMAKE_OP(jmp, 32, ., .)
 
 M68KMAKE_OP(jsr, 32, ., .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_32;
+	unsigned ea = M68KMAKE_GET_EA_AY_32;
 	m68ki_trace_t0();				   /* auto-disable (see m68kcpu.h) */
 	m68ki_push_32(REG_PC);
 	m68ki_jump(ea);
@@ -5331,7 +5331,7 @@ M68KMAKE_OP(link, 16, ., a7)
 
 M68KMAKE_OP(link, 16, ., .)
 {
-	uint* r_dst = &AY;
+	unsigned* r_dst = &AY;
 
 	m68ki_push_32(*r_dst);
 	*r_dst = REG_A[7];
@@ -5356,7 +5356,7 @@ M68KMAKE_OP(link, 32, ., .)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint* r_dst = &AY;
+		unsigned* r_dst = &AY;
 
 		m68ki_push_32(*r_dst);
 		*r_dst = REG_A[7];
@@ -5369,10 +5369,10 @@ M68KMAKE_OP(link, 32, ., .)
 
 M68KMAKE_OP(lsr, 8, s, .)
 {
-	uint* r_dst = &DY;
-	uint shift = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint src = MASK_OUT_ABOVE_8(*r_dst);
-	uint res = src >> shift;
+	unsigned* r_dst = &DY;
+	unsigned shift = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned src = MASK_OUT_ABOVE_8(*r_dst);
+	unsigned res = src >> shift;
 
 	if(shift != 0)
 		USE_CYCLES(shift<<CYC_SHIFT);
@@ -5388,10 +5388,10 @@ M68KMAKE_OP(lsr, 8, s, .)
 
 M68KMAKE_OP(lsr, 16, s, .)
 {
-	uint* r_dst = &DY;
-	uint shift = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint src = MASK_OUT_ABOVE_16(*r_dst);
-	uint res = src >> shift;
+	unsigned* r_dst = &DY;
+	unsigned shift = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned src = MASK_OUT_ABOVE_16(*r_dst);
+	unsigned res = src >> shift;
 
 	if(shift != 0)
 		USE_CYCLES(shift<<CYC_SHIFT);
@@ -5407,10 +5407,10 @@ M68KMAKE_OP(lsr, 16, s, .)
 
 M68KMAKE_OP(lsr, 32, s, .)
 {
-	uint* r_dst = &DY;
-	uint shift = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint src = *r_dst;
-	uint res = src >> shift;
+	unsigned* r_dst = &DY;
+	unsigned shift = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned src = *r_dst;
+	unsigned res = src >> shift;
 
 	if(shift != 0)
 		USE_CYCLES(shift<<CYC_SHIFT);
@@ -5426,10 +5426,10 @@ M68KMAKE_OP(lsr, 32, s, .)
 
 M68KMAKE_OP(lsr, 8, r, .)
 {
-	uint* r_dst = &DY;
-	uint shift = DX & 0x3f;
-	uint src = MASK_OUT_ABOVE_8(*r_dst);
-	uint res = src >> shift;
+	unsigned* r_dst = &DY;
+	unsigned shift = DX & 0x3f;
+	unsigned src = MASK_OUT_ABOVE_8(*r_dst);
+	unsigned res = src >> shift;
 
 	if(shift != 0)
 	{
@@ -5463,10 +5463,10 @@ M68KMAKE_OP(lsr, 8, r, .)
 
 M68KMAKE_OP(lsr, 16, r, .)
 {
-	uint* r_dst = &DY;
-	uint shift = DX & 0x3f;
-	uint src = MASK_OUT_ABOVE_16(*r_dst);
-	uint res = src >> shift;
+	unsigned* r_dst = &DY;
+	unsigned shift = DX & 0x3f;
+	unsigned src = MASK_OUT_ABOVE_16(*r_dst);
+	unsigned res = src >> shift;
 
 	if(shift != 0)
 	{
@@ -5500,10 +5500,10 @@ M68KMAKE_OP(lsr, 16, r, .)
 
 M68KMAKE_OP(lsr, 32, r, .)
 {
-	uint* r_dst = &DY;
-	uint shift = DX & 0x3f;
-	uint src = *r_dst;
-	uint res = src >> shift;
+	unsigned* r_dst = &DY;
+	unsigned shift = DX & 0x3f;
+	unsigned src = *r_dst;
+	unsigned res = src >> shift;
 
 	if(shift != 0)
 	{
@@ -5536,9 +5536,9 @@ M68KMAKE_OP(lsr, 32, r, .)
 
 M68KMAKE_OP(lsr, 16, ., .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_16;
-	uint src = m68ki_read_16(ea);
-	uint res = src >> 1;
+	unsigned ea = M68KMAKE_GET_EA_AY_16;
+	unsigned src = m68ki_read_16(ea);
+	unsigned res = src >> 1;
 
 	m68ki_write_16(ea, res);
 
@@ -5551,10 +5551,10 @@ M68KMAKE_OP(lsr, 16, ., .)
 
 M68KMAKE_OP(lsl, 8, s, .)
 {
-	uint* r_dst = &DY;
-	uint shift = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint src = MASK_OUT_ABOVE_8(*r_dst);
-	uint res = MASK_OUT_ABOVE_8(src << shift);
+	unsigned* r_dst = &DY;
+	unsigned shift = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned src = MASK_OUT_ABOVE_8(*r_dst);
+	unsigned res = MASK_OUT_ABOVE_8(src << shift);
 
 	if(shift != 0)
 		USE_CYCLES(shift<<CYC_SHIFT);
@@ -5570,10 +5570,10 @@ M68KMAKE_OP(lsl, 8, s, .)
 
 M68KMAKE_OP(lsl, 16, s, .)
 {
-	uint* r_dst = &DY;
-	uint shift = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint src = MASK_OUT_ABOVE_16(*r_dst);
-	uint res = MASK_OUT_ABOVE_16(src << shift);
+	unsigned* r_dst = &DY;
+	unsigned shift = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned src = MASK_OUT_ABOVE_16(*r_dst);
+	unsigned res = MASK_OUT_ABOVE_16(src << shift);
 
 	if(shift != 0)
 		USE_CYCLES(shift<<CYC_SHIFT);
@@ -5589,10 +5589,10 @@ M68KMAKE_OP(lsl, 16, s, .)
 
 M68KMAKE_OP(lsl, 32, s, .)
 {
-	uint* r_dst = &DY;
-	uint shift = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint src = *r_dst;
-	uint res = MASK_OUT_ABOVE_32(src << shift);
+	unsigned* r_dst = &DY;
+	unsigned shift = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned src = *r_dst;
+	unsigned res = MASK_OUT_ABOVE_32(src << shift);
 
 	if(shift != 0)
 		USE_CYCLES(shift<<CYC_SHIFT);
@@ -5608,10 +5608,10 @@ M68KMAKE_OP(lsl, 32, s, .)
 
 M68KMAKE_OP(lsl, 8, r, .)
 {
-	uint* r_dst = &DY;
-	uint shift = DX & 0x3f;
-	uint src = MASK_OUT_ABOVE_8(*r_dst);
-	uint res = MASK_OUT_ABOVE_8(src << shift);
+	unsigned* r_dst = &DY;
+	unsigned shift = DX & 0x3f;
+	unsigned src = MASK_OUT_ABOVE_8(*r_dst);
+	unsigned res = MASK_OUT_ABOVE_8(src << shift);
 
 	if(shift != 0)
 	{
@@ -5645,10 +5645,10 @@ M68KMAKE_OP(lsl, 8, r, .)
 
 M68KMAKE_OP(lsl, 16, r, .)
 {
-	uint* r_dst = &DY;
-	uint shift = DX & 0x3f;
-	uint src = MASK_OUT_ABOVE_16(*r_dst);
-	uint res = MASK_OUT_ABOVE_16(src << shift);
+	unsigned* r_dst = &DY;
+	unsigned shift = DX & 0x3f;
+	unsigned src = MASK_OUT_ABOVE_16(*r_dst);
+	unsigned res = MASK_OUT_ABOVE_16(src << shift);
 
 	if(shift != 0)
 	{
@@ -5682,10 +5682,10 @@ M68KMAKE_OP(lsl, 16, r, .)
 
 M68KMAKE_OP(lsl, 32, r, .)
 {
-	uint* r_dst = &DY;
-	uint shift = DX & 0x3f;
-	uint src = *r_dst;
-	uint res = MASK_OUT_ABOVE_32(src << shift);
+	unsigned* r_dst = &DY;
+	unsigned shift = DX & 0x3f;
+	unsigned src = *r_dst;
+	unsigned res = MASK_OUT_ABOVE_32(src << shift);
 
 	if(shift != 0)
 	{
@@ -5718,9 +5718,9 @@ M68KMAKE_OP(lsl, 32, r, .)
 
 M68KMAKE_OP(lsl, 16, ., .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_16;
-	uint src = m68ki_read_16(ea);
-	uint res = MASK_OUT_ABOVE_16(src << 1);
+	unsigned ea = M68KMAKE_GET_EA_AY_16;
+	unsigned src = m68ki_read_16(ea);
+	unsigned res = MASK_OUT_ABOVE_16(src << 1);
 
 	m68ki_write_16(ea, res);
 
@@ -5733,8 +5733,8 @@ M68KMAKE_OP(lsl, 16, ., .)
 
 M68KMAKE_OP(move, 8, d, d)
 {
-	uint res = MASK_OUT_ABOVE_8(DY);
-	uint* r_dst = &DX;
+	unsigned res = MASK_OUT_ABOVE_8(DY);
+	unsigned* r_dst = &DX;
 
 	*r_dst = MASK_OUT_BELOW_8(*r_dst) | res;
 
@@ -5747,8 +5747,8 @@ M68KMAKE_OP(move, 8, d, d)
 
 M68KMAKE_OP(move, 8, d, .)
 {
-	uint res = M68KMAKE_GET_OPER_AY_8;
-	uint* r_dst = &DX;
+	unsigned res = M68KMAKE_GET_OPER_AY_8;
+	unsigned* r_dst = &DX;
 
 	*r_dst = MASK_OUT_BELOW_8(*r_dst) | res;
 
@@ -5761,8 +5761,8 @@ M68KMAKE_OP(move, 8, d, .)
 
 M68KMAKE_OP(move, 8, ai, d)
 {
-	uint res = MASK_OUT_ABOVE_8(DY);
-	uint ea = EA_AX_AI_8();
+	unsigned res = MASK_OUT_ABOVE_8(DY);
+	unsigned ea = EA_AX_AI_8();
 
 	m68ki_write_8(ea, res);
 
@@ -5775,8 +5775,8 @@ M68KMAKE_OP(move, 8, ai, d)
 
 M68KMAKE_OP(move, 8, ai, .)
 {
-	uint res = M68KMAKE_GET_OPER_AY_8;
-	uint ea = EA_AX_AI_8();
+	unsigned res = M68KMAKE_GET_OPER_AY_8;
+	unsigned ea = EA_AX_AI_8();
 
 	m68ki_write_8(ea, res);
 
@@ -5789,8 +5789,8 @@ M68KMAKE_OP(move, 8, ai, .)
 
 M68KMAKE_OP(move, 8, pi7, d)
 {
-	uint res = MASK_OUT_ABOVE_8(DY);
-	uint ea = EA_A7_PI_8();
+	unsigned res = MASK_OUT_ABOVE_8(DY);
+	unsigned ea = EA_A7_PI_8();
 
 	m68ki_write_8(ea, res);
 
@@ -5803,8 +5803,8 @@ M68KMAKE_OP(move, 8, pi7, d)
 
 M68KMAKE_OP(move, 8, pi, d)
 {
-	uint res = MASK_OUT_ABOVE_8(DY);
-	uint ea = EA_AX_PI_8();
+	unsigned res = MASK_OUT_ABOVE_8(DY);
+	unsigned ea = EA_AX_PI_8();
 
 	m68ki_write_8(ea, res);
 
@@ -5817,8 +5817,8 @@ M68KMAKE_OP(move, 8, pi, d)
 
 M68KMAKE_OP(move, 8, pi7, .)
 {
-	uint res = M68KMAKE_GET_OPER_AY_8;
-	uint ea = EA_A7_PI_8();
+	unsigned res = M68KMAKE_GET_OPER_AY_8;
+	unsigned ea = EA_A7_PI_8();
 
 	m68ki_write_8(ea, res);
 
@@ -5831,8 +5831,8 @@ M68KMAKE_OP(move, 8, pi7, .)
 
 M68KMAKE_OP(move, 8, pi, .)
 {
-	uint res = M68KMAKE_GET_OPER_AY_8;
-	uint ea = EA_AX_PI_8();
+	unsigned res = M68KMAKE_GET_OPER_AY_8;
+	unsigned ea = EA_AX_PI_8();
 
 	m68ki_write_8(ea, res);
 
@@ -5845,8 +5845,8 @@ M68KMAKE_OP(move, 8, pi, .)
 
 M68KMAKE_OP(move, 8, pd7, d)
 {
-	uint res = MASK_OUT_ABOVE_8(DY);
-	uint ea = EA_A7_PD_8();
+	unsigned res = MASK_OUT_ABOVE_8(DY);
+	unsigned ea = EA_A7_PD_8();
 
 	m68ki_write_8(ea, res);
 
@@ -5859,8 +5859,8 @@ M68KMAKE_OP(move, 8, pd7, d)
 
 M68KMAKE_OP(move, 8, pd, d)
 {
-	uint res = MASK_OUT_ABOVE_8(DY);
-	uint ea = EA_AX_PD_8();
+	unsigned res = MASK_OUT_ABOVE_8(DY);
+	unsigned ea = EA_AX_PD_8();
 
 	m68ki_write_8(ea, res);
 
@@ -5873,8 +5873,8 @@ M68KMAKE_OP(move, 8, pd, d)
 
 M68KMAKE_OP(move, 8, pd7, .)
 {
-	uint res = M68KMAKE_GET_OPER_AY_8;
-	uint ea = EA_A7_PD_8();
+	unsigned res = M68KMAKE_GET_OPER_AY_8;
+	unsigned ea = EA_A7_PD_8();
 
 	m68ki_write_8(ea, res);
 
@@ -5887,8 +5887,8 @@ M68KMAKE_OP(move, 8, pd7, .)
 
 M68KMAKE_OP(move, 8, pd, .)
 {
-	uint res = M68KMAKE_GET_OPER_AY_8;
-	uint ea = EA_AX_PD_8();
+	unsigned res = M68KMAKE_GET_OPER_AY_8;
+	unsigned ea = EA_AX_PD_8();
 
 	m68ki_write_8(ea, res);
 
@@ -5901,8 +5901,8 @@ M68KMAKE_OP(move, 8, pd, .)
 
 M68KMAKE_OP(move, 8, di, d)
 {
-	uint res = MASK_OUT_ABOVE_8(DY);
-	uint ea = EA_AX_DI_8();
+	unsigned res = MASK_OUT_ABOVE_8(DY);
+	unsigned ea = EA_AX_DI_8();
 
 	m68ki_write_8(ea, res);
 
@@ -5915,8 +5915,8 @@ M68KMAKE_OP(move, 8, di, d)
 
 M68KMAKE_OP(move, 8, di, .)
 {
-	uint res = M68KMAKE_GET_OPER_AY_8;
-	uint ea = EA_AX_DI_8();
+	unsigned res = M68KMAKE_GET_OPER_AY_8;
+	unsigned ea = EA_AX_DI_8();
 
 	m68ki_write_8(ea, res);
 
@@ -5929,8 +5929,8 @@ M68KMAKE_OP(move, 8, di, .)
 
 M68KMAKE_OP(move, 8, ix, d)
 {
-	uint res = MASK_OUT_ABOVE_8(DY);
-	uint ea = EA_AX_IX_8();
+	unsigned res = MASK_OUT_ABOVE_8(DY);
+	unsigned ea = EA_AX_IX_8();
 
 	m68ki_write_8(ea, res);
 
@@ -5943,8 +5943,8 @@ M68KMAKE_OP(move, 8, ix, d)
 
 M68KMAKE_OP(move, 8, ix, .)
 {
-	uint res = M68KMAKE_GET_OPER_AY_8;
-	uint ea = EA_AX_IX_8();
+	unsigned res = M68KMAKE_GET_OPER_AY_8;
+	unsigned ea = EA_AX_IX_8();
 
 	m68ki_write_8(ea, res);
 
@@ -5957,8 +5957,8 @@ M68KMAKE_OP(move, 8, ix, .)
 
 M68KMAKE_OP(move, 8, aw, d)
 {
-	uint res = MASK_OUT_ABOVE_8(DY);
-	uint ea = EA_AW_8();
+	unsigned res = MASK_OUT_ABOVE_8(DY);
+	unsigned ea = EA_AW_8();
 
 	m68ki_write_8(ea, res);
 
@@ -5971,8 +5971,8 @@ M68KMAKE_OP(move, 8, aw, d)
 
 M68KMAKE_OP(move, 8, aw, .)
 {
-	uint res = M68KMAKE_GET_OPER_AY_8;
-	uint ea = EA_AW_8();
+	unsigned res = M68KMAKE_GET_OPER_AY_8;
+	unsigned ea = EA_AW_8();
 
 	m68ki_write_8(ea, res);
 
@@ -5985,8 +5985,8 @@ M68KMAKE_OP(move, 8, aw, .)
 
 M68KMAKE_OP(move, 8, al, d)
 {
-	uint res = MASK_OUT_ABOVE_8(DY);
-	uint ea = EA_AL_8();
+	unsigned res = MASK_OUT_ABOVE_8(DY);
+	unsigned ea = EA_AL_8();
 
 	m68ki_write_8(ea, res);
 
@@ -5999,8 +5999,8 @@ M68KMAKE_OP(move, 8, al, d)
 
 M68KMAKE_OP(move, 8, al, .)
 {
-	uint res = M68KMAKE_GET_OPER_AY_8;
-	uint ea = EA_AL_8();
+	unsigned res = M68KMAKE_GET_OPER_AY_8;
+	unsigned ea = EA_AL_8();
 
 	m68ki_write_8(ea, res);
 
@@ -6013,8 +6013,8 @@ M68KMAKE_OP(move, 8, al, .)
 
 M68KMAKE_OP(move, 16, d, d)
 {
-	uint res = MASK_OUT_ABOVE_16(DY);
-	uint* r_dst = &DX;
+	unsigned res = MASK_OUT_ABOVE_16(DY);
+	unsigned* r_dst = &DX;
 
 	*r_dst = MASK_OUT_BELOW_16(*r_dst) | res;
 
@@ -6027,8 +6027,8 @@ M68KMAKE_OP(move, 16, d, d)
 
 M68KMAKE_OP(move, 16, d, a)
 {
-	uint res = MASK_OUT_ABOVE_16(AY);
-	uint* r_dst = &DX;
+	unsigned res = MASK_OUT_ABOVE_16(AY);
+	unsigned* r_dst = &DX;
 
 	*r_dst = MASK_OUT_BELOW_16(*r_dst) | res;
 
@@ -6041,8 +6041,8 @@ M68KMAKE_OP(move, 16, d, a)
 
 M68KMAKE_OP(move, 16, d, .)
 {
-	uint res = M68KMAKE_GET_OPER_AY_16;
-	uint* r_dst = &DX;
+	unsigned res = M68KMAKE_GET_OPER_AY_16;
+	unsigned* r_dst = &DX;
 
 	*r_dst = MASK_OUT_BELOW_16(*r_dst) | res;
 
@@ -6055,8 +6055,8 @@ M68KMAKE_OP(move, 16, d, .)
 
 M68KMAKE_OP(move, 16, ai, d)
 {
-	uint res = MASK_OUT_ABOVE_16(DY);
-	uint ea = EA_AX_AI_16();
+	unsigned res = MASK_OUT_ABOVE_16(DY);
+	unsigned ea = EA_AX_AI_16();
 
 	m68ki_write_16(ea, res);
 
@@ -6069,8 +6069,8 @@ M68KMAKE_OP(move, 16, ai, d)
 
 M68KMAKE_OP(move, 16, ai, a)
 {
-	uint res = MASK_OUT_ABOVE_16(AY);
-	uint ea = EA_AX_AI_16();
+	unsigned res = MASK_OUT_ABOVE_16(AY);
+	unsigned ea = EA_AX_AI_16();
 
 	m68ki_write_16(ea, res);
 
@@ -6083,8 +6083,8 @@ M68KMAKE_OP(move, 16, ai, a)
 
 M68KMAKE_OP(move, 16, ai, .)
 {
-	uint res = M68KMAKE_GET_OPER_AY_16;
-	uint ea = EA_AX_AI_16();
+	unsigned res = M68KMAKE_GET_OPER_AY_16;
+	unsigned ea = EA_AX_AI_16();
 
 	m68ki_write_16(ea, res);
 
@@ -6097,8 +6097,8 @@ M68KMAKE_OP(move, 16, ai, .)
 
 M68KMAKE_OP(move, 16, pi, d)
 {
-	uint res = MASK_OUT_ABOVE_16(DY);
-	uint ea = EA_AX_PI_16();
+	unsigned res = MASK_OUT_ABOVE_16(DY);
+	unsigned ea = EA_AX_PI_16();
 
 	m68ki_write_16(ea, res);
 
@@ -6111,8 +6111,8 @@ M68KMAKE_OP(move, 16, pi, d)
 
 M68KMAKE_OP(move, 16, pi, a)
 {
-	uint res = MASK_OUT_ABOVE_16(AY);
-	uint ea = EA_AX_PI_16();
+	unsigned res = MASK_OUT_ABOVE_16(AY);
+	unsigned ea = EA_AX_PI_16();
 
 	m68ki_write_16(ea, res);
 
@@ -6125,8 +6125,8 @@ M68KMAKE_OP(move, 16, pi, a)
 
 M68KMAKE_OP(move, 16, pi, .)
 {
-	uint res = M68KMAKE_GET_OPER_AY_16;
-	uint ea = EA_AX_PI_16();
+	unsigned res = M68KMAKE_GET_OPER_AY_16;
+	unsigned ea = EA_AX_PI_16();
 
 	m68ki_write_16(ea, res);
 
@@ -6139,8 +6139,8 @@ M68KMAKE_OP(move, 16, pi, .)
 
 M68KMAKE_OP(move, 16, pd, d)
 {
-	uint res = MASK_OUT_ABOVE_16(DY);
-	uint ea = EA_AX_PD_16();
+	unsigned res = MASK_OUT_ABOVE_16(DY);
+	unsigned ea = EA_AX_PD_16();
 
 	m68ki_write_16(ea, res);
 
@@ -6153,8 +6153,8 @@ M68KMAKE_OP(move, 16, pd, d)
 
 M68KMAKE_OP(move, 16, pd, a)
 {
-	uint res = MASK_OUT_ABOVE_16(AY);
-	uint ea = EA_AX_PD_16();
+	unsigned res = MASK_OUT_ABOVE_16(AY);
+	unsigned ea = EA_AX_PD_16();
 
 	m68ki_write_16(ea, res);
 
@@ -6167,8 +6167,8 @@ M68KMAKE_OP(move, 16, pd, a)
 
 M68KMAKE_OP(move, 16, pd, .)
 {
-	uint res = M68KMAKE_GET_OPER_AY_16;
-	uint ea = EA_AX_PD_16();
+	unsigned res = M68KMAKE_GET_OPER_AY_16;
+	unsigned ea = EA_AX_PD_16();
 
 	m68ki_write_16(ea, res);
 
@@ -6181,8 +6181,8 @@ M68KMAKE_OP(move, 16, pd, .)
 
 M68KMAKE_OP(move, 16, di, d)
 {
-	uint res = MASK_OUT_ABOVE_16(DY);
-	uint ea = EA_AX_DI_16();
+	unsigned res = MASK_OUT_ABOVE_16(DY);
+	unsigned ea = EA_AX_DI_16();
 
 	m68ki_write_16(ea, res);
 
@@ -6195,8 +6195,8 @@ M68KMAKE_OP(move, 16, di, d)
 
 M68KMAKE_OP(move, 16, di, a)
 {
-	uint res = MASK_OUT_ABOVE_16(AY);
-	uint ea = EA_AX_DI_16();
+	unsigned res = MASK_OUT_ABOVE_16(AY);
+	unsigned ea = EA_AX_DI_16();
 
 	m68ki_write_16(ea, res);
 
@@ -6209,8 +6209,8 @@ M68KMAKE_OP(move, 16, di, a)
 
 M68KMAKE_OP(move, 16, di, .)
 {
-	uint res = M68KMAKE_GET_OPER_AY_16;
-	uint ea = EA_AX_DI_16();
+	unsigned res = M68KMAKE_GET_OPER_AY_16;
+	unsigned ea = EA_AX_DI_16();
 
 	m68ki_write_16(ea, res);
 
@@ -6223,8 +6223,8 @@ M68KMAKE_OP(move, 16, di, .)
 
 M68KMAKE_OP(move, 16, ix, d)
 {
-	uint res = MASK_OUT_ABOVE_16(DY);
-	uint ea = EA_AX_IX_16();
+	unsigned res = MASK_OUT_ABOVE_16(DY);
+	unsigned ea = EA_AX_IX_16();
 
 	m68ki_write_16(ea, res);
 
@@ -6237,8 +6237,8 @@ M68KMAKE_OP(move, 16, ix, d)
 
 M68KMAKE_OP(move, 16, ix, a)
 {
-	uint res = MASK_OUT_ABOVE_16(AY);
-	uint ea = EA_AX_IX_16();
+	unsigned res = MASK_OUT_ABOVE_16(AY);
+	unsigned ea = EA_AX_IX_16();
 
 	m68ki_write_16(ea, res);
 
@@ -6251,8 +6251,8 @@ M68KMAKE_OP(move, 16, ix, a)
 
 M68KMAKE_OP(move, 16, ix, .)
 {
-	uint res = M68KMAKE_GET_OPER_AY_16;
-	uint ea = EA_AX_IX_16();
+	unsigned res = M68KMAKE_GET_OPER_AY_16;
+	unsigned ea = EA_AX_IX_16();
 
 	m68ki_write_16(ea, res);
 
@@ -6265,8 +6265,8 @@ M68KMAKE_OP(move, 16, ix, .)
 
 M68KMAKE_OP(move, 16, aw, d)
 {
-	uint res = MASK_OUT_ABOVE_16(DY);
-	uint ea = EA_AW_16();
+	unsigned res = MASK_OUT_ABOVE_16(DY);
+	unsigned ea = EA_AW_16();
 
 	m68ki_write_16(ea, res);
 
@@ -6279,8 +6279,8 @@ M68KMAKE_OP(move, 16, aw, d)
 
 M68KMAKE_OP(move, 16, aw, a)
 {
-	uint res = MASK_OUT_ABOVE_16(AY);
-	uint ea = EA_AW_16();
+	unsigned res = MASK_OUT_ABOVE_16(AY);
+	unsigned ea = EA_AW_16();
 
 	m68ki_write_16(ea, res);
 
@@ -6293,8 +6293,8 @@ M68KMAKE_OP(move, 16, aw, a)
 
 M68KMAKE_OP(move, 16, aw, .)
 {
-	uint res = M68KMAKE_GET_OPER_AY_16;
-	uint ea = EA_AW_16();
+	unsigned res = M68KMAKE_GET_OPER_AY_16;
+	unsigned ea = EA_AW_16();
 
 	m68ki_write_16(ea, res);
 
@@ -6307,8 +6307,8 @@ M68KMAKE_OP(move, 16, aw, .)
 
 M68KMAKE_OP(move, 16, al, d)
 {
-	uint res = MASK_OUT_ABOVE_16(DY);
-	uint ea = EA_AL_16();
+	unsigned res = MASK_OUT_ABOVE_16(DY);
+	unsigned ea = EA_AL_16();
 
 	m68ki_write_16(ea, res);
 
@@ -6321,8 +6321,8 @@ M68KMAKE_OP(move, 16, al, d)
 
 M68KMAKE_OP(move, 16, al, a)
 {
-	uint res = MASK_OUT_ABOVE_16(AY);
-	uint ea = EA_AL_16();
+	unsigned res = MASK_OUT_ABOVE_16(AY);
+	unsigned ea = EA_AL_16();
 
 	m68ki_write_16(ea, res);
 
@@ -6335,8 +6335,8 @@ M68KMAKE_OP(move, 16, al, a)
 
 M68KMAKE_OP(move, 16, al, .)
 {
-	uint res = M68KMAKE_GET_OPER_AY_16;
-	uint ea = EA_AL_16();
+	unsigned res = M68KMAKE_GET_OPER_AY_16;
+	unsigned ea = EA_AL_16();
 
 	m68ki_write_16(ea, res);
 
@@ -6349,8 +6349,8 @@ M68KMAKE_OP(move, 16, al, .)
 
 M68KMAKE_OP(move, 32, d, d)
 {
-	uint res = DY;
-	uint* r_dst = &DX;
+	unsigned res = DY;
+	unsigned* r_dst = &DX;
 
 	*r_dst = res;
 
@@ -6363,8 +6363,8 @@ M68KMAKE_OP(move, 32, d, d)
 
 M68KMAKE_OP(move, 32, d, a)
 {
-	uint res = AY;
-	uint* r_dst = &DX;
+	unsigned res = AY;
+	unsigned* r_dst = &DX;
 
 	*r_dst = res;
 
@@ -6377,8 +6377,8 @@ M68KMAKE_OP(move, 32, d, a)
 
 M68KMAKE_OP(move, 32, d, .)
 {
-	uint res = M68KMAKE_GET_OPER_AY_32;
-	uint* r_dst = &DX;
+	unsigned res = M68KMAKE_GET_OPER_AY_32;
+	unsigned* r_dst = &DX;
 
 	*r_dst = res;
 
@@ -6391,8 +6391,8 @@ M68KMAKE_OP(move, 32, d, .)
 
 M68KMAKE_OP(move, 32, ai, d)
 {
-	uint res = DY;
-	uint ea = EA_AX_AI_32();
+	unsigned res = DY;
+	unsigned ea = EA_AX_AI_32();
 
 	m68ki_write_32(ea, res);
 
@@ -6405,8 +6405,8 @@ M68KMAKE_OP(move, 32, ai, d)
 
 M68KMAKE_OP(move, 32, ai, a)
 {
-	uint res = AY;
-	uint ea = EA_AX_AI_32();
+	unsigned res = AY;
+	unsigned ea = EA_AX_AI_32();
 
 	m68ki_write_32(ea, res);
 
@@ -6419,8 +6419,8 @@ M68KMAKE_OP(move, 32, ai, a)
 
 M68KMAKE_OP(move, 32, ai, .)
 {
-	uint res = M68KMAKE_GET_OPER_AY_32;
-	uint ea = EA_AX_AI_32();
+	unsigned res = M68KMAKE_GET_OPER_AY_32;
+	unsigned ea = EA_AX_AI_32();
 
 	m68ki_write_32(ea, res);
 
@@ -6433,8 +6433,8 @@ M68KMAKE_OP(move, 32, ai, .)
 
 M68KMAKE_OP(move, 32, pi, d)
 {
-	uint res = DY;
-	uint ea = EA_AX_PI_32();
+	unsigned res = DY;
+	unsigned ea = EA_AX_PI_32();
 
 	m68ki_write_32(ea, res);
 
@@ -6447,8 +6447,8 @@ M68KMAKE_OP(move, 32, pi, d)
 
 M68KMAKE_OP(move, 32, pi, a)
 {
-	uint res = AY;
-	uint ea = EA_AX_PI_32();
+	unsigned res = AY;
+	unsigned ea = EA_AX_PI_32();
 
 	m68ki_write_32(ea, res);
 
@@ -6461,8 +6461,8 @@ M68KMAKE_OP(move, 32, pi, a)
 
 M68KMAKE_OP(move, 32, pi, .)
 {
-	uint res = M68KMAKE_GET_OPER_AY_32;
-	uint ea = EA_AX_PI_32();
+	unsigned res = M68KMAKE_GET_OPER_AY_32;
+	unsigned ea = EA_AX_PI_32();
 
 	m68ki_write_32(ea, res);
 
@@ -6475,8 +6475,8 @@ M68KMAKE_OP(move, 32, pi, .)
 
 M68KMAKE_OP(move, 32, pd, d)
 {
-	uint res = DY;
-	uint ea = EA_AX_PD_32();
+	unsigned res = DY;
+	unsigned ea = EA_AX_PD_32();
 
 	m68ki_write_16(ea+2, res & 0xFFFF );
 	m68ki_write_16(ea, (res >> 16) & 0xFFFF );
@@ -6490,8 +6490,8 @@ M68KMAKE_OP(move, 32, pd, d)
 
 M68KMAKE_OP(move, 32, pd, a)
 {
-	uint res = AY;
-	uint ea = EA_AX_PD_32();
+	unsigned res = AY;
+	unsigned ea = EA_AX_PD_32();
 
 	m68ki_write_16(ea+2, res & 0xFFFF );
 	m68ki_write_16(ea, (res >> 16) & 0xFFFF );
@@ -6505,8 +6505,8 @@ M68KMAKE_OP(move, 32, pd, a)
 
 M68KMAKE_OP(move, 32, pd, .)
 {
-	uint res = M68KMAKE_GET_OPER_AY_32;
-	uint ea = EA_AX_PD_32();
+	unsigned res = M68KMAKE_GET_OPER_AY_32;
+	unsigned ea = EA_AX_PD_32();
 
 	m68ki_write_16(ea+2, res & 0xFFFF );
 	m68ki_write_16(ea, (res >> 16) & 0xFFFF );
@@ -6520,8 +6520,8 @@ M68KMAKE_OP(move, 32, pd, .)
 
 M68KMAKE_OP(move, 32, di, d)
 {
-	uint res = DY;
-	uint ea = EA_AX_DI_32();
+	unsigned res = DY;
+	unsigned ea = EA_AX_DI_32();
 
 	m68ki_write_32(ea, res);
 
@@ -6534,8 +6534,8 @@ M68KMAKE_OP(move, 32, di, d)
 
 M68KMAKE_OP(move, 32, di, a)
 {
-	uint res = AY;
-	uint ea = EA_AX_DI_32();
+	unsigned res = AY;
+	unsigned ea = EA_AX_DI_32();
 
 	m68ki_write_32(ea, res);
 
@@ -6548,8 +6548,8 @@ M68KMAKE_OP(move, 32, di, a)
 
 M68KMAKE_OP(move, 32, di, .)
 {
-	uint res = M68KMAKE_GET_OPER_AY_32;
-	uint ea = EA_AX_DI_32();
+	unsigned res = M68KMAKE_GET_OPER_AY_32;
+	unsigned ea = EA_AX_DI_32();
 
 	m68ki_write_32(ea, res);
 
@@ -6562,8 +6562,8 @@ M68KMAKE_OP(move, 32, di, .)
 
 M68KMAKE_OP(move, 32, ix, d)
 {
-	uint res = DY;
-	uint ea = EA_AX_IX_32();
+	unsigned res = DY;
+	unsigned ea = EA_AX_IX_32();
 
 	m68ki_write_32(ea, res);
 
@@ -6576,8 +6576,8 @@ M68KMAKE_OP(move, 32, ix, d)
 
 M68KMAKE_OP(move, 32, ix, a)
 {
-	uint res = AY;
-	uint ea = EA_AX_IX_32();
+	unsigned res = AY;
+	unsigned ea = EA_AX_IX_32();
 
 	m68ki_write_32(ea, res);
 
@@ -6590,8 +6590,8 @@ M68KMAKE_OP(move, 32, ix, a)
 
 M68KMAKE_OP(move, 32, ix, .)
 {
-	uint res = M68KMAKE_GET_OPER_AY_32;
-	uint ea = EA_AX_IX_32();
+	unsigned res = M68KMAKE_GET_OPER_AY_32;
+	unsigned ea = EA_AX_IX_32();
 
 	m68ki_write_32(ea, res);
 
@@ -6604,8 +6604,8 @@ M68KMAKE_OP(move, 32, ix, .)
 
 M68KMAKE_OP(move, 32, aw, d)
 {
-	uint res = DY;
-	uint ea = EA_AW_32();
+	unsigned res = DY;
+	unsigned ea = EA_AW_32();
 
 	m68ki_write_32(ea, res);
 
@@ -6618,8 +6618,8 @@ M68KMAKE_OP(move, 32, aw, d)
 
 M68KMAKE_OP(move, 32, aw, a)
 {
-	uint res = AY;
-	uint ea = EA_AW_32();
+	unsigned res = AY;
+	unsigned ea = EA_AW_32();
 
 	m68ki_write_32(ea, res);
 
@@ -6632,8 +6632,8 @@ M68KMAKE_OP(move, 32, aw, a)
 
 M68KMAKE_OP(move, 32, aw, .)
 {
-	uint res = M68KMAKE_GET_OPER_AY_32;
-	uint ea = EA_AW_32();
+	unsigned res = M68KMAKE_GET_OPER_AY_32;
+	unsigned ea = EA_AW_32();
 
 	m68ki_write_32(ea, res);
 
@@ -6646,8 +6646,8 @@ M68KMAKE_OP(move, 32, aw, .)
 
 M68KMAKE_OP(move, 32, al, d)
 {
-	uint res = DY;
-	uint ea = EA_AL_32();
+	unsigned res = DY;
+	unsigned ea = EA_AL_32();
 
 	m68ki_write_32(ea, res);
 
@@ -6660,8 +6660,8 @@ M68KMAKE_OP(move, 32, al, d)
 
 M68KMAKE_OP(move, 32, al, a)
 {
-	uint res = AY;
-	uint ea = EA_AL_32();
+	unsigned res = AY;
+	unsigned ea = EA_AL_32();
 
 	m68ki_write_32(ea, res);
 
@@ -6674,8 +6674,8 @@ M68KMAKE_OP(move, 32, al, a)
 
 M68KMAKE_OP(move, 32, al, .)
 {
-	uint res = M68KMAKE_GET_OPER_AY_32;
-	uint ea = EA_AL_32();
+	unsigned res = M68KMAKE_GET_OPER_AY_32;
+	unsigned ea = EA_AL_32();
 
 	m68ki_write_32(ea, res);
 
@@ -6771,7 +6771,7 @@ M68KMAKE_OP(move, 16, frs, .)
 {
 	if(CPU_TYPE_IS_000(CPU_TYPE) || FLAG_S)	/* NS990408 */
 	{
-		uint ea = M68KMAKE_GET_EA_AY_16;
+		unsigned ea = M68KMAKE_GET_EA_AY_16;
 		m68ki_write_16(ea, m68ki_get_sr());
 		return;
 	}
@@ -6794,7 +6794,7 @@ M68KMAKE_OP(move, 16, tos, .)
 {
 	if(FLAG_S)
 	{
-		uint new_sr = M68KMAKE_GET_OPER_AY_16;
+		unsigned new_sr = M68KMAKE_GET_OPER_AY_16;
 		m68ki_trace_t0();			   /* auto-disable (see m68kcpu.h) */
 		m68ki_set_sr(new_sr);
 		return;
@@ -6832,7 +6832,7 @@ M68KMAKE_OP(movec, 32, cr, .)
 	{
 		if(FLAG_S)
 		{
-			uint word2 = OPER_I_16();
+			unsigned word2 = OPER_I_16();
 
 			m68ki_trace_t0();		   /* auto-disable (see m68kcpu.h) */
 			switch (word2 & 0xfff)
@@ -6962,7 +6962,7 @@ M68KMAKE_OP(movec, 32, rc, .)
 	{
 		if(FLAG_S)
 		{
-			uint word2 = OPER_I_16();
+			unsigned word2 = OPER_I_16();
 
 			m68ki_trace_t0();		   /* auto-disable (see m68kcpu.h) */
 			switch (word2 & 0xfff)
@@ -7113,10 +7113,10 @@ M68KMAKE_OP(movec, 32, rc, .)
 
 M68KMAKE_OP(movem, 16, re, pd)
 {
-	uint i = 0;
-	uint register_list = OPER_I_16();
-	uint ea = AY;
-	uint count = 0;
+	unsigned i = 0;
+	unsigned register_list = OPER_I_16();
+	unsigned ea = AY;
+	unsigned count = 0;
 
 	for(; i < 16; i++)
 		if(register_list & (1 << i))
@@ -7133,10 +7133,10 @@ M68KMAKE_OP(movem, 16, re, pd)
 
 M68KMAKE_OP(movem, 16, re, .)
 {
-	uint i = 0;
-	uint register_list = OPER_I_16();
-	uint ea = M68KMAKE_GET_EA_AY_16;
-	uint count = 0;
+	unsigned i = 0;
+	unsigned register_list = OPER_I_16();
+	unsigned ea = M68KMAKE_GET_EA_AY_16;
+	unsigned count = 0;
 
 	for(; i < 16; i++)
 		if(register_list & (1 << i))
@@ -7152,10 +7152,10 @@ M68KMAKE_OP(movem, 16, re, .)
 
 M68KMAKE_OP(movem, 32, re, pd)
 {
-	uint i = 0;
-	uint register_list = OPER_I_16();
-	uint ea = AY;
-	uint count = 0;
+	unsigned i = 0;
+	unsigned register_list = OPER_I_16();
+	unsigned ea = AY;
+	unsigned count = 0;
 
 	for(; i < 16; i++)
 		if(register_list & (1 << i))
@@ -7173,10 +7173,10 @@ M68KMAKE_OP(movem, 32, re, pd)
 
 M68KMAKE_OP(movem, 32, re, .)
 {
-	uint i = 0;
-	uint register_list = OPER_I_16();
-	uint ea = M68KMAKE_GET_EA_AY_32;
-	uint count = 0;
+	unsigned i = 0;
+	unsigned register_list = OPER_I_16();
+	unsigned ea = M68KMAKE_GET_EA_AY_32;
+	unsigned count = 0;
 
 	for(; i < 16; i++)
 		if(register_list & (1 << i))
@@ -7192,10 +7192,10 @@ M68KMAKE_OP(movem, 32, re, .)
 
 M68KMAKE_OP(movem, 16, er, pi)
 {
-	uint i = 0;
-	uint register_list = OPER_I_16();
-	uint ea = AY;
-	uint count = 0;
+	unsigned i = 0;
+	unsigned register_list = OPER_I_16();
+	unsigned ea = AY;
+	unsigned count = 0;
 
 	for(; i < 16; i++)
 		if(register_list & (1 << i))
@@ -7212,10 +7212,10 @@ M68KMAKE_OP(movem, 16, er, pi)
 
 M68KMAKE_OP(movem, 16, er, pcdi)
 {
-	uint i = 0;
-	uint register_list = OPER_I_16();
-	uint ea = EA_PCDI_16();
-	uint count = 0;
+	unsigned i = 0;
+	unsigned register_list = OPER_I_16();
+	unsigned ea = EA_PCDI_16();
+	unsigned count = 0;
 
 	for(; i < 16; i++)
 		if(register_list & (1 << i))
@@ -7231,10 +7231,10 @@ M68KMAKE_OP(movem, 16, er, pcdi)
 
 M68KMAKE_OP(movem, 16, er, pcix)
 {
-	uint i = 0;
-	uint register_list = OPER_I_16();
-	uint ea = EA_PCIX_16();
-	uint count = 0;
+	unsigned i = 0;
+	unsigned register_list = OPER_I_16();
+	unsigned ea = EA_PCIX_16();
+	unsigned count = 0;
 
 	for(; i < 16; i++)
 		if(register_list & (1 << i))
@@ -7250,10 +7250,10 @@ M68KMAKE_OP(movem, 16, er, pcix)
 
 M68KMAKE_OP(movem, 16, er, .)
 {
-	uint i = 0;
-	uint register_list = OPER_I_16();
-	uint ea = M68KMAKE_GET_EA_AY_16;
-	uint count = 0;
+	unsigned i = 0;
+	unsigned register_list = OPER_I_16();
+	unsigned ea = M68KMAKE_GET_EA_AY_16;
+	unsigned count = 0;
 
 	for(; i < 16; i++)
 		if(register_list & (1 << i))
@@ -7269,10 +7269,10 @@ M68KMAKE_OP(movem, 16, er, .)
 
 M68KMAKE_OP(movem, 32, er, pi)
 {
-	uint i = 0;
-	uint register_list = OPER_I_16();
-	uint ea = AY;
-	uint count = 0;
+	unsigned i = 0;
+	unsigned register_list = OPER_I_16();
+	unsigned ea = AY;
+	unsigned count = 0;
 
 	for(; i < 16; i++)
 		if(register_list & (1 << i))
@@ -7289,10 +7289,10 @@ M68KMAKE_OP(movem, 32, er, pi)
 
 M68KMAKE_OP(movem, 32, er, pcdi)
 {
-	uint i = 0;
-	uint register_list = OPER_I_16();
-	uint ea = EA_PCDI_32();
-	uint count = 0;
+	unsigned i = 0;
+	unsigned register_list = OPER_I_16();
+	unsigned ea = EA_PCDI_32();
+	unsigned count = 0;
 
 	for(; i < 16; i++)
 		if(register_list & (1 << i))
@@ -7308,10 +7308,10 @@ M68KMAKE_OP(movem, 32, er, pcdi)
 
 M68KMAKE_OP(movem, 32, er, pcix)
 {
-	uint i = 0;
-	uint register_list = OPER_I_16();
-	uint ea = EA_PCIX_32();
-	uint count = 0;
+	unsigned i = 0;
+	unsigned register_list = OPER_I_16();
+	unsigned ea = EA_PCIX_32();
+	unsigned count = 0;
 
 	for(; i < 16; i++)
 		if(register_list & (1 << i))
@@ -7327,10 +7327,10 @@ M68KMAKE_OP(movem, 32, er, pcix)
 
 M68KMAKE_OP(movem, 32, er, .)
 {
-	uint i = 0;
-	uint register_list = OPER_I_16();
-	uint ea = M68KMAKE_GET_EA_AY_32;
-	uint count = 0;
+	unsigned i = 0;
+	unsigned register_list = OPER_I_16();
+	unsigned ea = M68KMAKE_GET_EA_AY_32;
+	unsigned count = 0;
 
 	for(; i < 16; i++)
 		if(register_list & (1 << i))
@@ -7346,8 +7346,8 @@ M68KMAKE_OP(movem, 32, er, .)
 
 M68KMAKE_OP(movep, 16, re, .)
 {
-	uint ea = EA_AY_DI_16();
-	uint src = DX;
+	unsigned ea = EA_AY_DI_16();
+	unsigned src = DX;
 
 	m68ki_write_8(ea, MASK_OUT_ABOVE_8(src >> 8));
 	m68ki_write_8(ea += 2, MASK_OUT_ABOVE_8(src));
@@ -7356,8 +7356,8 @@ M68KMAKE_OP(movep, 16, re, .)
 
 M68KMAKE_OP(movep, 32, re, .)
 {
-	uint ea = EA_AY_DI_32();
-	uint src = DX;
+	unsigned ea = EA_AY_DI_32();
+	unsigned src = DX;
 
 	m68ki_write_8(ea, MASK_OUT_ABOVE_8(src >> 24));
 	m68ki_write_8(ea += 2, MASK_OUT_ABOVE_8(src >> 16));
@@ -7368,8 +7368,8 @@ M68KMAKE_OP(movep, 32, re, .)
 
 M68KMAKE_OP(movep, 16, er, .)
 {
-	uint ea = EA_AY_DI_16();
-	uint* r_dst = &DX;
+	unsigned ea = EA_AY_DI_16();
+	unsigned* r_dst = &DX;
 
 	*r_dst = MASK_OUT_BELOW_16(*r_dst) | ((m68ki_read_8(ea) << 8) + m68ki_read_8(ea + 2));
 }
@@ -7377,7 +7377,7 @@ M68KMAKE_OP(movep, 16, er, .)
 
 M68KMAKE_OP(movep, 32, er, .)
 {
-	uint ea = EA_AY_DI_32();
+	unsigned ea = EA_AY_DI_32();
 
 	DX = (m68ki_read_8(ea) << 24) + (m68ki_read_8(ea + 2) << 16)
 		+ (m68ki_read_8(ea + 4) << 8) + m68ki_read_8(ea + 6);
@@ -7390,8 +7390,8 @@ M68KMAKE_OP(moves, 8, ., .)
 	{
 		if(FLAG_S)
 		{
-			uint word2 = OPER_I_16();
-			uint ea = M68KMAKE_GET_EA_AY_8;
+			unsigned word2 = OPER_I_16();
+			unsigned ea = M68KMAKE_GET_EA_AY_8;
 
 			m68ki_trace_t0();			   /* auto-disable (see m68kcpu.h) */
 			if(BIT_B(word2))		   /* Register to memory */
@@ -7425,8 +7425,8 @@ M68KMAKE_OP(moves, 16, ., .)
 	{
 		if(FLAG_S)
 		{
-			uint word2 = OPER_I_16();
-			uint ea = M68KMAKE_GET_EA_AY_16;
+			unsigned word2 = OPER_I_16();
+			unsigned ea = M68KMAKE_GET_EA_AY_16;
 
 			m68ki_trace_t0();			   /* auto-disable (see m68kcpu.h) */
 			if(BIT_B(word2))		   /* Register to memory */
@@ -7460,8 +7460,8 @@ M68KMAKE_OP(moves, 32, ., .)
 	{
 		if(FLAG_S)
 		{
-			uint word2 = OPER_I_16();
-			uint ea = M68KMAKE_GET_EA_AY_32;
+			unsigned word2 = OPER_I_16();
+			unsigned ea = M68KMAKE_GET_EA_AY_32;
 
 			m68ki_trace_t0();			   /* auto-disable (see m68kcpu.h) */
 			if(BIT_B(word2))		   /* Register to memory */
@@ -7486,7 +7486,7 @@ M68KMAKE_OP(moves, 32, ., .)
 
 M68KMAKE_OP(moveq, 32, ., .)
 {
-	uint res = DX = MAKE_INT_8(MASK_OUT_ABOVE_8(REG_IR));
+	unsigned res = DX = MAKE_INT_8(MASK_OUT_ABOVE_8(REG_IR));
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_Z = res;
@@ -7513,8 +7513,8 @@ M68KMAKE_OP(move16, 32, ., .)
 
 M68KMAKE_OP(muls, 16, ., d)
 {
-	uint* r_dst = &DX;
-	uint res = MASK_OUT_ABOVE_32(MAKE_INT_16(DY) * MAKE_INT_16(MASK_OUT_ABOVE_16(*r_dst)));
+	unsigned* r_dst = &DX;
+	unsigned res = MASK_OUT_ABOVE_32(MAKE_INT_16(DY) * MAKE_INT_16(MASK_OUT_ABOVE_16(*r_dst)));
 
 	*r_dst = res;
 
@@ -7527,8 +7527,8 @@ M68KMAKE_OP(muls, 16, ., d)
 
 M68KMAKE_OP(muls, 16, ., .)
 {
-	uint* r_dst = &DX;
-	uint res = MASK_OUT_ABOVE_32(MAKE_INT_16(M68KMAKE_GET_OPER_AY_16) * MAKE_INT_16(MASK_OUT_ABOVE_16(*r_dst)));
+	unsigned* r_dst = &DX;
+	unsigned res = MASK_OUT_ABOVE_32(MAKE_INT_16(M68KMAKE_GET_OPER_AY_16) * MAKE_INT_16(MASK_OUT_ABOVE_16(*r_dst)));
 
 	*r_dst = res;
 
@@ -7541,8 +7541,8 @@ M68KMAKE_OP(muls, 16, ., .)
 
 M68KMAKE_OP(mulu, 16, ., d)
 {
-	uint* r_dst = &DX;
-	uint res = MASK_OUT_ABOVE_16(DY) * MASK_OUT_ABOVE_16(*r_dst);
+	unsigned* r_dst = &DX;
+	unsigned res = MASK_OUT_ABOVE_16(DY) * MASK_OUT_ABOVE_16(*r_dst);
 
 	*r_dst = res;
 
@@ -7555,8 +7555,8 @@ M68KMAKE_OP(mulu, 16, ., d)
 
 M68KMAKE_OP(mulu, 16, ., .)
 {
-	uint* r_dst = &DX;
-	uint res = M68KMAKE_GET_OPER_AY_16 * MASK_OUT_ABOVE_16(*r_dst);
+	unsigned* r_dst = &DX;
+	unsigned res = M68KMAKE_GET_OPER_AY_16 * MASK_OUT_ABOVE_16(*r_dst);
 
 	*r_dst = res;
 
@@ -7573,7 +7573,7 @@ M68KMAKE_OP(mull, 32, ., d)
 
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
+		unsigned word2 = OPER_I_16();
 		uint64 src = DY;
 		uint64 dst = REG_D[(word2 >> 12) & 7];
 		uint64 res;
@@ -7621,29 +7621,29 @@ M68KMAKE_OP(mull, 32, ., d)
 
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
-		uint src = DY;
-		uint dst = REG_D[(word2 >> 12) & 7];
-		uint neg = GET_MSB_32(src ^ dst);
-		uint src1;
-		uint src2;
-		uint dst1;
-		uint dst2;
-		uint r1;
-		uint r2;
-		uint r3;
-		uint r4;
-		uint lo;
-		uint hi;
+		unsigned word2 = OPER_I_16();
+		unsigned src = DY;
+		unsigned dst = REG_D[(word2 >> 12) & 7];
+		unsigned neg = GET_MSB_32(src ^ dst);
+		unsigned src1;
+		unsigned src2;
+		unsigned dst1;
+		unsigned dst2;
+		unsigned r1;
+		unsigned r2;
+		unsigned r3;
+		unsigned r4;
+		unsigned lo;
+		unsigned hi;
 
 		FLAG_C = CFLAG_CLEAR;
 
 		if(BIT_B(word2))			   /* signed */
 		{
 			if(GET_MSB_32(src))
-				src = (uint)MASK_OUT_ABOVE_32(-(sint)src);
+				src = (unsigned)MASK_OUT_ABOVE_32(-(sint)src);
 			if(GET_MSB_32(dst))
-				dst = (uint)MASK_OUT_ABOVE_32(-(sint)dst);
+				dst = (unsigned)MASK_OUT_ABOVE_32(-(sint)dst);
 		}
 
 		src1 = MASK_OUT_ABOVE_16(src);
@@ -7662,8 +7662,8 @@ M68KMAKE_OP(mull, 32, ., d)
 
 		if(BIT_B(word2) && neg)
 		{
-			hi = (uint)MASK_OUT_ABOVE_32((-(sint)hi) - (lo != 0));
-			lo = (uint)MASK_OUT_ABOVE_32(-(sint)lo);
+			hi = (unsigned)MASK_OUT_ABOVE_32((-(sint)hi) - (lo != 0));
+			lo = (unsigned)MASK_OUT_ABOVE_32(-(sint)lo);
 		}
 
 		if(BIT_A(word2))
@@ -7697,7 +7697,7 @@ M68KMAKE_OP(mull, 32, ., .)
 
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
+		unsigned word2 = OPER_I_16();
 		uint64 src = M68KMAKE_GET_OPER_AY_32;
 		uint64 dst = REG_D[(word2 >> 12) & 7];
 		uint64 res;
@@ -7745,29 +7745,29 @@ M68KMAKE_OP(mull, 32, ., .)
 
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint word2 = OPER_I_16();
-		uint src = M68KMAKE_GET_OPER_AY_32;
-		uint dst = REG_D[(word2 >> 12) & 7];
-		uint neg = GET_MSB_32(src ^ dst);
-		uint src1;
-		uint src2;
-		uint dst1;
-		uint dst2;
-		uint r1;
-		uint r2;
-		uint r3;
-		uint r4;
-		uint lo;
-		uint hi;
+		unsigned word2 = OPER_I_16();
+		unsigned src = M68KMAKE_GET_OPER_AY_32;
+		unsigned dst = REG_D[(word2 >> 12) & 7];
+		unsigned neg = GET_MSB_32(src ^ dst);
+		unsigned src1;
+		unsigned src2;
+		unsigned dst1;
+		unsigned dst2;
+		unsigned r1;
+		unsigned r2;
+		unsigned r3;
+		unsigned r4;
+		unsigned lo;
+		unsigned hi;
 
 		FLAG_C = CFLAG_CLEAR;
 
 		if(BIT_B(word2))			   /* signed */
 		{
 			if(GET_MSB_32(src))
-				src = (uint)MASK_OUT_ABOVE_32(-(sint)src);
+				src = (unsigned)MASK_OUT_ABOVE_32(-(sint)src);
 			if(GET_MSB_32(dst))
-				dst = (uint)MASK_OUT_ABOVE_32(-(sint)dst);
+				dst = (unsigned)MASK_OUT_ABOVE_32(-(sint)dst);
 		}
 
 		src1 = MASK_OUT_ABOVE_16(src);
@@ -7786,8 +7786,8 @@ M68KMAKE_OP(mull, 32, ., .)
 
 		if(BIT_B(word2) && neg)
 		{
-			hi = (uint)MASK_OUT_ABOVE_32((-(sint)hi) - (lo != 0));
-			lo = (uint)MASK_OUT_ABOVE_32(-(sint)lo);
+			hi = (unsigned)MASK_OUT_ABOVE_32((-(sint)hi) - (lo != 0));
+			lo = (unsigned)MASK_OUT_ABOVE_32(-(sint)lo);
 		}
 
 		if(BIT_A(word2))
@@ -7817,9 +7817,9 @@ M68KMAKE_OP(mull, 32, ., .)
 
 M68KMAKE_OP(nbcd, 8, ., d)
 {
-	uint* r_dst = &DY;
-	uint dst = *r_dst;
-	uint res = MASK_OUT_ABOVE_8(0x9a - dst - XFLAG_AS_1());
+	unsigned* r_dst = &DY;
+	unsigned dst = *r_dst;
+	unsigned res = MASK_OUT_ABOVE_8(0x9a - dst - XFLAG_AS_1());
 
 	if(res != 0x9a)
 	{
@@ -7850,9 +7850,9 @@ M68KMAKE_OP(nbcd, 8, ., d)
 
 M68KMAKE_OP(nbcd, 8, ., .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_8;
-	uint dst = m68ki_read_8(ea);
-	uint res = MASK_OUT_ABOVE_8(0x9a - dst - XFLAG_AS_1());
+	unsigned ea = M68KMAKE_GET_EA_AY_8;
+	unsigned dst = m68ki_read_8(ea);
+	unsigned res = MASK_OUT_ABOVE_8(0x9a - dst - XFLAG_AS_1());
 
 	if(res != 0x9a)
 	{
@@ -7883,8 +7883,8 @@ M68KMAKE_OP(nbcd, 8, ., .)
 
 M68KMAKE_OP(neg, 8, ., d)
 {
-	uint* r_dst = &DY;
-	uint res = 0 - MASK_OUT_ABOVE_8(*r_dst);
+	unsigned* r_dst = &DY;
+	unsigned res = 0 - MASK_OUT_ABOVE_8(*r_dst);
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_C = FLAG_X = CFLAG_8(res);
@@ -7897,9 +7897,9 @@ M68KMAKE_OP(neg, 8, ., d)
 
 M68KMAKE_OP(neg, 8, ., .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_8;
-	uint src = m68ki_read_8(ea);
-	uint res = 0 - src;
+	unsigned ea = M68KMAKE_GET_EA_AY_8;
+	unsigned src = m68ki_read_8(ea);
+	unsigned res = 0 - src;
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_C = FLAG_X = CFLAG_8(res);
@@ -7912,8 +7912,8 @@ M68KMAKE_OP(neg, 8, ., .)
 
 M68KMAKE_OP(neg, 16, ., d)
 {
-	uint* r_dst = &DY;
-	uint res = 0 - MASK_OUT_ABOVE_16(*r_dst);
+	unsigned* r_dst = &DY;
+	unsigned res = 0 - MASK_OUT_ABOVE_16(*r_dst);
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_C = FLAG_X = CFLAG_16(res);
@@ -7926,9 +7926,9 @@ M68KMAKE_OP(neg, 16, ., d)
 
 M68KMAKE_OP(neg, 16, ., .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_16;
-	uint src = m68ki_read_16(ea);
-	uint res = 0 - src;
+	unsigned ea = M68KMAKE_GET_EA_AY_16;
+	unsigned src = m68ki_read_16(ea);
+	unsigned res = 0 - src;
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_C = FLAG_X = CFLAG_16(res);
@@ -7941,8 +7941,8 @@ M68KMAKE_OP(neg, 16, ., .)
 
 M68KMAKE_OP(neg, 32, ., d)
 {
-	uint* r_dst = &DY;
-	uint res = 0 - *r_dst;
+	unsigned* r_dst = &DY;
+	unsigned res = 0 - *r_dst;
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_C = FLAG_X = CFLAG_SUB_32(*r_dst, 0, res);
@@ -7955,9 +7955,9 @@ M68KMAKE_OP(neg, 32, ., d)
 
 M68KMAKE_OP(neg, 32, ., .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_32;
-	uint src = m68ki_read_32(ea);
-	uint res = 0 - src;
+	unsigned ea = M68KMAKE_GET_EA_AY_32;
+	unsigned src = m68ki_read_32(ea);
+	unsigned res = 0 - src;
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_C = FLAG_X = CFLAG_SUB_32(src, 0, res);
@@ -7970,8 +7970,8 @@ M68KMAKE_OP(neg, 32, ., .)
 
 M68KMAKE_OP(negx, 8, ., d)
 {
-	uint* r_dst = &DY;
-	uint res = 0 - MASK_OUT_ABOVE_8(*r_dst) - XFLAG_AS_1();
+	unsigned* r_dst = &DY;
+	unsigned res = 0 - MASK_OUT_ABOVE_8(*r_dst) - XFLAG_AS_1();
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_X = FLAG_C = CFLAG_8(res);
@@ -7986,9 +7986,9 @@ M68KMAKE_OP(negx, 8, ., d)
 
 M68KMAKE_OP(negx, 8, ., .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_8;
-	uint src = m68ki_read_8(ea);
-	uint res = 0 - src - XFLAG_AS_1();
+	unsigned ea = M68KMAKE_GET_EA_AY_8;
+	unsigned src = m68ki_read_8(ea);
+	unsigned res = 0 - src - XFLAG_AS_1();
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_X = FLAG_C = CFLAG_8(res);
@@ -8003,8 +8003,8 @@ M68KMAKE_OP(negx, 8, ., .)
 
 M68KMAKE_OP(negx, 16, ., d)
 {
-	uint* r_dst = &DY;
-	uint res = 0 - MASK_OUT_ABOVE_16(*r_dst) - XFLAG_AS_1();
+	unsigned* r_dst = &DY;
+	unsigned res = 0 - MASK_OUT_ABOVE_16(*r_dst) - XFLAG_AS_1();
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_X = FLAG_C = CFLAG_16(res);
@@ -8019,9 +8019,9 @@ M68KMAKE_OP(negx, 16, ., d)
 
 M68KMAKE_OP(negx, 16, ., .)
 {
-	uint ea  = M68KMAKE_GET_EA_AY_16;
-	uint src = m68ki_read_16(ea);
-	uint res = 0 - MASK_OUT_ABOVE_16(src) - XFLAG_AS_1();
+	unsigned ea  = M68KMAKE_GET_EA_AY_16;
+	unsigned src = m68ki_read_16(ea);
+	unsigned res = 0 - MASK_OUT_ABOVE_16(src) - XFLAG_AS_1();
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_X = FLAG_C = CFLAG_16(res);
@@ -8036,8 +8036,8 @@ M68KMAKE_OP(negx, 16, ., .)
 
 M68KMAKE_OP(negx, 32, ., d)
 {
-	uint* r_dst = &DY;
-	uint res = 0 - MASK_OUT_ABOVE_32(*r_dst) - XFLAG_AS_1();
+	unsigned* r_dst = &DY;
+	unsigned res = 0 - MASK_OUT_ABOVE_32(*r_dst) - XFLAG_AS_1();
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_X = FLAG_C = CFLAG_SUB_32(*r_dst, 0, res);
@@ -8052,9 +8052,9 @@ M68KMAKE_OP(negx, 32, ., d)
 
 M68KMAKE_OP(negx, 32, ., .)
 {
-	uint ea  = M68KMAKE_GET_EA_AY_32;
-	uint src = m68ki_read_32(ea);
-	uint res = 0 - MASK_OUT_ABOVE_32(src) - XFLAG_AS_1();
+	unsigned ea  = M68KMAKE_GET_EA_AY_32;
+	unsigned src = m68ki_read_32(ea);
+	unsigned res = 0 - MASK_OUT_ABOVE_32(src) - XFLAG_AS_1();
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_X = FLAG_C = CFLAG_SUB_32(src, 0, res);
@@ -8075,8 +8075,8 @@ M68KMAKE_OP(nop, 0, ., .)
 
 M68KMAKE_OP(not, 8, ., d)
 {
-	uint* r_dst = &DY;
-	uint res = MASK_OUT_ABOVE_8(~*r_dst);
+	unsigned* r_dst = &DY;
+	unsigned res = MASK_OUT_ABOVE_8(~*r_dst);
 
 	*r_dst = MASK_OUT_BELOW_8(*r_dst) | res;
 
@@ -8089,8 +8089,8 @@ M68KMAKE_OP(not, 8, ., d)
 
 M68KMAKE_OP(not, 8, ., .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_8;
-	uint res = MASK_OUT_ABOVE_8(~m68ki_read_8(ea));
+	unsigned ea = M68KMAKE_GET_EA_AY_8;
+	unsigned res = MASK_OUT_ABOVE_8(~m68ki_read_8(ea));
 
 	m68ki_write_8(ea, res);
 
@@ -8103,8 +8103,8 @@ M68KMAKE_OP(not, 8, ., .)
 
 M68KMAKE_OP(not, 16, ., d)
 {
-	uint* r_dst = &DY;
-	uint res = MASK_OUT_ABOVE_16(~*r_dst);
+	unsigned* r_dst = &DY;
+	unsigned res = MASK_OUT_ABOVE_16(~*r_dst);
 
 	*r_dst = MASK_OUT_BELOW_16(*r_dst) | res;
 
@@ -8117,8 +8117,8 @@ M68KMAKE_OP(not, 16, ., d)
 
 M68KMAKE_OP(not, 16, ., .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_16;
-	uint res = MASK_OUT_ABOVE_16(~m68ki_read_16(ea));
+	unsigned ea = M68KMAKE_GET_EA_AY_16;
+	unsigned res = MASK_OUT_ABOVE_16(~m68ki_read_16(ea));
 
 	m68ki_write_16(ea, res);
 
@@ -8131,8 +8131,8 @@ M68KMAKE_OP(not, 16, ., .)
 
 M68KMAKE_OP(not, 32, ., d)
 {
-	uint* r_dst = &DY;
-	uint res = *r_dst = MASK_OUT_ABOVE_32(~*r_dst);
+	unsigned* r_dst = &DY;
+	unsigned res = *r_dst = MASK_OUT_ABOVE_32(~*r_dst);
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_Z = res;
@@ -8143,8 +8143,8 @@ M68KMAKE_OP(not, 32, ., d)
 
 M68KMAKE_OP(not, 32, ., .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_32;
-	uint res = MASK_OUT_ABOVE_32(~m68ki_read_32(ea));
+	unsigned ea = M68KMAKE_GET_EA_AY_32;
+	unsigned res = MASK_OUT_ABOVE_32(~m68ki_read_32(ea));
 
 	m68ki_write_32(ea, res);
 
@@ -8157,7 +8157,7 @@ M68KMAKE_OP(not, 32, ., .)
 
 M68KMAKE_OP(or, 8, er, d)
 {
-	uint res = MASK_OUT_ABOVE_8((DX |= MASK_OUT_ABOVE_8(DY)));
+	unsigned res = MASK_OUT_ABOVE_8((DX |= MASK_OUT_ABOVE_8(DY)));
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_Z = res;
@@ -8168,7 +8168,7 @@ M68KMAKE_OP(or, 8, er, d)
 
 M68KMAKE_OP(or, 8, er, .)
 {
-	uint res = MASK_OUT_ABOVE_8((DX |= M68KMAKE_GET_OPER_AY_8));
+	unsigned res = MASK_OUT_ABOVE_8((DX |= M68KMAKE_GET_OPER_AY_8));
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_Z = res;
@@ -8179,7 +8179,7 @@ M68KMAKE_OP(or, 8, er, .)
 
 M68KMAKE_OP(or, 16, er, d)
 {
-	uint res = MASK_OUT_ABOVE_16((DX |= MASK_OUT_ABOVE_16(DY)));
+	unsigned res = MASK_OUT_ABOVE_16((DX |= MASK_OUT_ABOVE_16(DY)));
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_Z = res;
@@ -8190,7 +8190,7 @@ M68KMAKE_OP(or, 16, er, d)
 
 M68KMAKE_OP(or, 16, er, .)
 {
-	uint res = MASK_OUT_ABOVE_16((DX |= M68KMAKE_GET_OPER_AY_16));
+	unsigned res = MASK_OUT_ABOVE_16((DX |= M68KMAKE_GET_OPER_AY_16));
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_Z = res;
@@ -8201,7 +8201,7 @@ M68KMAKE_OP(or, 16, er, .)
 
 M68KMAKE_OP(or, 32, er, d)
 {
-	uint res = DX |= DY;
+	unsigned res = DX |= DY;
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_Z = res;
@@ -8212,7 +8212,7 @@ M68KMAKE_OP(or, 32, er, d)
 
 M68KMAKE_OP(or, 32, er, .)
 {
-	uint res = DX |= M68KMAKE_GET_OPER_AY_32;
+	unsigned res = DX |= M68KMAKE_GET_OPER_AY_32;
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_Z = res;
@@ -8223,8 +8223,8 @@ M68KMAKE_OP(or, 32, er, .)
 
 M68KMAKE_OP(or, 8, re, .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_8;
-	uint res = MASK_OUT_ABOVE_8(DX | m68ki_read_8(ea));
+	unsigned ea = M68KMAKE_GET_EA_AY_8;
+	unsigned res = MASK_OUT_ABOVE_8(DX | m68ki_read_8(ea));
 
 	m68ki_write_8(ea, res);
 
@@ -8237,8 +8237,8 @@ M68KMAKE_OP(or, 8, re, .)
 
 M68KMAKE_OP(or, 16, re, .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_16;
-	uint res = MASK_OUT_ABOVE_16(DX | m68ki_read_16(ea));
+	unsigned ea = M68KMAKE_GET_EA_AY_16;
+	unsigned res = MASK_OUT_ABOVE_16(DX | m68ki_read_16(ea));
 
 	m68ki_write_16(ea, res);
 
@@ -8251,8 +8251,8 @@ M68KMAKE_OP(or, 16, re, .)
 
 M68KMAKE_OP(or, 32, re, .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_32;
-	uint res = DX | m68ki_read_32(ea);
+	unsigned ea = M68KMAKE_GET_EA_AY_32;
+	unsigned res = DX | m68ki_read_32(ea);
 
 	m68ki_write_32(ea, res);
 
@@ -8265,7 +8265,7 @@ M68KMAKE_OP(or, 32, re, .)
 
 M68KMAKE_OP(ori, 8, ., d)
 {
-	uint res = MASK_OUT_ABOVE_8((DY |= OPER_I_8()));
+	unsigned res = MASK_OUT_ABOVE_8((DY |= OPER_I_8()));
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_Z = res;
@@ -8276,9 +8276,9 @@ M68KMAKE_OP(ori, 8, ., d)
 
 M68KMAKE_OP(ori, 8, ., .)
 {
-	uint src = OPER_I_8();
-	uint ea = M68KMAKE_GET_EA_AY_8;
-	uint res = MASK_OUT_ABOVE_8(src | m68ki_read_8(ea));
+	unsigned src = OPER_I_8();
+	unsigned ea = M68KMAKE_GET_EA_AY_8;
+	unsigned res = MASK_OUT_ABOVE_8(src | m68ki_read_8(ea));
 
 	m68ki_write_8(ea, res);
 
@@ -8291,7 +8291,7 @@ M68KMAKE_OP(ori, 8, ., .)
 
 M68KMAKE_OP(ori, 16, ., d)
 {
-	uint res = MASK_OUT_ABOVE_16(DY |= OPER_I_16());
+	unsigned res = MASK_OUT_ABOVE_16(DY |= OPER_I_16());
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_Z = res;
@@ -8302,9 +8302,9 @@ M68KMAKE_OP(ori, 16, ., d)
 
 M68KMAKE_OP(ori, 16, ., .)
 {
-	uint src = OPER_I_16();
-	uint ea = M68KMAKE_GET_EA_AY_16;
-	uint res = MASK_OUT_ABOVE_16(src | m68ki_read_16(ea));
+	unsigned src = OPER_I_16();
+	unsigned ea = M68KMAKE_GET_EA_AY_16;
+	unsigned res = MASK_OUT_ABOVE_16(src | m68ki_read_16(ea));
 
 	m68ki_write_16(ea, res);
 
@@ -8317,7 +8317,7 @@ M68KMAKE_OP(ori, 16, ., .)
 
 M68KMAKE_OP(ori, 32, ., d)
 {
-	uint res = DY |= OPER_I_32();
+	unsigned res = DY |= OPER_I_32();
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_Z = res;
@@ -8328,9 +8328,9 @@ M68KMAKE_OP(ori, 32, ., d)
 
 M68KMAKE_OP(ori, 32, ., .)
 {
-	uint src = OPER_I_32();
-	uint ea = M68KMAKE_GET_EA_AY_32;
-	uint res = src | m68ki_read_32(ea);
+	unsigned src = OPER_I_32();
+	unsigned ea = M68KMAKE_GET_EA_AY_32;
+	unsigned res = src | m68ki_read_32(ea);
 
 	m68ki_write_32(ea, res);
 
@@ -8351,7 +8351,7 @@ M68KMAKE_OP(ori, 16, tos, .)
 {
 	if(FLAG_S)
 	{
-		uint src = OPER_I_16();
+		unsigned src = OPER_I_16();
 		m68ki_trace_t0();			   /* auto-disable (see m68kcpu.h) */
 		m68ki_set_sr(m68ki_get_sr() | src);
 		return;
@@ -8365,8 +8365,8 @@ M68KMAKE_OP(pack, 16, rr, .)
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
 		/* Note: DX and DY are reversed in Motorola's docs */
-		uint src = DY + OPER_I_16();
-		uint* r_dst = &DX;
+		unsigned src = DY + OPER_I_16();
+		unsigned* r_dst = &DX;
 
 		*r_dst = MASK_OUT_BELOW_8(*r_dst) | ((src >> 4) & 0x00f0) | (src & 0x000f);
 		return;
@@ -8380,8 +8380,8 @@ M68KMAKE_OP(pack, 16, mm, ax7)
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
 		/* Note: AX and AY are reversed in Motorola's docs */
-		uint ea_src = EA_AY_PD_8();
-		uint src = m68ki_read_8(ea_src);
+		unsigned ea_src = EA_AY_PD_8();
+		unsigned src = m68ki_read_8(ea_src);
 		ea_src = EA_AY_PD_8();
 		src = ((src << 8) | m68ki_read_8(ea_src)) + OPER_I_16();
 
@@ -8397,8 +8397,8 @@ M68KMAKE_OP(pack, 16, mm, ay7)
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
 		/* Note: AX and AY are reversed in Motorola's docs */
-		uint ea_src = EA_A7_PD_8();
-		uint src = m68ki_read_8(ea_src);
+		unsigned ea_src = EA_A7_PD_8();
+		unsigned src = m68ki_read_8(ea_src);
 		ea_src = EA_A7_PD_8();
 		src = ((src << 8) | m68ki_read_8(ea_src)) + OPER_I_16();
 
@@ -8413,8 +8413,8 @@ M68KMAKE_OP(pack, 16, mm, axy7)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint ea_src = EA_A7_PD_8();
-		uint src = m68ki_read_8(ea_src);
+		unsigned ea_src = EA_A7_PD_8();
+		unsigned src = m68ki_read_8(ea_src);
 		ea_src = EA_A7_PD_8();
 		src = ((src << 8) | m68ki_read_8(ea_src)) + OPER_I_16();
 
@@ -8430,8 +8430,8 @@ M68KMAKE_OP(pack, 16, mm, .)
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
 		/* Note: AX and AY are reversed in Motorola's docs */
-		uint ea_src = EA_AY_PD_8();
-		uint src = m68ki_read_8(ea_src);
+		unsigned ea_src = EA_AY_PD_8();
+		unsigned src = m68ki_read_8(ea_src);
 		ea_src = EA_AY_PD_8();
 		src = ((src << 8) | m68ki_read_8(ea_src)) + OPER_I_16();
 
@@ -8444,7 +8444,7 @@ M68KMAKE_OP(pack, 16, mm, .)
 
 M68KMAKE_OP(pea, 32, ., .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_32;
+	unsigned ea = M68KMAKE_GET_EA_AY_32;
 
 	m68ki_push_32(ea);
 }
@@ -8485,11 +8485,11 @@ M68KMAKE_OP(reset, 0, ., .)
 
 M68KMAKE_OP(ror, 8, s, .)
 {
-	uint* r_dst = &DY;
-	uint orig_shift = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint shift = orig_shift & 7;
-	uint src = MASK_OUT_ABOVE_8(*r_dst);
-	uint res = ROR_8(src, shift);
+	unsigned* r_dst = &DY;
+	unsigned orig_shift = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned shift = orig_shift & 7;
+	unsigned src = MASK_OUT_ABOVE_8(*r_dst);
+	unsigned res = ROR_8(src, shift);
 
 	if(orig_shift != 0)
 		USE_CYCLES(orig_shift<<CYC_SHIFT);
@@ -8505,10 +8505,10 @@ M68KMAKE_OP(ror, 8, s, .)
 
 M68KMAKE_OP(ror, 16, s, .)
 {
-	uint* r_dst = &DY;
-	uint shift = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint src = MASK_OUT_ABOVE_16(*r_dst);
-	uint res = ROR_16(src, shift);
+	unsigned* r_dst = &DY;
+	unsigned shift = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned src = MASK_OUT_ABOVE_16(*r_dst);
+	unsigned res = ROR_16(src, shift);
 
 	if(shift != 0)
 		USE_CYCLES(shift<<CYC_SHIFT);
@@ -8524,10 +8524,10 @@ M68KMAKE_OP(ror, 16, s, .)
 
 M68KMAKE_OP(ror, 32, s, .)
 {
-	uint* r_dst = &DY;
-	uint shift = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned* r_dst = &DY;
+	unsigned shift = (((REG_IR >> 9) - 1) & 7) + 1;
 	uint64 src = *r_dst;
-	uint res = ROR_32(src, shift);
+	unsigned res = ROR_32(src, shift);
 
 	if(shift != 0)
 		USE_CYCLES(shift<<CYC_SHIFT);
@@ -8543,11 +8543,11 @@ M68KMAKE_OP(ror, 32, s, .)
 
 M68KMAKE_OP(ror, 8, r, .)
 {
-	uint* r_dst = &DY;
-	uint orig_shift = DX & 0x3f;
-	uint shift = orig_shift & 7;
-	uint src = MASK_OUT_ABOVE_8(*r_dst);
-	uint res = ROR_8(src, shift);
+	unsigned* r_dst = &DY;
+	unsigned orig_shift = DX & 0x3f;
+	unsigned shift = orig_shift & 7;
+	unsigned src = MASK_OUT_ABOVE_8(*r_dst);
+	unsigned res = ROR_8(src, shift);
 
 	if(orig_shift != 0)
 	{
@@ -8570,11 +8570,11 @@ M68KMAKE_OP(ror, 8, r, .)
 
 M68KMAKE_OP(ror, 16, r, .)
 {
-	uint* r_dst = &DY;
-	uint orig_shift = DX & 0x3f;
-	uint shift = orig_shift & 15;
-	uint src = MASK_OUT_ABOVE_16(*r_dst);
-	uint res = ROR_16(src, shift);
+	unsigned* r_dst = &DY;
+	unsigned orig_shift = DX & 0x3f;
+	unsigned shift = orig_shift & 15;
+	unsigned src = MASK_OUT_ABOVE_16(*r_dst);
+	unsigned res = ROR_16(src, shift);
 
 	if(orig_shift != 0)
 	{
@@ -8597,11 +8597,11 @@ M68KMAKE_OP(ror, 16, r, .)
 
 M68KMAKE_OP(ror, 32, r, .)
 {
-	uint* r_dst = &DY;
-	uint orig_shift = DX & 0x3f;
-	uint shift = orig_shift & 31;
+	unsigned* r_dst = &DY;
+	unsigned orig_shift = DX & 0x3f;
+	unsigned shift = orig_shift & 31;
 	uint64 src = *r_dst;
-	uint res = ROR_32(src, shift);
+	unsigned res = ROR_32(src, shift);
 
 	if(orig_shift != 0)
 	{
@@ -8624,9 +8624,9 @@ M68KMAKE_OP(ror, 32, r, .)
 
 M68KMAKE_OP(ror, 16, ., .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_16;
-	uint src = m68ki_read_16(ea);
-	uint res = ROR_16(src, 1);
+	unsigned ea = M68KMAKE_GET_EA_AY_16;
+	unsigned src = m68ki_read_16(ea);
+	unsigned res = ROR_16(src, 1);
 
 	m68ki_write_16(ea, res);
 
@@ -8639,11 +8639,11 @@ M68KMAKE_OP(ror, 16, ., .)
 
 M68KMAKE_OP(rol, 8, s, .)
 {
-	uint* r_dst = &DY;
-	uint orig_shift = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint shift = orig_shift & 7;
-	uint src = MASK_OUT_ABOVE_8(*r_dst);
-	uint res = ROL_8(src, shift);
+	unsigned* r_dst = &DY;
+	unsigned orig_shift = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned shift = orig_shift & 7;
+	unsigned src = MASK_OUT_ABOVE_8(*r_dst);
+	unsigned res = ROL_8(src, shift);
 
 	if(orig_shift != 0)
 		USE_CYCLES(orig_shift<<CYC_SHIFT);
@@ -8659,10 +8659,10 @@ M68KMAKE_OP(rol, 8, s, .)
 
 M68KMAKE_OP(rol, 16, s, .)
 {
-	uint* r_dst = &DY;
-	uint shift = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint src = MASK_OUT_ABOVE_16(*r_dst);
-	uint res = ROL_16(src, shift);
+	unsigned* r_dst = &DY;
+	unsigned shift = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned src = MASK_OUT_ABOVE_16(*r_dst);
+	unsigned res = ROL_16(src, shift);
 
 	if(shift != 0)
 		USE_CYCLES(shift<<CYC_SHIFT);
@@ -8678,10 +8678,10 @@ M68KMAKE_OP(rol, 16, s, .)
 
 M68KMAKE_OP(rol, 32, s, .)
 {
-	uint* r_dst = &DY;
-	uint shift = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned* r_dst = &DY;
+	unsigned shift = (((REG_IR >> 9) - 1) & 7) + 1;
 	uint64 src = *r_dst;
-	uint res = ROL_32(src, shift);
+	unsigned res = ROL_32(src, shift);
 
 	if(shift != 0)
 		USE_CYCLES(shift<<CYC_SHIFT);
@@ -8697,11 +8697,11 @@ M68KMAKE_OP(rol, 32, s, .)
 
 M68KMAKE_OP(rol, 8, r, .)
 {
-	uint* r_dst = &DY;
-	uint orig_shift = DX & 0x3f;
-	uint shift = orig_shift & 7;
-	uint src = MASK_OUT_ABOVE_8(*r_dst);
-	uint res = ROL_8(src, shift);
+	unsigned* r_dst = &DY;
+	unsigned orig_shift = DX & 0x3f;
+	unsigned shift = orig_shift & 7;
+	unsigned src = MASK_OUT_ABOVE_8(*r_dst);
+	unsigned res = ROL_8(src, shift);
 
 	if(orig_shift != 0)
 	{
@@ -8732,11 +8732,11 @@ M68KMAKE_OP(rol, 8, r, .)
 
 M68KMAKE_OP(rol, 16, r, .)
 {
-	uint* r_dst = &DY;
-	uint orig_shift = DX & 0x3f;
-	uint shift = orig_shift & 15;
-	uint src = MASK_OUT_ABOVE_16(*r_dst);
-	uint res = MASK_OUT_ABOVE_16(ROL_16(src, shift));
+	unsigned* r_dst = &DY;
+	unsigned orig_shift = DX & 0x3f;
+	unsigned shift = orig_shift & 15;
+	unsigned src = MASK_OUT_ABOVE_16(*r_dst);
+	unsigned res = MASK_OUT_ABOVE_16(ROL_16(src, shift));
 
 	if(orig_shift != 0)
 	{
@@ -8767,11 +8767,11 @@ M68KMAKE_OP(rol, 16, r, .)
 
 M68KMAKE_OP(rol, 32, r, .)
 {
-	uint* r_dst = &DY;
-	uint orig_shift = DX & 0x3f;
-	uint shift = orig_shift & 31;
+	unsigned* r_dst = &DY;
+	unsigned orig_shift = DX & 0x3f;
+	unsigned shift = orig_shift & 31;
 	uint64 src = *r_dst;
-	uint res = ROL_32(src, shift);
+	unsigned res = ROL_32(src, shift);
 
 	if(orig_shift != 0)
 	{
@@ -8795,9 +8795,9 @@ M68KMAKE_OP(rol, 32, r, .)
 
 M68KMAKE_OP(rol, 16, ., .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_16;
-	uint src = m68ki_read_16(ea);
-	uint res = MASK_OUT_ABOVE_16(ROL_16(src, 1));
+	unsigned ea = M68KMAKE_GET_EA_AY_16;
+	unsigned src = m68ki_read_16(ea);
+	unsigned res = MASK_OUT_ABOVE_16(ROL_16(src, 1));
 
 	m68ki_write_16(ea, res);
 
@@ -8810,10 +8810,10 @@ M68KMAKE_OP(rol, 16, ., .)
 
 M68KMAKE_OP(roxr, 8, s, .)
 {
-	uint* r_dst = &DY;
-	uint shift = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint src = MASK_OUT_ABOVE_8(*r_dst);
-	uint res = ROR_9(src | (XFLAG_AS_1() << 8), shift);
+	unsigned* r_dst = &DY;
+	unsigned shift = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned src = MASK_OUT_ABOVE_8(*r_dst);
+	unsigned res = ROR_9(src | (XFLAG_AS_1() << 8), shift);
 
 	if(shift != 0)
 		USE_CYCLES(shift<<CYC_SHIFT);
@@ -8831,10 +8831,10 @@ M68KMAKE_OP(roxr, 8, s, .)
 
 M68KMAKE_OP(roxr, 16, s, .)
 {
-	uint* r_dst = &DY;
-	uint shift = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint src = MASK_OUT_ABOVE_16(*r_dst);
-	uint res = ROR_17(src | (XFLAG_AS_1() << 16), shift);
+	unsigned* r_dst = &DY;
+	unsigned shift = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned src = MASK_OUT_ABOVE_16(*r_dst);
+	unsigned res = ROR_17(src | (XFLAG_AS_1() << 16), shift);
 
 	if(shift != 0)
 		USE_CYCLES(shift<<CYC_SHIFT);
@@ -8854,8 +8854,8 @@ M68KMAKE_OP(roxr, 32, s, .)
 {
 #if M68K_USE_64_BIT
 
-	uint*  r_dst = &DY;
-	uint   shift = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned*  r_dst = &DY;
+	unsigned   shift = (((REG_IR >> 9) - 1) & 7) + 1;
 	uint64 src   = *r_dst;
 	uint64 res   = src | (((uint64)XFLAG_AS_1()) << 32);
 
@@ -8875,11 +8875,11 @@ M68KMAKE_OP(roxr, 32, s, .)
 
 #else
 
-	uint* r_dst = &DY;
-	uint shift = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint src = *r_dst;
-	uint res = MASK_OUT_ABOVE_32((ROR_33(src, shift) & ~(1 << (32 - shift))) | (XFLAG_AS_1() << (32 - shift)));
-	uint new_x_flag = src & (1 << (shift - 1));
+	unsigned* r_dst = &DY;
+	unsigned shift = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned src = *r_dst;
+	unsigned res = MASK_OUT_ABOVE_32((ROR_33(src, shift) & ~(1 << (32 - shift))) | (XFLAG_AS_1() << (32 - shift)));
+	unsigned new_x_flag = src & (1 << (shift - 1));
 
 	if(shift != 0)
 		USE_CYCLES(shift<<CYC_SHIFT);
@@ -8897,14 +8897,14 @@ M68KMAKE_OP(roxr, 32, s, .)
 
 M68KMAKE_OP(roxr, 8, r, .)
 {
-	uint* r_dst = &DY;
-	uint orig_shift = DX & 0x3f;
+	unsigned* r_dst = &DY;
+	unsigned orig_shift = DX & 0x3f;
 
 	if(orig_shift != 0)
 	{
-		uint shift = orig_shift % 9;
-		uint src   = MASK_OUT_ABOVE_8(*r_dst);
-		uint res   = ROR_9(src | (XFLAG_AS_1() << 8), shift);
+		unsigned shift = orig_shift % 9;
+		unsigned src   = MASK_OUT_ABOVE_8(*r_dst);
+		unsigned res   = ROR_9(src | (XFLAG_AS_1() << 8), shift);
 
 		USE_CYCLES(orig_shift<<CYC_SHIFT);
 
@@ -8927,14 +8927,14 @@ M68KMAKE_OP(roxr, 8, r, .)
 
 M68KMAKE_OP(roxr, 16, r, .)
 {
-	uint* r_dst = &DY;
-	uint orig_shift = DX & 0x3f;
+	unsigned* r_dst = &DY;
+	unsigned orig_shift = DX & 0x3f;
 
 	if(orig_shift != 0)
 	{
-		uint shift = orig_shift % 17;
-		uint src   = MASK_OUT_ABOVE_16(*r_dst);
-		uint res   = ROR_17(src | (XFLAG_AS_1() << 16), shift);
+		unsigned shift = orig_shift % 17;
+		unsigned src   = MASK_OUT_ABOVE_16(*r_dst);
+		unsigned res   = ROR_17(src | (XFLAG_AS_1() << 16), shift);
 
 		USE_CYCLES(orig_shift<<CYC_SHIFT);
 
@@ -8959,12 +8959,12 @@ M68KMAKE_OP(roxr, 32, r, .)
 {
 #if M68K_USE_64_BIT
 
-	uint*  r_dst = &DY;
-	uint   orig_shift = DX & 0x3f;
+	unsigned*  r_dst = &DY;
+	unsigned   orig_shift = DX & 0x3f;
 
 	if(orig_shift != 0)
 	{
-		uint   shift = orig_shift % 33;
+		unsigned   shift = orig_shift % 33;
 		uint64 src   = *r_dst;
 		uint64 res   = src | (((uint64)XFLAG_AS_1()) << 32);
 
@@ -8989,12 +8989,12 @@ M68KMAKE_OP(roxr, 32, r, .)
 
 #else
 
-	uint* r_dst = &DY;
-	uint orig_shift = DX & 0x3f;
-	uint shift = orig_shift % 33;
-	uint src = *r_dst;
-	uint res = MASK_OUT_ABOVE_32((ROR_33(src, shift) & ~(1 << (32 - shift))) | (XFLAG_AS_1() << (32 - shift)));
-	uint new_x_flag = src & (1 << (shift - 1));
+	unsigned* r_dst = &DY;
+	unsigned orig_shift = DX & 0x3f;
+	unsigned shift = orig_shift % 33;
+	unsigned src = *r_dst;
+	unsigned res = MASK_OUT_ABOVE_32((ROR_33(src, shift) & ~(1 << (32 - shift))) | (XFLAG_AS_1() << (32 - shift)));
+	unsigned new_x_flag = src & (1 << (shift - 1));
 
 	if(orig_shift != 0)
 		USE_CYCLES(orig_shift<<CYC_SHIFT);
@@ -9017,9 +9017,9 @@ M68KMAKE_OP(roxr, 32, r, .)
 
 M68KMAKE_OP(roxr, 16, ., .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_16;
-	uint src = m68ki_read_16(ea);
-	uint res = ROR_17(src | (XFLAG_AS_1() << 16), 1);
+	unsigned ea = M68KMAKE_GET_EA_AY_16;
+	unsigned src = m68ki_read_16(ea);
+	unsigned res = ROR_17(src | (XFLAG_AS_1() << 16), 1);
 
 	FLAG_C = FLAG_X = res >> 8;
 	res = MASK_OUT_ABOVE_16(res);
@@ -9034,10 +9034,10 @@ M68KMAKE_OP(roxr, 16, ., .)
 
 M68KMAKE_OP(roxl, 8, s, .)
 {
-	uint* r_dst = &DY;
-	uint shift = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint src = MASK_OUT_ABOVE_8(*r_dst);
-	uint res = ROL_9(src | (XFLAG_AS_1() << 8), shift);
+	unsigned* r_dst = &DY;
+	unsigned shift = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned src = MASK_OUT_ABOVE_8(*r_dst);
+	unsigned res = ROL_9(src | (XFLAG_AS_1() << 8), shift);
 
 	if(shift != 0)
 		USE_CYCLES(shift<<CYC_SHIFT);
@@ -9055,10 +9055,10 @@ M68KMAKE_OP(roxl, 8, s, .)
 
 M68KMAKE_OP(roxl, 16, s, .)
 {
-	uint* r_dst = &DY;
-	uint shift = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint src = MASK_OUT_ABOVE_16(*r_dst);
-	uint res = ROL_17(src | (XFLAG_AS_1() << 16), shift);
+	unsigned* r_dst = &DY;
+	unsigned shift = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned src = MASK_OUT_ABOVE_16(*r_dst);
+	unsigned res = ROL_17(src | (XFLAG_AS_1() << 16), shift);
 
 	if(shift != 0)
 		USE_CYCLES(shift<<CYC_SHIFT);
@@ -9078,8 +9078,8 @@ M68KMAKE_OP(roxl, 32, s, .)
 {
 #if M68K_USE_64_BIT
 
-	uint*  r_dst = &DY;
-	uint   shift = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned*  r_dst = &DY;
+	unsigned   shift = (((REG_IR >> 9) - 1) & 7) + 1;
 	uint64 src   = *r_dst;
 	uint64 res   = src | (((uint64)XFLAG_AS_1()) << 32);
 
@@ -9099,11 +9099,11 @@ M68KMAKE_OP(roxl, 32, s, .)
 
 #else
 
-	uint* r_dst = &DY;
-	uint shift = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint src = *r_dst;
-	uint res = MASK_OUT_ABOVE_32((ROL_33(src, shift) & ~(1 << (shift - 1))) | (XFLAG_AS_1() << (shift - 1)));
-	uint new_x_flag = src & (1 << (32 - shift));
+	unsigned* r_dst = &DY;
+	unsigned shift = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned src = *r_dst;
+	unsigned res = MASK_OUT_ABOVE_32((ROL_33(src, shift) & ~(1 << (shift - 1))) | (XFLAG_AS_1() << (shift - 1)));
+	unsigned new_x_flag = src & (1 << (32 - shift));
 
 	if(shift != 0)
 		USE_CYCLES(shift<<CYC_SHIFT);
@@ -9121,15 +9121,15 @@ M68KMAKE_OP(roxl, 32, s, .)
 
 M68KMAKE_OP(roxl, 8, r, .)
 {
-	uint* r_dst = &DY;
-	uint orig_shift = DX & 0x3f;
+	unsigned* r_dst = &DY;
+	unsigned orig_shift = DX & 0x3f;
 
 
 	if(orig_shift != 0)
 	{
-		uint shift = orig_shift % 9;
-		uint src   = MASK_OUT_ABOVE_8(*r_dst);
-		uint res   = ROL_9(src | (XFLAG_AS_1() << 8), shift);
+		unsigned shift = orig_shift % 9;
+		unsigned src   = MASK_OUT_ABOVE_8(*r_dst);
+		unsigned res   = ROL_9(src | (XFLAG_AS_1() << 8), shift);
 
 		USE_CYCLES(orig_shift<<CYC_SHIFT);
 
@@ -9152,14 +9152,14 @@ M68KMAKE_OP(roxl, 8, r, .)
 
 M68KMAKE_OP(roxl, 16, r, .)
 {
-	uint* r_dst = &DY;
-	uint orig_shift = DX & 0x3f;
+	unsigned* r_dst = &DY;
+	unsigned orig_shift = DX & 0x3f;
 
 	if(orig_shift != 0)
 	{
-		uint shift = orig_shift % 17;
-		uint src   = MASK_OUT_ABOVE_16(*r_dst);
-		uint res   = ROL_17(src | (XFLAG_AS_1() << 16), shift);
+		unsigned shift = orig_shift % 17;
+		unsigned src   = MASK_OUT_ABOVE_16(*r_dst);
+		unsigned res   = ROL_17(src | (XFLAG_AS_1() << 16), shift);
 
 		USE_CYCLES(orig_shift<<CYC_SHIFT);
 
@@ -9184,12 +9184,12 @@ M68KMAKE_OP(roxl, 32, r, .)
 {
 #if M68K_USE_64_BIT
 
-	uint*  r_dst = &DY;
-	uint   orig_shift = DX & 0x3f;
+	unsigned*  r_dst = &DY;
+	unsigned   orig_shift = DX & 0x3f;
 
 	if(orig_shift != 0)
 	{
-		uint   shift = orig_shift % 33;
+		unsigned   shift = orig_shift % 33;
 		uint64 src   = *r_dst;
 		uint64 res   = src | (((uint64)XFLAG_AS_1()) << 32);
 
@@ -9214,12 +9214,12 @@ M68KMAKE_OP(roxl, 32, r, .)
 
 #else
 
-	uint* r_dst = &DY;
-	uint orig_shift = DX & 0x3f;
-	uint shift = orig_shift % 33;
-	uint src = *r_dst;
-	uint res = MASK_OUT_ABOVE_32((ROL_33(src, shift) & ~(1 << (shift - 1))) | (XFLAG_AS_1() << (shift - 1)));
-	uint new_x_flag = src & (1 << (32 - shift));
+	unsigned* r_dst = &DY;
+	unsigned orig_shift = DX & 0x3f;
+	unsigned shift = orig_shift % 33;
+	unsigned src = *r_dst;
+	unsigned res = MASK_OUT_ABOVE_32((ROL_33(src, shift) & ~(1 << (shift - 1))) | (XFLAG_AS_1() << (shift - 1)));
+	unsigned new_x_flag = src & (1 << (32 - shift));
 
 	if(orig_shift != 0)
 		USE_CYCLES(orig_shift<<CYC_SHIFT);
@@ -9242,9 +9242,9 @@ M68KMAKE_OP(roxl, 32, r, .)
 
 M68KMAKE_OP(roxl, 16, ., .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_16;
-	uint src = m68ki_read_16(ea);
-	uint res = ROL_17(src | (XFLAG_AS_1() << 16), 1);
+	unsigned ea = M68KMAKE_GET_EA_AY_16;
+	unsigned src = m68ki_read_16(ea);
+	unsigned res = ROL_17(src | (XFLAG_AS_1() << 16), 1);
 
 	FLAG_C = FLAG_X = res >> 8;
 	res = MASK_OUT_ABOVE_16(res);
@@ -9261,7 +9261,7 @@ M68KMAKE_OP(rtd, 32, ., .)
 {
 	if(CPU_TYPE_IS_010_PLUS(CPU_TYPE))
 	{
-		uint new_pc = m68ki_pull_32();
+		unsigned new_pc = m68ki_pull_32();
 
 		m68ki_trace_t0();			   /* auto-disable (see m68kcpu.h) */
 		REG_A[7] = MASK_OUT_ABOVE_32(REG_A[7] + MAKE_INT_16(OPER_I_16()));
@@ -9276,9 +9276,9 @@ M68KMAKE_OP(rte, 32, ., .)
 {
 	if(FLAG_S)
 	{
-		uint new_sr;
-		uint new_pc;
-		uint format_word;
+		unsigned new_sr;
+		unsigned new_pc;
+		unsigned format_word;
 
 		m68ki_rte_callback();		   /* auto-disable (see m68kcpu.h) */
 		m68ki_trace_t0();			   /* auto-disable (see m68kcpu.h) */
@@ -9415,10 +9415,10 @@ M68KMAKE_OP(rts, 32, ., .)
 
 M68KMAKE_OP(sbcd, 8, rr, .)
 {
-	uint* r_dst = &DX;
-	uint src = DY;
-	uint dst = *r_dst;
-	uint res = LOW_NIBBLE(dst) - LOW_NIBBLE(src) - XFLAG_AS_1();
+	unsigned* r_dst = &DX;
+	unsigned src = DY;
+	unsigned dst = *r_dst;
+	unsigned res = LOW_NIBBLE(dst) - LOW_NIBBLE(src) - XFLAG_AS_1();
 
 	FLAG_V = ~res; /* Undefined V behavior */
 
@@ -9441,10 +9441,10 @@ M68KMAKE_OP(sbcd, 8, rr, .)
 
 M68KMAKE_OP(sbcd, 8, mm, ax7)
 {
-	uint src = OPER_AY_PD_8();
-	uint ea  = EA_A7_PD_8();
-	uint dst = m68ki_read_8(ea);
-	uint res = LOW_NIBBLE(dst) - LOW_NIBBLE(src) - XFLAG_AS_1();
+	unsigned src = OPER_AY_PD_8();
+	unsigned ea  = EA_A7_PD_8();
+	unsigned dst = m68ki_read_8(ea);
+	unsigned res = LOW_NIBBLE(dst) - LOW_NIBBLE(src) - XFLAG_AS_1();
 
 	FLAG_V = ~res; /* Undefined V behavior */
 
@@ -9467,10 +9467,10 @@ M68KMAKE_OP(sbcd, 8, mm, ax7)
 
 M68KMAKE_OP(sbcd, 8, mm, ay7)
 {
-	uint src = OPER_A7_PD_8();
-	uint ea  = EA_AX_PD_8();
-	uint dst = m68ki_read_8(ea);
-	uint res = LOW_NIBBLE(dst) - LOW_NIBBLE(src) - XFLAG_AS_1();
+	unsigned src = OPER_A7_PD_8();
+	unsigned ea  = EA_AX_PD_8();
+	unsigned dst = m68ki_read_8(ea);
+	unsigned res = LOW_NIBBLE(dst) - LOW_NIBBLE(src) - XFLAG_AS_1();
 
 	FLAG_V = ~res; /* Undefined V behavior */
 
@@ -9493,10 +9493,10 @@ M68KMAKE_OP(sbcd, 8, mm, ay7)
 
 M68KMAKE_OP(sbcd, 8, mm, axy7)
 {
-	uint src = OPER_A7_PD_8();
-	uint ea  = EA_A7_PD_8();
-	uint dst = m68ki_read_8(ea);
-	uint res = LOW_NIBBLE(dst) - LOW_NIBBLE(src) - XFLAG_AS_1();
+	unsigned src = OPER_A7_PD_8();
+	unsigned ea  = EA_A7_PD_8();
+	unsigned dst = m68ki_read_8(ea);
+	unsigned res = LOW_NIBBLE(dst) - LOW_NIBBLE(src) - XFLAG_AS_1();
 
 	FLAG_V = ~res; /* Undefined V behavior */
 
@@ -9519,10 +9519,10 @@ M68KMAKE_OP(sbcd, 8, mm, axy7)
 
 M68KMAKE_OP(sbcd, 8, mm, .)
 {
-	uint src = OPER_AY_PD_8();
-	uint ea  = EA_AX_PD_8();
-	uint dst = m68ki_read_8(ea);
-	uint res = LOW_NIBBLE(dst) - LOW_NIBBLE(src) - XFLAG_AS_1();
+	unsigned src = OPER_AY_PD_8();
+	unsigned ea  = EA_AX_PD_8();
+	unsigned dst = m68ki_read_8(ea);
+	unsigned res = LOW_NIBBLE(dst) - LOW_NIBBLE(src) - XFLAG_AS_1();
 
 	FLAG_V = ~res; /* Undefined V behavior */
 
@@ -9589,7 +9589,7 @@ M68KMAKE_OP(stop, 0, ., .)
 {
 	if(FLAG_S)
 	{
-		uint new_sr = OPER_I_16();
+		unsigned new_sr = OPER_I_16();
 		m68ki_trace_t0();			   /* auto-disable (see m68kcpu.h) */
 		CPU_STOPPED |= STOP_LEVEL_STOP;
 		m68ki_set_sr(new_sr);
@@ -9605,10 +9605,10 @@ M68KMAKE_OP(stop, 0, ., .)
 
 M68KMAKE_OP(sub, 8, er, d)
 {
-	uint* r_dst = &DX;
-	uint src = MASK_OUT_ABOVE_8(DY);
-	uint dst = MASK_OUT_ABOVE_8(*r_dst);
-	uint res = dst - src;
+	unsigned* r_dst = &DX;
+	unsigned src = MASK_OUT_ABOVE_8(DY);
+	unsigned dst = MASK_OUT_ABOVE_8(*r_dst);
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_X = FLAG_C = CFLAG_8(res);
@@ -9621,10 +9621,10 @@ M68KMAKE_OP(sub, 8, er, d)
 
 M68KMAKE_OP(sub, 8, er, .)
 {
-	uint* r_dst = &DX;
-	uint src = M68KMAKE_GET_OPER_AY_8;
-	uint dst = MASK_OUT_ABOVE_8(*r_dst);
-	uint res = dst - src;
+	unsigned* r_dst = &DX;
+	unsigned src = M68KMAKE_GET_OPER_AY_8;
+	unsigned dst = MASK_OUT_ABOVE_8(*r_dst);
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_X = FLAG_C = CFLAG_8(res);
@@ -9637,10 +9637,10 @@ M68KMAKE_OP(sub, 8, er, .)
 
 M68KMAKE_OP(sub, 16, er, d)
 {
-	uint* r_dst = &DX;
-	uint src = MASK_OUT_ABOVE_16(DY);
-	uint dst = MASK_OUT_ABOVE_16(*r_dst);
-	uint res = dst - src;
+	unsigned* r_dst = &DX;
+	unsigned src = MASK_OUT_ABOVE_16(DY);
+	unsigned dst = MASK_OUT_ABOVE_16(*r_dst);
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_X = FLAG_C = CFLAG_16(res);
@@ -9653,10 +9653,10 @@ M68KMAKE_OP(sub, 16, er, d)
 
 M68KMAKE_OP(sub, 16, er, a)
 {
-	uint* r_dst = &DX;
-	uint src = MASK_OUT_ABOVE_16(AY);
-	uint dst = MASK_OUT_ABOVE_16(*r_dst);
-	uint res = dst - src;
+	unsigned* r_dst = &DX;
+	unsigned src = MASK_OUT_ABOVE_16(AY);
+	unsigned dst = MASK_OUT_ABOVE_16(*r_dst);
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_X = FLAG_C = CFLAG_16(res);
@@ -9669,10 +9669,10 @@ M68KMAKE_OP(sub, 16, er, a)
 
 M68KMAKE_OP(sub, 16, er, .)
 {
-	uint* r_dst = &DX;
-	uint src = M68KMAKE_GET_OPER_AY_16;
-	uint dst = MASK_OUT_ABOVE_16(*r_dst);
-	uint res = dst - src;
+	unsigned* r_dst = &DX;
+	unsigned src = M68KMAKE_GET_OPER_AY_16;
+	unsigned dst = MASK_OUT_ABOVE_16(*r_dst);
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_X = FLAG_C = CFLAG_16(res);
@@ -9685,10 +9685,10 @@ M68KMAKE_OP(sub, 16, er, .)
 
 M68KMAKE_OP(sub, 32, er, d)
 {
-	uint* r_dst = &DX;
-	uint src = DY;
-	uint dst = *r_dst;
-	uint res = dst - src;
+	unsigned* r_dst = &DX;
+	unsigned src = DY;
+	unsigned dst = *r_dst;
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_X = FLAG_C = CFLAG_SUB_32(src, dst, res);
@@ -9701,10 +9701,10 @@ M68KMAKE_OP(sub, 32, er, d)
 
 M68KMAKE_OP(sub, 32, er, a)
 {
-	uint* r_dst = &DX;
-	uint src = AY;
-	uint dst = *r_dst;
-	uint res = dst - src;
+	unsigned* r_dst = &DX;
+	unsigned src = AY;
+	unsigned dst = *r_dst;
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_X = FLAG_C = CFLAG_SUB_32(src, dst, res);
@@ -9717,10 +9717,10 @@ M68KMAKE_OP(sub, 32, er, a)
 
 M68KMAKE_OP(sub, 32, er, .)
 {
-	uint* r_dst = &DX;
-	uint src = M68KMAKE_GET_OPER_AY_32;
-	uint dst = *r_dst;
-	uint res = dst - src;
+	unsigned* r_dst = &DX;
+	unsigned src = M68KMAKE_GET_OPER_AY_32;
+	unsigned dst = *r_dst;
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_X = FLAG_C = CFLAG_SUB_32(src, dst, res);
@@ -9733,10 +9733,10 @@ M68KMAKE_OP(sub, 32, er, .)
 
 M68KMAKE_OP(sub, 8, re, .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_8;
-	uint src = MASK_OUT_ABOVE_8(DX);
-	uint dst = m68ki_read_8(ea);
-	uint res = dst - src;
+	unsigned ea = M68KMAKE_GET_EA_AY_8;
+	unsigned src = MASK_OUT_ABOVE_8(DX);
+	unsigned dst = m68ki_read_8(ea);
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_Z = MASK_OUT_ABOVE_8(res);
@@ -9749,10 +9749,10 @@ M68KMAKE_OP(sub, 8, re, .)
 
 M68KMAKE_OP(sub, 16, re, .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_16;
-	uint src = MASK_OUT_ABOVE_16(DX);
-	uint dst = m68ki_read_16(ea);
-	uint res = dst - src;
+	unsigned ea = M68KMAKE_GET_EA_AY_16;
+	unsigned src = MASK_OUT_ABOVE_16(DX);
+	unsigned dst = m68ki_read_16(ea);
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_Z = MASK_OUT_ABOVE_16(res);
@@ -9765,10 +9765,10 @@ M68KMAKE_OP(sub, 16, re, .)
 
 M68KMAKE_OP(sub, 32, re, .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_32;
-	uint src = DX;
-	uint dst = m68ki_read_32(ea);
-	uint res = dst - src;
+	unsigned ea = M68KMAKE_GET_EA_AY_32;
+	unsigned src = DX;
+	unsigned dst = m68ki_read_32(ea);
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_Z = MASK_OUT_ABOVE_32(res);
@@ -9781,7 +9781,7 @@ M68KMAKE_OP(sub, 32, re, .)
 
 M68KMAKE_OP(suba, 16, ., d)
 {
-	uint* r_dst = &AX;
+	unsigned* r_dst = &AX;
 
 	*r_dst = MASK_OUT_ABOVE_32(*r_dst - MAKE_INT_16(DY));
 }
@@ -9789,7 +9789,7 @@ M68KMAKE_OP(suba, 16, ., d)
 
 M68KMAKE_OP(suba, 16, ., a)
 {
-	uint* r_dst = &AX;
+	unsigned* r_dst = &AX;
 
 	*r_dst = MASK_OUT_ABOVE_32(*r_dst - MAKE_INT_16(AY));
 }
@@ -9797,8 +9797,8 @@ M68KMAKE_OP(suba, 16, ., a)
 
 M68KMAKE_OP(suba, 16, ., .)
 {
-	uint* r_dst = &AX;
-	uint src = MAKE_INT_16(M68KMAKE_GET_OPER_AY_16);
+	unsigned* r_dst = &AX;
+	unsigned src = MAKE_INT_16(M68KMAKE_GET_OPER_AY_16);
 
 	*r_dst = MASK_OUT_ABOVE_32(*r_dst - src);
 }
@@ -9806,7 +9806,7 @@ M68KMAKE_OP(suba, 16, ., .)
 
 M68KMAKE_OP(suba, 32, ., d)
 {
-	uint* r_dst = &AX;
+	unsigned* r_dst = &AX;
 
 	*r_dst = MASK_OUT_ABOVE_32(*r_dst - DY);
 }
@@ -9814,7 +9814,7 @@ M68KMAKE_OP(suba, 32, ., d)
 
 M68KMAKE_OP(suba, 32, ., a)
 {
-	uint* r_dst = &AX;
+	unsigned* r_dst = &AX;
 
 	*r_dst = MASK_OUT_ABOVE_32(*r_dst - AY);
 }
@@ -9822,8 +9822,8 @@ M68KMAKE_OP(suba, 32, ., a)
 
 M68KMAKE_OP(suba, 32, ., .)
 {
-	uint src = M68KMAKE_GET_OPER_AY_32;
-	uint* r_dst = &AX;
+	unsigned src = M68KMAKE_GET_OPER_AY_32;
+	unsigned* r_dst = &AX;
 
 	*r_dst = MASK_OUT_ABOVE_32(*r_dst - src);
 }
@@ -9831,10 +9831,10 @@ M68KMAKE_OP(suba, 32, ., .)
 
 M68KMAKE_OP(subi, 8, ., d)
 {
-	uint* r_dst = &DY;
-	uint src = OPER_I_8();
-	uint dst = MASK_OUT_ABOVE_8(*r_dst);
-	uint res = dst - src;
+	unsigned* r_dst = &DY;
+	unsigned src = OPER_I_8();
+	unsigned dst = MASK_OUT_ABOVE_8(*r_dst);
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_Z = MASK_OUT_ABOVE_8(res);
@@ -9847,10 +9847,10 @@ M68KMAKE_OP(subi, 8, ., d)
 
 M68KMAKE_OP(subi, 8, ., .)
 {
-	uint src = OPER_I_8();
-	uint ea = M68KMAKE_GET_EA_AY_8;
-	uint dst = m68ki_read_8(ea);
-	uint res = dst - src;
+	unsigned src = OPER_I_8();
+	unsigned ea = M68KMAKE_GET_EA_AY_8;
+	unsigned dst = m68ki_read_8(ea);
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_Z = MASK_OUT_ABOVE_8(res);
@@ -9863,10 +9863,10 @@ M68KMAKE_OP(subi, 8, ., .)
 
 M68KMAKE_OP(subi, 16, ., d)
 {
-	uint* r_dst = &DY;
-	uint src = OPER_I_16();
-	uint dst = MASK_OUT_ABOVE_16(*r_dst);
-	uint res = dst - src;
+	unsigned* r_dst = &DY;
+	unsigned src = OPER_I_16();
+	unsigned dst = MASK_OUT_ABOVE_16(*r_dst);
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_Z = MASK_OUT_ABOVE_16(res);
@@ -9879,10 +9879,10 @@ M68KMAKE_OP(subi, 16, ., d)
 
 M68KMAKE_OP(subi, 16, ., .)
 {
-	uint src = OPER_I_16();
-	uint ea = M68KMAKE_GET_EA_AY_16;
-	uint dst = m68ki_read_16(ea);
-	uint res = dst - src;
+	unsigned src = OPER_I_16();
+	unsigned ea = M68KMAKE_GET_EA_AY_16;
+	unsigned dst = m68ki_read_16(ea);
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_Z = MASK_OUT_ABOVE_16(res);
@@ -9895,10 +9895,10 @@ M68KMAKE_OP(subi, 16, ., .)
 
 M68KMAKE_OP(subi, 32, ., d)
 {
-	uint* r_dst = &DY;
-	uint src = OPER_I_32();
-	uint dst = *r_dst;
-	uint res = dst - src;
+	unsigned* r_dst = &DY;
+	unsigned src = OPER_I_32();
+	unsigned dst = *r_dst;
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_Z = MASK_OUT_ABOVE_32(res);
@@ -9911,10 +9911,10 @@ M68KMAKE_OP(subi, 32, ., d)
 
 M68KMAKE_OP(subi, 32, ., .)
 {
-	uint src = OPER_I_32();
-	uint ea = M68KMAKE_GET_EA_AY_32;
-	uint dst = m68ki_read_32(ea);
-	uint res = dst - src;
+	unsigned src = OPER_I_32();
+	unsigned ea = M68KMAKE_GET_EA_AY_32;
+	unsigned dst = m68ki_read_32(ea);
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_Z = MASK_OUT_ABOVE_32(res);
@@ -9927,10 +9927,10 @@ M68KMAKE_OP(subi, 32, ., .)
 
 M68KMAKE_OP(subq, 8, ., d)
 {
-	uint* r_dst = &DY;
-	uint src = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint dst = MASK_OUT_ABOVE_8(*r_dst);
-	uint res = dst - src;
+	unsigned* r_dst = &DY;
+	unsigned src = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned dst = MASK_OUT_ABOVE_8(*r_dst);
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_Z = MASK_OUT_ABOVE_8(res);
@@ -9943,10 +9943,10 @@ M68KMAKE_OP(subq, 8, ., d)
 
 M68KMAKE_OP(subq, 8, ., .)
 {
-	uint src = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint ea = M68KMAKE_GET_EA_AY_8;
-	uint dst = m68ki_read_8(ea);
-	uint res = dst - src;
+	unsigned src = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned ea = M68KMAKE_GET_EA_AY_8;
+	unsigned dst = m68ki_read_8(ea);
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_Z = MASK_OUT_ABOVE_8(res);
@@ -9959,10 +9959,10 @@ M68KMAKE_OP(subq, 8, ., .)
 
 M68KMAKE_OP(subq, 16, ., d)
 {
-	uint* r_dst = &DY;
-	uint src = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint dst = MASK_OUT_ABOVE_16(*r_dst);
-	uint res = dst - src;
+	unsigned* r_dst = &DY;
+	unsigned src = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned dst = MASK_OUT_ABOVE_16(*r_dst);
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_Z = MASK_OUT_ABOVE_16(res);
@@ -9975,7 +9975,7 @@ M68KMAKE_OP(subq, 16, ., d)
 
 M68KMAKE_OP(subq, 16, ., a)
 {
-	uint* r_dst = &AY;
+	unsigned* r_dst = &AY;
 
 	*r_dst = MASK_OUT_ABOVE_32(*r_dst - ((((REG_IR >> 9) - 1) & 7) + 1));
 }
@@ -9983,10 +9983,10 @@ M68KMAKE_OP(subq, 16, ., a)
 
 M68KMAKE_OP(subq, 16, ., .)
 {
-	uint src = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint ea = M68KMAKE_GET_EA_AY_16;
-	uint dst = m68ki_read_16(ea);
-	uint res = dst - src;
+	unsigned src = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned ea = M68KMAKE_GET_EA_AY_16;
+	unsigned dst = m68ki_read_16(ea);
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_Z = MASK_OUT_ABOVE_16(res);
@@ -9999,10 +9999,10 @@ M68KMAKE_OP(subq, 16, ., .)
 
 M68KMAKE_OP(subq, 32, ., d)
 {
-	uint* r_dst = &DY;
-	uint src = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint dst = *r_dst;
-	uint res = dst - src;
+	unsigned* r_dst = &DY;
+	unsigned src = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned dst = *r_dst;
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_Z = MASK_OUT_ABOVE_32(res);
@@ -10015,7 +10015,7 @@ M68KMAKE_OP(subq, 32, ., d)
 
 M68KMAKE_OP(subq, 32, ., a)
 {
-	uint* r_dst = &AY;
+	unsigned* r_dst = &AY;
 
 	*r_dst = MASK_OUT_ABOVE_32(*r_dst - ((((REG_IR >> 9) - 1) & 7) + 1));
 }
@@ -10023,10 +10023,10 @@ M68KMAKE_OP(subq, 32, ., a)
 
 M68KMAKE_OP(subq, 32, ., .)
 {
-	uint src = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint ea = M68KMAKE_GET_EA_AY_32;
-	uint dst = m68ki_read_32(ea);
-	uint res = dst - src;
+	unsigned src = (((REG_IR >> 9) - 1) & 7) + 1;
+	unsigned ea = M68KMAKE_GET_EA_AY_32;
+	unsigned dst = m68ki_read_32(ea);
+	unsigned res = dst - src;
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_Z = MASK_OUT_ABOVE_32(res);
@@ -10039,10 +10039,10 @@ M68KMAKE_OP(subq, 32, ., .)
 
 M68KMAKE_OP(subx, 8, rr, .)
 {
-	uint* r_dst = &DX;
-	uint src = MASK_OUT_ABOVE_8(DY);
-	uint dst = MASK_OUT_ABOVE_8(*r_dst);
-	uint res = dst - src - XFLAG_AS_1();
+	unsigned* r_dst = &DX;
+	unsigned src = MASK_OUT_ABOVE_8(DY);
+	unsigned dst = MASK_OUT_ABOVE_8(*r_dst);
+	unsigned res = dst - src - XFLAG_AS_1();
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_X = FLAG_C = CFLAG_8(res);
@@ -10057,10 +10057,10 @@ M68KMAKE_OP(subx, 8, rr, .)
 
 M68KMAKE_OP(subx, 16, rr, .)
 {
-	uint* r_dst = &DX;
-	uint src = MASK_OUT_ABOVE_16(DY);
-	uint dst = MASK_OUT_ABOVE_16(*r_dst);
-	uint res = dst - src - XFLAG_AS_1();
+	unsigned* r_dst = &DX;
+	unsigned src = MASK_OUT_ABOVE_16(DY);
+	unsigned dst = MASK_OUT_ABOVE_16(*r_dst);
+	unsigned res = dst - src - XFLAG_AS_1();
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_X = FLAG_C = CFLAG_16(res);
@@ -10075,10 +10075,10 @@ M68KMAKE_OP(subx, 16, rr, .)
 
 M68KMAKE_OP(subx, 32, rr, .)
 {
-	uint* r_dst = &DX;
-	uint src = DY;
-	uint dst = *r_dst;
-	uint res = dst - src - XFLAG_AS_1();
+	unsigned* r_dst = &DX;
+	unsigned src = DY;
+	unsigned dst = *r_dst;
+	unsigned res = dst - src - XFLAG_AS_1();
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_X = FLAG_C = CFLAG_SUB_32(src, dst, res);
@@ -10093,10 +10093,10 @@ M68KMAKE_OP(subx, 32, rr, .)
 
 M68KMAKE_OP(subx, 8, mm, ax7)
 {
-	uint src = OPER_AY_PD_8();
-	uint ea  = EA_A7_PD_8();
-	uint dst = m68ki_read_8(ea);
-	uint res = dst - src - XFLAG_AS_1();
+	unsigned src = OPER_AY_PD_8();
+	unsigned ea  = EA_A7_PD_8();
+	unsigned dst = m68ki_read_8(ea);
+	unsigned res = dst - src - XFLAG_AS_1();
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_X = FLAG_C = CFLAG_8(res);
@@ -10111,10 +10111,10 @@ M68KMAKE_OP(subx, 8, mm, ax7)
 
 M68KMAKE_OP(subx, 8, mm, ay7)
 {
-	uint src = OPER_A7_PD_8();
-	uint ea  = EA_AX_PD_8();
-	uint dst = m68ki_read_8(ea);
-	uint res = dst - src - XFLAG_AS_1();
+	unsigned src = OPER_A7_PD_8();
+	unsigned ea  = EA_AX_PD_8();
+	unsigned dst = m68ki_read_8(ea);
+	unsigned res = dst - src - XFLAG_AS_1();
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_X = FLAG_C = CFLAG_8(res);
@@ -10129,10 +10129,10 @@ M68KMAKE_OP(subx, 8, mm, ay7)
 
 M68KMAKE_OP(subx, 8, mm, axy7)
 {
-	uint src = OPER_A7_PD_8();
-	uint ea  = EA_A7_PD_8();
-	uint dst = m68ki_read_8(ea);
-	uint res = dst - src - XFLAG_AS_1();
+	unsigned src = OPER_A7_PD_8();
+	unsigned ea  = EA_A7_PD_8();
+	unsigned dst = m68ki_read_8(ea);
+	unsigned res = dst - src - XFLAG_AS_1();
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_X = FLAG_C = CFLAG_8(res);
@@ -10147,10 +10147,10 @@ M68KMAKE_OP(subx, 8, mm, axy7)
 
 M68KMAKE_OP(subx, 8, mm, .)
 {
-	uint src = OPER_AY_PD_8();
-	uint ea  = EA_AX_PD_8();
-	uint dst = m68ki_read_8(ea);
-	uint res = dst - src - XFLAG_AS_1();
+	unsigned src = OPER_AY_PD_8();
+	unsigned ea  = EA_AX_PD_8();
+	unsigned dst = m68ki_read_8(ea);
+	unsigned res = dst - src - XFLAG_AS_1();
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_X = FLAG_C = CFLAG_8(res);
@@ -10165,10 +10165,10 @@ M68KMAKE_OP(subx, 8, mm, .)
 
 M68KMAKE_OP(subx, 16, mm, .)
 {
-	uint src = OPER_AY_PD_16();
-	uint ea  = EA_AX_PD_16();
-	uint dst = m68ki_read_16(ea);
-	uint res = dst - src - XFLAG_AS_1();
+	unsigned src = OPER_AY_PD_16();
+	unsigned ea  = EA_AX_PD_16();
+	unsigned dst = m68ki_read_16(ea);
+	unsigned res = dst - src - XFLAG_AS_1();
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_X = FLAG_C = CFLAG_16(res);
@@ -10183,10 +10183,10 @@ M68KMAKE_OP(subx, 16, mm, .)
 
 M68KMAKE_OP(subx, 32, mm, .)
 {
-	uint src = OPER_AY_PD_32();
-	uint ea  = EA_AX_PD_32();
-	uint dst = m68ki_read_32(ea);
-	uint res = dst - src - XFLAG_AS_1();
+	unsigned src = OPER_AY_PD_32();
+	unsigned ea  = EA_AX_PD_32();
+	unsigned dst = m68ki_read_32(ea);
+	unsigned res = dst - src - XFLAG_AS_1();
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_X = FLAG_C = CFLAG_SUB_32(src, dst, res);
@@ -10201,7 +10201,7 @@ M68KMAKE_OP(subx, 32, mm, .)
 
 M68KMAKE_OP(swap, 32, ., .)
 {
-	uint* r_dst = &DY;
+	unsigned* r_dst = &DY;
 
 	FLAG_Z = MASK_OUT_ABOVE_32(*r_dst<<16);
 	*r_dst = (*r_dst>>16) | FLAG_Z;
@@ -10215,7 +10215,7 @@ M68KMAKE_OP(swap, 32, ., .)
 
 M68KMAKE_OP(tas, 8, ., d)
 {
-	uint* r_dst = &DY;
+	unsigned* r_dst = &DY;
 
 	FLAG_Z = MASK_OUT_ABOVE_8(*r_dst);
 	FLAG_N = NFLAG_8(*r_dst);
@@ -10227,9 +10227,9 @@ M68KMAKE_OP(tas, 8, ., d)
 
 M68KMAKE_OP(tas, 8, ., .)
 {
-	uint ea = M68KMAKE_GET_EA_AY_8;
-	uint dst = m68ki_read_8(ea);
-	uint allow_writeback;
+	unsigned ea = M68KMAKE_GET_EA_AY_8;
+	unsigned dst = m68ki_read_8(ea);
+	unsigned allow_writeback;
 
 	FLAG_Z = dst;
 	FLAG_N = NFLAG_8(dst);
@@ -10374,7 +10374,7 @@ M68KMAKE_OP(trapv, 0, ., .)
 
 M68KMAKE_OP(tst, 8, ., d)
 {
-	uint res = MASK_OUT_ABOVE_8(DY);
+	unsigned res = MASK_OUT_ABOVE_8(DY);
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_Z = res;
@@ -10385,7 +10385,7 @@ M68KMAKE_OP(tst, 8, ., d)
 
 M68KMAKE_OP(tst, 8, ., .)
 {
-	uint res = M68KMAKE_GET_OPER_AY_8;
+	unsigned res = M68KMAKE_GET_OPER_AY_8;
 
 	FLAG_N = NFLAG_8(res);
 	FLAG_Z = res;
@@ -10398,7 +10398,7 @@ M68KMAKE_OP(tst, 8, ., pcdi)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint res = OPER_PCDI_8();
+		unsigned res = OPER_PCDI_8();
 
 		FLAG_N = NFLAG_8(res);
 		FLAG_Z = res;
@@ -10414,7 +10414,7 @@ M68KMAKE_OP(tst, 8, ., pcix)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint res = OPER_PCIX_8();
+		unsigned res = OPER_PCIX_8();
 
 		FLAG_N = NFLAG_8(res);
 		FLAG_Z = res;
@@ -10430,7 +10430,7 @@ M68KMAKE_OP(tst, 8, ., i)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint res = OPER_I_8();
+		unsigned res = OPER_I_8();
 
 		FLAG_N = NFLAG_8(res);
 		FLAG_Z = res;
@@ -10444,7 +10444,7 @@ M68KMAKE_OP(tst, 8, ., i)
 
 M68KMAKE_OP(tst, 16, ., d)
 {
-	uint res = MASK_OUT_ABOVE_16(DY);
+	unsigned res = MASK_OUT_ABOVE_16(DY);
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_Z = res;
@@ -10457,7 +10457,7 @@ M68KMAKE_OP(tst, 16, ., a)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint res = MAKE_INT_16(AY);
+		unsigned res = MAKE_INT_16(AY);
 
 		FLAG_N = NFLAG_16(res);
 		FLAG_Z = res;
@@ -10471,7 +10471,7 @@ M68KMAKE_OP(tst, 16, ., a)
 
 M68KMAKE_OP(tst, 16, ., .)
 {
-	uint res = M68KMAKE_GET_OPER_AY_16;
+	unsigned res = M68KMAKE_GET_OPER_AY_16;
 
 	FLAG_N = NFLAG_16(res);
 	FLAG_Z = res;
@@ -10484,7 +10484,7 @@ M68KMAKE_OP(tst, 16, ., pcdi)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint res = OPER_PCDI_16();
+		unsigned res = OPER_PCDI_16();
 
 		FLAG_N = NFLAG_16(res);
 		FLAG_Z = res;
@@ -10500,7 +10500,7 @@ M68KMAKE_OP(tst, 16, ., pcix)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint res = OPER_PCIX_16();
+		unsigned res = OPER_PCIX_16();
 
 		FLAG_N = NFLAG_16(res);
 		FLAG_Z = res;
@@ -10516,7 +10516,7 @@ M68KMAKE_OP(tst, 16, ., i)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint res = OPER_I_16();
+		unsigned res = OPER_I_16();
 
 		FLAG_N = NFLAG_16(res);
 		FLAG_Z = res;
@@ -10530,7 +10530,7 @@ M68KMAKE_OP(tst, 16, ., i)
 
 M68KMAKE_OP(tst, 32, ., d)
 {
-	uint res = DY;
+	unsigned res = DY;
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_Z = res;
@@ -10543,7 +10543,7 @@ M68KMAKE_OP(tst, 32, ., a)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint res = AY;
+		unsigned res = AY;
 
 		FLAG_N = NFLAG_32(res);
 		FLAG_Z = res;
@@ -10557,7 +10557,7 @@ M68KMAKE_OP(tst, 32, ., a)
 
 M68KMAKE_OP(tst, 32, ., .)
 {
-	uint res = M68KMAKE_GET_OPER_AY_32;
+	unsigned res = M68KMAKE_GET_OPER_AY_32;
 
 	FLAG_N = NFLAG_32(res);
 	FLAG_Z = res;
@@ -10570,7 +10570,7 @@ M68KMAKE_OP(tst, 32, ., pcdi)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint res = OPER_PCDI_32();
+		unsigned res = OPER_PCDI_32();
 
 		FLAG_N = NFLAG_32(res);
 		FLAG_Z = res;
@@ -10586,7 +10586,7 @@ M68KMAKE_OP(tst, 32, ., pcix)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint res = OPER_PCIX_32();
+		unsigned res = OPER_PCIX_32();
 
 		FLAG_N = NFLAG_32(res);
 		FLAG_Z = res;
@@ -10602,7 +10602,7 @@ M68KMAKE_OP(tst, 32, ., i)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint res = OPER_I_32();
+		unsigned res = OPER_I_32();
 
 		FLAG_N = NFLAG_32(res);
 		FLAG_Z = res;
@@ -10622,7 +10622,7 @@ M68KMAKE_OP(unlk, 32, ., a7)
 
 M68KMAKE_OP(unlk, 32, ., .)
 {
-	uint* r_dst = &AY;
+	unsigned* r_dst = &AY;
 
 	REG_A[7] = *r_dst;
 	*r_dst = m68ki_pull_32();
@@ -10634,8 +10634,8 @@ M68KMAKE_OP(unpk, 16, rr, .)
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
 		/* Note: DX and DY are reversed in Motorola's docs */
-		uint src = DY;
-		uint* r_dst = &DX;
+		unsigned src = DY;
+		unsigned* r_dst = &DX;
 
 		*r_dst = MASK_OUT_BELOW_16(*r_dst) | (((((src << 4) & 0x0f00) | (src & 0x000f)) + OPER_I_16()) & 0xffff);
 		return;
@@ -10649,8 +10649,8 @@ M68KMAKE_OP(unpk, 16, mm, ax7)
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
 		/* Note: AX and AY are reversed in Motorola's docs */
-		uint src = OPER_AY_PD_8();
-		uint ea_dst;
+		unsigned src = OPER_AY_PD_8();
+		unsigned ea_dst;
 
 		src = (((src << 4) & 0x0f00) | (src & 0x000f)) + OPER_I_16();
 		ea_dst = EA_A7_PD_8();
@@ -10668,8 +10668,8 @@ M68KMAKE_OP(unpk, 16, mm, ay7)
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
 		/* Note: AX and AY are reversed in Motorola's docs */
-		uint src = OPER_A7_PD_8();
-		uint ea_dst;
+		unsigned src = OPER_A7_PD_8();
+		unsigned ea_dst;
 
 		src = (((src << 4) & 0x0f00) | (src & 0x000f)) + OPER_I_16();
 		ea_dst = EA_AX_PD_8();
@@ -10686,8 +10686,8 @@ M68KMAKE_OP(unpk, 16, mm, axy7)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		uint src = OPER_A7_PD_8();
-		uint ea_dst;
+		unsigned src = OPER_A7_PD_8();
+		unsigned ea_dst;
 
 		src = (((src << 4) & 0x0f00) | (src & 0x000f)) + OPER_I_16();
 		ea_dst = EA_A7_PD_8();
@@ -10705,8 +10705,8 @@ M68KMAKE_OP(unpk, 16, mm, .)
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
 		/* Note: AX and AY are reversed in Motorola's docs */
-		uint src = OPER_AY_PD_8();
-		uint ea_dst;
+		unsigned src = OPER_AY_PD_8();
+		unsigned ea_dst;
 
 		src = (((src << 4) & 0x0f00) | (src & 0x000f)) + OPER_I_16();
 		ea_dst = EA_AX_PD_8();

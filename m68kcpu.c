@@ -57,8 +57,8 @@ extern void m68ki_build_opcode_table(void);
 
 int  m68ki_initial_cycles;
 int  m68ki_remaining_cycles = 0;                     /* Number of clocks remaining */
-uint m68ki_tracing = 0;
-uint m68ki_address_space;
+unsigned m68ki_tracing = 0;
+unsigned m68ki_address_space;
 
 #ifdef M68K_LOG_ENABLE
 const char *const m68ki_cpu_names[] =
@@ -86,9 +86,9 @@ jmp_buf m68ki_aerr_trap;
 #endif
 #endif /* M68K_EMULATE_ADDRESS_ERROR */
 
-uint    m68ki_aerr_address;
-uint    m68ki_aerr_write_mode;
-uint    m68ki_aerr_fc;
+unsigned    m68ki_aerr_address;
+unsigned    m68ki_aerr_write_mode;
+unsigned    m68ki_aerr_fc;
 
 jmp_buf m68ki_bus_error_jmp_buf;
 
@@ -113,7 +113,7 @@ const uint16 m68ki_shift_16_table[65] =
 	0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff,
 	0xffff, 0xffff
 };
-const uint m68ki_shift_32_table[65] =
+const unsigned m68ki_shift_32_table[65] =
 {
 	0x00000000, 0x80000000, 0xc0000000, 0xe0000000, 0xf0000000, 0xf8000000,
 	0xfc000000, 0xfe000000, 0xff000000, 0xff800000, 0xffc00000, 0xffe00000,
@@ -1035,7 +1035,7 @@ void m68k_end_timeslice(void)
  */
 void m68k_set_irq(unsigned int int_level)
 {
-	uint old_level = CPU_INT_LEVEL;
+	unsigned old_level = CPU_INT_LEVEL;
 	CPU_INT_LEVEL = int_level << 8;
 
 	/* A transition from < 7 to 7 always interrupts (NMI) */
@@ -1046,8 +1046,8 @@ void m68k_set_irq(unsigned int int_level)
 
 void m68k_set_virq(unsigned int level, unsigned int active)
 {
-	uint state = m68ki_cpu.virq_state;
-	uint blevel;
+	unsigned state = m68ki_cpu.virq_state;
+	unsigned blevel;
 
 	if(active)
 		state |= 1 << level;
@@ -1068,7 +1068,7 @@ unsigned int m68k_get_virq(unsigned int level)
 
 void m68k_init(void)
 {
-	static uint emulation_initialized = 0;
+	static unsigned emulation_initialized = 0;
 
 	/* The first call to this function initializes the opcode handler jump table */
 	if(!emulation_initialized)

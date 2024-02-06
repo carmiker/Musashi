@@ -7497,7 +7497,7 @@ M68KMAKE_OP(moveq, 32, ., .)
 
 M68KMAKE_OP(move16, 32, ., .)
 {
-	uint16 w2 = OPER_I_16();
+	uint16_t w2 = OPER_I_16();
 	int ax = REG_IR & 7;
 	int ay = (w2 >> 12) & 7;
 

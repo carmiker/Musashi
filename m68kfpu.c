@@ -165,7 +165,7 @@ static uint8 READ_EA_8(int ea_)
 	return 0;
 }
 
-static uint16 READ_EA_16(int ea_)
+static uint16_t READ_EA_16(int ea_)
 {
 	int mode = (ea_ >> 3) & 0x7;
 	int reg = (ea_ & 0x7);
@@ -174,7 +174,7 @@ static uint16 READ_EA_16(int ea_)
 	{
 		case 0:		// Dn
 		{
-			return (uint16)(REG_D[reg]);
+			return (uint16_t)(REG_D[reg]);
 		}
 		case 2:		// (An)
 		{
@@ -412,7 +412,7 @@ static void WRITE_EA_8(int ea_, uint8 data)
 	}
 }
 
-static void WRITE_EA_16(int ea_, uint16 data)
+static void WRITE_EA_16(int ea_, uint16_t data)
 {
 	int mode = (ea_ >> 3) & 0x7;
 	int reg = (ea_ & 0x7);
@@ -638,7 +638,7 @@ static void WRITE_EA_FPE(int ea_, fp_reg fpr)
 }
 
 
-static void fpgen_rm_reg(uint16 w2)
+static void fpgen_rm_reg(uint16_t w2)
 {
 	int ea = REG_IR & 0x3f;
 	int rm = (w2 >> 14) & 0x1;
@@ -778,7 +778,7 @@ static void fpgen_rm_reg(uint16 w2)
 	}
 }
 
-static void fmove_reg_mem(uint16 w2)
+static void fmove_reg_mem(uint16_t w2)
 {
 	int ea = REG_IR & 0x3f;
 	int src = (w2 >>  7) & 0x7;
@@ -838,7 +838,7 @@ static void fmove_reg_mem(uint16 w2)
 	USE_CYCLES(12);
 }
 
-static void fmove_fpcr(uint16 w2)
+static void fmove_fpcr(uint16_t w2)
 {
 	int ea = REG_IR & 0x3f;
 	int dir = (w2 >> 13) & 0x1;
@@ -868,7 +868,7 @@ static void fmove_fpcr(uint16 w2)
 	USE_CYCLES(10);
 }
 
-static void fmovem(uint16 w2)
+static void fmovem(uint16_t w2)
 {
 	int i;
 	int ea = REG_IR & 0x3f;
@@ -959,7 +959,7 @@ void m68040_fpu_op0(void)
 	{
 		case 0:
 		{
-			uint16 w2 = OPER_I_16();
+			uint16_t w2 = OPER_I_16();
 			switch ((w2 >> 13) & 0x7)
 			{
 				case 0x0:	// FPU ALU FP, FP

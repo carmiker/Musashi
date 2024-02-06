@@ -56,10 +56,8 @@ extern "C" {
 
 /* Data types used in this emulation core */
 #undef uint8
-#undef uint16
 
 #define uint8  unsigned char
-#define uint16 unsigned short
 
 
 /* ======================================================================== */
@@ -898,7 +896,7 @@ typedef struct
 	unsigned mmu_crp_aptr, mmu_crp_limit;
 	unsigned mmu_srp_aptr, mmu_srp_limit;
 	unsigned mmu_tc;
-	uint16 mmu_sr;
+	uint16_t mmu_sr;
 
 	const uint8* cyc_instruction;
 	const uint8* cyc_exception;
@@ -922,7 +920,7 @@ extern m68ki_cpu_core m68ki_cpu;
 extern int           m68ki_remaining_cycles;
 extern unsigned           m68ki_tracing;
 extern const uint8    m68ki_shift_8_table[];
-extern const uint16   m68ki_shift_16_table[];
+extern const uint16_t   m68ki_shift_16_table[];
 extern const unsigned     m68ki_shift_32_table[];
 extern const uint8    m68ki_exception_cycle_table[][256];
 extern unsigned           m68ki_address_space;

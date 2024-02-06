@@ -39,10 +39,6 @@
 #include <string.h>
 #include "m68k.h"
 
-#ifndef uint16
-#define uint16 uint16_t
-#endif
-
 #ifndef DECL_SPEC
 #define DECL_SPEC
 #endif
@@ -3145,7 +3141,7 @@ static void d68851_pbcc32(void)
 static void d68851_pdbcc(void)
 {
 	uint32_t temp_pc = g_cpu_pc;
-	uint16 modes = read_imm_16();
+	uint16_t modes = read_imm_16();
 
 	sprintf(g_dasm_str, "pb%s %x", g_mmucond[modes&0xf], temp_pc + make_int_16(read_imm_16()));
 }

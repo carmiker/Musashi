@@ -209,7 +209,7 @@ unsigned pmmu_translate_addr(unsigned addr_in)
 
 void m68881_mmu_ops(void)
 {
-	uint16 modes;
+	uint16_t modes;
 	uint32_t ea = m68ki_cpu.ir & 0x3f;
 	uint64_t temp64;
 

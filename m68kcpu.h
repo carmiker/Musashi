@@ -44,7 +44,7 @@ extern "C" {
 #include <setjmp.h>
 
 /* ======================================================================== */
-/* ==================== ARCHITECTURE-DEPENDANT DEFINES ==================== */
+/* ==================== ARCHITECTURE-DEPENDENT DEFINES ==================== */
 /* ======================================================================== */
 
 /* Check for > 32bit sizes */
@@ -59,14 +59,10 @@ extern "C" {
 #undef uint16
 #undef uint32
 #undef uint64
-#undef sint
 
 #define uint8  unsigned char
 #define uint16 unsigned short
 #define uint32 unsigned int			/* AWJ: changed from long to int */
-
-/* signed and unsigned int must be at least 32 bits wide */
-#define sint   signed   int
 
 
 /* ======================================================================== */
@@ -926,7 +922,7 @@ typedef struct
 
 
 extern m68ki_cpu_core m68ki_cpu;
-extern sint           m68ki_remaining_cycles;
+extern int           m68ki_remaining_cycles;
 extern unsigned           m68ki_tracing;
 extern const uint8    m68ki_shift_8_table[];
 extern const uint16   m68ki_shift_16_table[];

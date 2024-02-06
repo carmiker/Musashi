@@ -2465,7 +2465,7 @@ M68KMAKE_OP(bfchg, 32, ., .)
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
 		unsigned word2 = OPER_I_16();
-		sint offset = (word2>>6)&31;
+		int offset = (word2>>6)&31;
 		unsigned width = word2;
 		unsigned mask_base;
 		unsigned data_long;
@@ -2556,7 +2556,7 @@ M68KMAKE_OP(bfclr, 32, ., .)
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
 		unsigned word2 = OPER_I_16();
-		sint offset = (word2>>6)&31;
+		int offset = (word2>>6)&31;
 		unsigned width = word2;
 		unsigned mask_base;
 		unsigned data_long;
@@ -2644,7 +2644,7 @@ M68KMAKE_OP(bfexts, 32, ., .)
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
 		unsigned word2 = OPER_I_16();
-		sint offset = (word2>>6)&31;
+		int offset = (word2>>6)&31;
 		unsigned width = word2;
 		unsigned data;
 		unsigned ea = M68KMAKE_GET_EA_AY_8;
@@ -2726,7 +2726,7 @@ M68KMAKE_OP(bfextu, 32, ., .)
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
 		unsigned word2 = OPER_I_16();
-		sint offset = (word2>>6)&31;
+		int offset = (word2>>6)&31;
 		unsigned width = word2;
 		unsigned data;
 		unsigned ea = M68KMAKE_GET_EA_AY_8;
@@ -2811,8 +2811,8 @@ M68KMAKE_OP(bfffo, 32, ., .)
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
 		unsigned word2 = OPER_I_16();
-		sint offset = (word2>>6)&31;
-		sint local_offset;
+		int offset = (word2>>6)&31;
+		int local_offset;
 		unsigned width = word2;
 		unsigned data;
 		unsigned bit;
@@ -2905,7 +2905,7 @@ M68KMAKE_OP(bfins, 32, ., .)
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
 		unsigned word2 = OPER_I_16();
-		sint offset = (word2>>6)&31;
+		int offset = (word2>>6)&31;
 		unsigned width = word2;
 		unsigned insert_base = REG_D[(word2>>12)&7];
 		unsigned insert_long;
@@ -3003,7 +3003,7 @@ M68KMAKE_OP(bfset, 32, ., .)
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
 		unsigned word2 = OPER_I_16();
-		sint offset = (word2>>6)&31;
+		int offset = (word2>>6)&31;
 		unsigned width = word2;
 		unsigned mask_base;
 		unsigned data_long;
@@ -3093,7 +3093,7 @@ M68KMAKE_OP(bftst, 32, ., .)
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
 		unsigned word2 = OPER_I_16();
-		sint offset = (word2>>6)&31;
+		int offset = (word2>>6)&31;
 		unsigned width = word2;
 		unsigned mask_base;
 		unsigned data_long;
@@ -3495,8 +3495,8 @@ M68KMAKE_OP(cas2, 32, ., .)
 
 M68KMAKE_OP(chk, 16, ., d)
 {
-	sint src = MAKE_INT_16(DX);
-	sint bound = MAKE_INT_16(DY);
+	int src = MAKE_INT_16(DX);
+	int bound = MAKE_INT_16(DY);
 
 	FLAG_Z = ZFLAG_16(src); /* Undocumented */
 	FLAG_V = VFLAG_CLEAR;   /* Undocumented */
@@ -3513,8 +3513,8 @@ M68KMAKE_OP(chk, 16, ., d)
 
 M68KMAKE_OP(chk, 16, ., .)
 {
-	sint src = MAKE_INT_16(DX);
-	sint bound = MAKE_INT_16(M68KMAKE_GET_OPER_AY_16);
+	int src = MAKE_INT_16(DX);
+	int bound = MAKE_INT_16(M68KMAKE_GET_OPER_AY_16);
 
 	FLAG_Z = ZFLAG_16(src); /* Undocumented */
 	FLAG_V = VFLAG_CLEAR;   /* Undocumented */
@@ -3533,8 +3533,8 @@ M68KMAKE_OP(chk, 32, ., d)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		sint src = MAKE_INT_32(DX);
-		sint bound = MAKE_INT_32(DY);
+		int src = MAKE_INT_32(DX);
+		int bound = MAKE_INT_32(DY);
 
 		FLAG_Z = ZFLAG_32(src); /* Undocumented */
 		FLAG_V = VFLAG_CLEAR;   /* Undocumented */
@@ -3556,8 +3556,8 @@ M68KMAKE_OP(chk, 32, ., .)
 {
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
-		sint src = MAKE_INT_32(DX);
-		sint bound = MAKE_INT_32(M68KMAKE_GET_OPER_AY_32);
+		int src = MAKE_INT_32(DX);
+		int bound = MAKE_INT_32(M68KMAKE_GET_OPER_AY_32);
 
 		FLAG_Z = ZFLAG_32(src); /* Undocumented */
 		FLAG_V = VFLAG_CLEAR;   /* Undocumented */
@@ -4499,9 +4499,9 @@ M68KMAKE_OP(dbcc, 16, ., .)
 M68KMAKE_OP(divs, 16, ., d)
 {
 	unsigned* r_dst = &DX;
-	sint src = MAKE_INT_16(DY);
-	sint quotient;
-	sint remainder;
+	int src = MAKE_INT_16(DY);
+	int quotient;
+	int remainder;
 
 	if(src != 0)
 	{
@@ -4537,9 +4537,9 @@ M68KMAKE_OP(divs, 16, ., d)
 M68KMAKE_OP(divs, 16, ., .)
 {
 	unsigned* r_dst = &DX;
-	sint src = MAKE_INT_16(M68KMAKE_GET_OPER_AY_16);
-	sint quotient;
-	sint remainder;
+	int src = MAKE_INT_16(M68KMAKE_GET_OPER_AY_16);
+	int quotient;
+	int remainder;
 
 	if(src != 0)
 	{
@@ -4706,7 +4706,7 @@ M68KMAKE_OP(divl, 32, ., d)
 		unsigned remainder = 0;
 		unsigned dividend_neg = 0;
 		unsigned divisor_neg = 0;
-		sint i;
+		int i;
 		unsigned overflow;
 
 		if(divisor != 0)
@@ -4731,13 +4731,13 @@ M68KMAKE_OP(divl, 32, ., d)
 					if(GET_MSB_32(dividend_hi))
 					{
 						dividend_neg = 1;
-						dividend_hi = (unsigned)MASK_OUT_ABOVE_32((-(sint)dividend_hi) - (dividend_lo != 0));
-						dividend_lo = (unsigned)MASK_OUT_ABOVE_32(-(sint)dividend_lo);
+						dividend_hi = (unsigned)MASK_OUT_ABOVE_32((-(int)dividend_hi) - (dividend_lo != 0));
+						dividend_lo = (unsigned)MASK_OUT_ABOVE_32(-(int)dividend_lo);
 					}
 					if(GET_MSB_32(divisor))
 					{
 						divisor_neg = 1;
-						divisor = (unsigned)MASK_OUT_ABOVE_32(-(sint)divisor);
+						divisor = (unsigned)MASK_OUT_ABOVE_32(-(int)divisor);
 
 					}
 				}
@@ -4780,11 +4780,11 @@ M68KMAKE_OP(divl, 32, ., d)
 					}
 					if(dividend_neg)
 					{
-						remainder = (unsigned)MASK_OUT_ABOVE_32(-(sint)remainder);
-						quotient = (unsigned)MASK_OUT_ABOVE_32(-(sint)quotient);
+						remainder = (unsigned)MASK_OUT_ABOVE_32(-(int)remainder);
+						quotient = (unsigned)MASK_OUT_ABOVE_32(-(int)quotient);
 					}
 					if(divisor_neg)
-						quotient = (unsigned)MASK_OUT_ABOVE_32(-(sint)quotient);
+						quotient = (unsigned)MASK_OUT_ABOVE_32(-(int)quotient);
 				}
 
 				REG_D[word2 & 7] = remainder;
@@ -4917,7 +4917,7 @@ M68KMAKE_OP(divl, 32, ., .)
 		unsigned remainder = 0;
 		unsigned dividend_neg = 0;
 		unsigned divisor_neg = 0;
-		sint i;
+		int i;
 		unsigned overflow;
 
 		if(divisor != 0)
@@ -4942,13 +4942,13 @@ M68KMAKE_OP(divl, 32, ., .)
 					if(GET_MSB_32(dividend_hi))
 					{
 						dividend_neg = 1;
-						dividend_hi = (unsigned)MASK_OUT_ABOVE_32((-(sint)dividend_hi) - (dividend_lo != 0));
-						dividend_lo = (unsigned)MASK_OUT_ABOVE_32(-(sint)dividend_lo);
+						dividend_hi = (unsigned)MASK_OUT_ABOVE_32((-(int)dividend_hi) - (dividend_lo != 0));
+						dividend_lo = (unsigned)MASK_OUT_ABOVE_32(-(int)dividend_lo);
 					}
 					if(GET_MSB_32(divisor))
 					{
 						divisor_neg = 1;
-						divisor = (unsigned)MASK_OUT_ABOVE_32(-(sint)divisor);
+						divisor = (unsigned)MASK_OUT_ABOVE_32(-(int)divisor);
 
 					}
 				}
@@ -4991,11 +4991,11 @@ M68KMAKE_OP(divl, 32, ., .)
 					}
 					if(dividend_neg)
 					{
-						remainder = (unsigned)MASK_OUT_ABOVE_32(-(sint)remainder);
-						quotient = (unsigned)MASK_OUT_ABOVE_32(-(sint)quotient);
+						remainder = (unsigned)MASK_OUT_ABOVE_32(-(int)remainder);
+						quotient = (unsigned)MASK_OUT_ABOVE_32(-(int)quotient);
 					}
 					if(divisor_neg)
-						quotient = (unsigned)MASK_OUT_ABOVE_32(-(sint)quotient);
+						quotient = (unsigned)MASK_OUT_ABOVE_32(-(int)quotient);
 				}
 
 				REG_D[word2 & 7] = remainder;
@@ -7641,9 +7641,9 @@ M68KMAKE_OP(mull, 32, ., d)
 		if(BIT_B(word2))			   /* signed */
 		{
 			if(GET_MSB_32(src))
-				src = (unsigned)MASK_OUT_ABOVE_32(-(sint)src);
+				src = (unsigned)MASK_OUT_ABOVE_32(-(int)src);
 			if(GET_MSB_32(dst))
-				dst = (unsigned)MASK_OUT_ABOVE_32(-(sint)dst);
+				dst = (unsigned)MASK_OUT_ABOVE_32(-(int)dst);
 		}
 
 		src1 = MASK_OUT_ABOVE_16(src);
@@ -7662,8 +7662,8 @@ M68KMAKE_OP(mull, 32, ., d)
 
 		if(BIT_B(word2) && neg)
 		{
-			hi = (unsigned)MASK_OUT_ABOVE_32((-(sint)hi) - (lo != 0));
-			lo = (unsigned)MASK_OUT_ABOVE_32(-(sint)lo);
+			hi = (unsigned)MASK_OUT_ABOVE_32((-(int)hi) - (lo != 0));
+			lo = (unsigned)MASK_OUT_ABOVE_32(-(int)lo);
 		}
 
 		if(BIT_A(word2))
@@ -7765,9 +7765,9 @@ M68KMAKE_OP(mull, 32, ., .)
 		if(BIT_B(word2))			   /* signed */
 		{
 			if(GET_MSB_32(src))
-				src = (unsigned)MASK_OUT_ABOVE_32(-(sint)src);
+				src = (unsigned)MASK_OUT_ABOVE_32(-(int)src);
 			if(GET_MSB_32(dst))
-				dst = (unsigned)MASK_OUT_ABOVE_32(-(sint)dst);
+				dst = (unsigned)MASK_OUT_ABOVE_32(-(int)dst);
 		}
 
 		src1 = MASK_OUT_ABOVE_16(src);
@@ -7786,8 +7786,8 @@ M68KMAKE_OP(mull, 32, ., .)
 
 		if(BIT_B(word2) && neg)
 		{
-			hi = (unsigned)MASK_OUT_ABOVE_32((-(sint)hi) - (lo != 0));
-			lo = (unsigned)MASK_OUT_ABOVE_32(-(sint)lo);
+			hi = (unsigned)MASK_OUT_ABOVE_32((-(int)hi) - (lo != 0));
+			lo = (unsigned)MASK_OUT_ABOVE_32(-(int)lo);
 		}
 
 		if(BIT_A(word2))

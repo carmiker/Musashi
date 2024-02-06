@@ -57,11 +57,9 @@ extern "C" {
 /* Data types used in this emulation core */
 #undef uint8
 #undef uint16
-#undef uint32
 
 #define uint8  unsigned char
 #define uint16 unsigned short
-#define uint32 unsigned int			/* AWJ: changed from long to int */
 
 
 /* ======================================================================== */
@@ -1249,7 +1247,7 @@ static inline unsigned m68ki_get_ea_ix(unsigned An)
 
 	/* Check if base displacement is present */
 	if(BIT_5(extension))                /* BD SIZE */
-		bd = BIT_4(extension) ? m68ki_read_imm_32() : (uint32)MAKE_INT_16(m68ki_read_imm_16());
+		bd = BIT_4(extension) ? m68ki_read_imm_32() : (uint32_t)MAKE_INT_16(m68ki_read_imm_16());
 
 	/* If no indirect action, we are done */
 	if(!(extension&7))                  /* No Memory Indirect */
@@ -1257,7 +1255,7 @@ static inline unsigned m68ki_get_ea_ix(unsigned An)
 
 	/* Check if outer displacement is present */
 	if(BIT_1(extension))                /* I/IS:  od */
-		od = BIT_0(extension) ? m68ki_read_imm_32() : (uint32)MAKE_INT_16(m68ki_read_imm_16());
+		od = BIT_0(extension) ? m68ki_read_imm_32() : (uint32_t)MAKE_INT_16(m68ki_read_imm_16());
 
 	/* Postindex */
 	if(BIT_2(extension))                /* I/IS:  0 = preindex, 1 = postindex */

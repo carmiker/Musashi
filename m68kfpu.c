@@ -50,7 +50,7 @@ static void fatalerror(char *format, ...) {
 #define DOUBLE_EXPONENT					(unsigned long long)(0x7ff0000000000000)
 #define DOUBLE_MANTISSA					(unsigned long long)(0x000fffffffffffff)
 
-union fu32 { float f; uint32 u; };
+union fu32 { float f; uint32_t u; };
 union du64 { double d; uint64_t u; };
 
 static inline void SET_CONDITION_CODES(fp_reg reg)
@@ -122,17 +122,17 @@ static uint8 READ_EA_8(int ea_)
 		}
 		case 2: 	// (An)
 		{
-			uint32 ea = REG_A[reg];
+			uint32_t ea = REG_A[reg];
 			return m68ki_read_8(ea);
 		}
 		case 5:		// (d16, An)
 		{
-			uint32 ea = EA_AY_DI_8();
+			uint32_t ea = EA_AY_DI_8();
 			return m68ki_read_8(ea);
 		}
 		case 6:		// (An) + (Xn) + d8
 		{
-			uint32 ea = EA_AY_IX_8();
+			uint32_t ea = EA_AY_IX_8();
 			return m68ki_read_8(ea);
 		}
 		case 7:
@@ -141,14 +141,14 @@ static uint8 READ_EA_8(int ea_)
 			{
 				case 0:		// (xxx).W
 				{
-					uint32 ea = (uint32)OPER_I_16();
+					uint32_t ea = (uint32_t)OPER_I_16();
 					return m68ki_read_8(ea);
 				}
 				case 1:		// (xxx).L
 				{
-					uint32 d1 = OPER_I_16();
-					uint32 d2 = OPER_I_16();
-					uint32 ea = (d1 << 16) | d2;
+					uint32_t d1 = OPER_I_16();
+					uint32_t d2 = OPER_I_16();
+					uint32_t ea = (d1 << 16) | d2;
 					return m68ki_read_8(ea);
 				}
 				case 4:		// #<data>
@@ -178,17 +178,17 @@ static uint16 READ_EA_16(int ea_)
 		}
 		case 2:		// (An)
 		{
-			uint32 ea = REG_A[reg];
+			uint32_t ea = REG_A[reg];
 			return m68ki_read_16(ea);
 		}
 		case 5:		// (d16, An)
 		{
-			uint32 ea = EA_AY_DI_16();
+			uint32_t ea = EA_AY_DI_16();
 			return m68ki_read_16(ea);
 		}
 		case 6:		// (An) + (Xn) + d8
 		{
-			uint32 ea = EA_AY_IX_16();
+			uint32_t ea = EA_AY_IX_16();
 			return m68ki_read_16(ea);
 		}
 		case 7:
@@ -197,14 +197,14 @@ static uint16 READ_EA_16(int ea_)
 			{
 				case 0:		// (xxx).W
 				{
-					uint32 ea = (uint32)OPER_I_16();
+					uint32_t ea = (uint32_t)OPER_I_16();
 					return m68ki_read_16(ea);
 				}
 				case 1:		// (xxx).L
 				{
-					uint32 d1 = OPER_I_16();
-					uint32 d2 = OPER_I_16();
-					uint32 ea = (d1 << 16) | d2;
+					uint32_t d1 = OPER_I_16();
+					uint32_t d2 = OPER_I_16();
+					uint32_t ea = (d1 << 16) | d2;
 					return m68ki_read_16(ea);
 				}
 				case 4:		// #<data>
@@ -222,7 +222,7 @@ static uint16 READ_EA_16(int ea_)
 	return 0;
 }
 
-static uint32 READ_EA_32(int ea_)
+static uint32_t READ_EA_32(int ea_)
 {
 	int mode = (ea_ >> 3) & 0x7;
 	int reg = (ea_ & 0x7);
@@ -235,22 +235,22 @@ static uint32 READ_EA_32(int ea_)
 		}
 		case 2:		// (An)
 		{
-			uint32 ea = REG_A[reg];
+			uint32_t ea = REG_A[reg];
 			return m68ki_read_32(ea);
 		}
 		case 3:		// (An)+
 		{
-			uint32 ea = EA_AY_PI_32();
+			uint32_t ea = EA_AY_PI_32();
 			return m68ki_read_32(ea);
 		}
 		case 5:		// (d16, An)
 		{
-			uint32 ea = EA_AY_DI_32();
+			uint32_t ea = EA_AY_DI_32();
 			return m68ki_read_32(ea);
 		}
 		case 6:		// (An) + (Xn) + d8
 		{
-			uint32 ea = EA_AY_IX_32();
+			uint32_t ea = EA_AY_IX_32();
 			return m68ki_read_32(ea);
 		}
 		case 7:
@@ -259,19 +259,19 @@ static uint32 READ_EA_32(int ea_)
 			{
 				case 0:		// (xxx).W
 				{
-					uint32 ea = (uint32)OPER_I_16();
+					uint32_t ea = (uint32_t)OPER_I_16();
 					return m68ki_read_32(ea);
 				}
 				case 1:		// (xxx).L
 				{
-					uint32 d1 = OPER_I_16();
-					uint32 d2 = OPER_I_16();
-					uint32 ea = (d1 << 16) | d2;
+					uint32_t d1 = OPER_I_16();
+					uint32_t d2 = OPER_I_16();
+					uint32_t ea = (d1 << 16) | d2;
 					return m68ki_read_32(ea);
 				}
 				case 2:		// (d16, PC)
 				{
-					uint32 ea = EA_PCDI_32();
+					uint32_t ea = EA_PCDI_32();
 					return m68ki_read_32(ea);
 				}
 				case 4:		// #<data>
@@ -291,20 +291,20 @@ static uint64_t READ_EA_64(int ea_)
 {
 	int mode = (ea_ >> 3) & 0x7;
 	int reg = (ea_ & 0x7);
-	uint32 h1, h2;
+	uint32_t h1, h2;
 
 	switch (mode)
 	{
 		case 2:		// (An)
 		{
-			uint32 ea = REG_A[reg];
+			uint32_t ea = REG_A[reg];
 			h1 = m68ki_read_32(ea+0);
 			h2 = m68ki_read_32(ea+4);
 			return  (uint64_t)(h1) << 32 | (uint64_t)(h2);
 		}
 		case 3:		// (An)+
 		{
-			uint32 ea = REG_A[reg];
+			uint32_t ea = REG_A[reg];
 			REG_A[reg] += 8;
 			h1 = m68ki_read_32(ea+0);
 			h2 = m68ki_read_32(ea+4);
@@ -312,7 +312,7 @@ static uint64_t READ_EA_64(int ea_)
 		}
 		case 5:		// (d16, An)
 		{
-			uint32 ea = EA_AY_DI_32();
+			uint32_t ea = EA_AY_DI_32();
 			h1 = m68ki_read_32(ea+0);
 			h2 = m68ki_read_32(ea+4);
 			return  (uint64_t)(h1) << 32 | (uint64_t)(h2);
@@ -329,7 +329,7 @@ static uint64_t READ_EA_64(int ea_)
 				}
 				case 2:		// (d16, PC)
 				{
-					uint32 ea = EA_PCDI_32();
+					uint32_t ea = EA_PCDI_32();
 					h1 = m68ki_read_32(ea+0);
 					h2 = m68ki_read_32(ea+4);
 					return  (uint64_t)(h1) << 32 | (uint64_t)(h2);
@@ -358,31 +358,31 @@ static void WRITE_EA_8(int ea_, uint8 data)
 		}
 		case 2:		// (An)
 		{
-			uint32 ea = REG_A[reg];
+			uint32_t ea = REG_A[reg];
 			m68ki_write_8(ea, data);
 			break;
 		}
 		case 3:		// (An)+
 		{
-			uint32 ea = EA_AY_PI_8();
+			uint32_t ea = EA_AY_PI_8();
 			m68ki_write_8(ea, data);
 			break;
 		}
 		case 4:		// -(An)
 		{
-			uint32 ea = EA_AY_PD_8();
+			uint32_t ea = EA_AY_PD_8();
 			m68ki_write_8(ea, data);
 			break;
 		}
 		case 5:		// (d16, An)
 		{
-			uint32 ea = EA_AY_DI_8();
+			uint32_t ea = EA_AY_DI_8();
 			m68ki_write_8(ea, data);
 			break;
 		}
 		case 6:		// (An) + (Xn) + d8
 		{
-			uint32 ea = EA_AY_IX_8();
+			uint32_t ea = EA_AY_IX_8();
 			m68ki_write_8(ea, data);
 			break;
 		}
@@ -392,15 +392,15 @@ static void WRITE_EA_8(int ea_, uint8 data)
 			{
 				case 1:		// (xxx).B
 				{
-					uint32 d1 = OPER_I_16();
-					uint32 d2 = OPER_I_16();
-					uint32 ea = (d1 << 16) | d2;
+					uint32_t d1 = OPER_I_16();
+					uint32_t d2 = OPER_I_16();
+					uint32_t ea = (d1 << 16) | d2;
 					m68ki_write_8(ea, data);
 					break;
 				}
 				case 2:		// (d16, PC)
 				{
-					uint32 ea = EA_PCDI_16();
+					uint32_t ea = EA_PCDI_16();
 					m68ki_write_8(ea, data);
 					break;
 				}
@@ -426,31 +426,31 @@ static void WRITE_EA_16(int ea_, uint16 data)
 		}
 		case 2:		// (An)
 		{
-			uint32 ea = REG_A[reg];
+			uint32_t ea = REG_A[reg];
 			m68ki_write_16(ea, data);
 			break;
 		}
 		case 3:		// (An)+
 		{
-			uint32 ea = EA_AY_PI_16();
+			uint32_t ea = EA_AY_PI_16();
 			m68ki_write_16(ea, data);
 			break;
 		}
 		case 4:		// -(An)
 		{
-			uint32 ea = EA_AY_PD_16();
+			uint32_t ea = EA_AY_PD_16();
 			m68ki_write_16(ea, data);
 			break;
 		}
 		case 5:		// (d16, An)
 		{
-			uint32 ea = EA_AY_DI_16();
+			uint32_t ea = EA_AY_DI_16();
 			m68ki_write_16(ea, data);
 			break;
 		}
 		case 6:		// (An) + (Xn) + d8
 		{
-			uint32 ea = EA_AY_IX_16();
+			uint32_t ea = EA_AY_IX_16();
 			m68ki_write_16(ea, data);
 			break;
 		}
@@ -460,15 +460,15 @@ static void WRITE_EA_16(int ea_, uint16 data)
 			{
 				case 1:		// (xxx).W
 				{
-					uint32 d1 = OPER_I_16();
-					uint32 d2 = OPER_I_16();
-					uint32 ea = (d1 << 16) | d2;
+					uint32_t d1 = OPER_I_16();
+					uint32_t d2 = OPER_I_16();
+					uint32_t ea = (d1 << 16) | d2;
 					m68ki_write_16(ea, data);
 					break;
 				}
 				case 2:		// (d16, PC)
 				{
-					uint32 ea = EA_PCDI_16();
+					uint32_t ea = EA_PCDI_16();
 					m68ki_write_16(ea, data);
 					break;
 				}
@@ -480,7 +480,7 @@ static void WRITE_EA_16(int ea_, uint16 data)
 	}
 }
 
-static void WRITE_EA_32(int ea_, uint32 data)
+static void WRITE_EA_32(int ea_, uint32_t data)
 {
 	int mode = (ea_ >> 3) & 0x7;
 	int reg = (ea_ & 0x7);
@@ -499,31 +499,31 @@ static void WRITE_EA_32(int ea_, uint32 data)
 		}
 		case 2:		// (An)
 		{
-			uint32 ea = REG_A[reg];
+			uint32_t ea = REG_A[reg];
 			m68ki_write_32(ea, data);
 			break;
 		}
 		case 3:		// (An)+
 		{
-			uint32 ea = EA_AY_PI_32();
+			uint32_t ea = EA_AY_PI_32();
 			m68ki_write_32(ea, data);
 			break;
 		}
 		case 4:		// -(An)
 		{
-			uint32 ea = EA_AY_PD_32();
+			uint32_t ea = EA_AY_PD_32();
 			m68ki_write_32(ea, data);
 			break;
 		}
 		case 5:		// (d16, An)
 		{
-			uint32 ea = EA_AY_DI_32();
+			uint32_t ea = EA_AY_DI_32();
 			m68ki_write_32(ea, data);
 			break;
 		}
 		case 6:		// (An) + (Xn) + d8
 		{
-			uint32 ea = EA_AY_IX_32();
+			uint32_t ea = EA_AY_IX_32();
 			m68ki_write_32(ea, data);
 			break;
 		}
@@ -533,15 +533,15 @@ static void WRITE_EA_32(int ea_, uint32 data)
 			{
 				case 1:		// (xxx).L
 				{
-					uint32 d1 = OPER_I_16();
-					uint32 d2 = OPER_I_16();
-					uint32 ea = (d1 << 16) | d2;
+					uint32_t d1 = OPER_I_16();
+					uint32_t d2 = OPER_I_16();
+					uint32_t ea = (d1 << 16) | d2;
 					m68ki_write_32(ea, data);
 					break;
 				}
 				case 2:		// (d16, PC)
 				{
-					uint32 ea = EA_PCDI_32();
+					uint32_t ea = EA_PCDI_32();
 					m68ki_write_32(ea, data);
 					break;
 				}
@@ -562,28 +562,28 @@ static void WRITE_EA_64(int ea_, uint64_t data)
 	{
 		case 2:		// (An)
 		{
-			uint32 ea = REG_A[reg];
-			m68ki_write_32(ea, (uint32)(data >> 32));
-			m68ki_write_32(ea+4, (uint32)(data));
+			uint32_t ea = REG_A[reg];
+			m68ki_write_32(ea, (uint32_t)(data >> 32));
+			m68ki_write_32(ea+4, (uint32_t)(data));
 			break;
 		}
 		case 4:		// -(An)
 		{
-			uint32 ea;
+			uint32_t ea;
 			REG_A[reg] -= 8;
 			ea = REG_A[reg];
-			m68ki_write_32(ea+0, (uint32)(data >> 32));
-			m68ki_write_32(ea+4, (uint32)(data));
+			m68ki_write_32(ea+0, (uint32_t)(data >> 32));
+			m68ki_write_32(ea+4, (uint32_t)(data));
 			break;
 		}
 		case 5:		// (d16, An)
 		{
-			uint32 ea = EA_AY_DI_32();
-			m68ki_write_32(ea+0, (uint32)(data >> 32));
-			m68ki_write_32(ea+4, (uint32)(data));
+			uint32_t ea = EA_AY_DI_32();
+			m68ki_write_32(ea+0, (uint32_t)(data >> 32));
+			m68ki_write_32(ea+4, (uint32_t)(data));
 			break;
 		}
-		default:	fatalerror("MC68040: WRITE_EA_64: unhandled mode %d, reg %d, data %08X%08X at %08X\n", mode, reg, (uint32)(data >> 32), (uint32)(data), REG_PC);
+		default:	fatalerror("MC68040: WRITE_EA_64: unhandled mode %d, reg %d, data %08X%08X at %08X\n", mode, reg, (uint32_t)(data >> 32), (uint32_t)(data), REG_PC);
 	}
 }
 
@@ -599,8 +599,8 @@ static fp_reg READ_EA_FPE(int ea_)
 	{
 		case 3:		// (An)+
 		{
-			uint32 d1,d2;
-			uint32 ea = REG_A[reg];
+			uint32_t d1,d2;
+			uint32_t ea = REG_A[reg];
 			REG_A[reg] += 12;
 			d1 = m68ki_read_32(ea+0);
 			d2 = m68ki_read_32(ea+4);
@@ -625,11 +625,11 @@ static void WRITE_EA_FPE(int ea_, fp_reg fpr)
 	{
 		case 4:		// -(An)
 		{
-			uint32 ea;
+			uint32_t ea;
 			REG_A[reg] -= 12;
 			ea = REG_A[reg];
-			m68ki_write_32(ea+0, (uint32)(fpr.i >> 32));
-			m68ki_write_32(ea+4, (uint32)(fpr.i));
+			m68ki_write_32(ea+0, (uint32_t)(fpr.i >> 32));
+			m68ki_write_32(ea+4, (uint32_t)(fpr.i));
 			m68ki_write_32(ea+8, 0);
 			break;
 		}

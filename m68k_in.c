@@ -4505,7 +4505,7 @@ M68KMAKE_OP(divs, 16, ., d)
 
 	if(src != 0)
 	{
-		if((uint32)*r_dst == 0x80000000 && src == -1)
+		if((uint32_t)*r_dst == 0x80000000 && src == -1)
 		{
 			FLAG_Z = 0;
 			FLAG_N = NFLAG_CLEAR;
@@ -4543,7 +4543,7 @@ M68KMAKE_OP(divs, 16, ., .)
 
 	if(src != 0)
 	{
-		if((uint32)*r_dst == 0x80000000 && src == -1)
+		if((uint32_t)*r_dst == 0x80000000 && src == -1)
 		{
 			FLAG_Z = 0;
 			FLAG_N = NFLAG_CLEAR;

@@ -676,7 +676,7 @@ static void fpgen_rm_reg(uint16 w2)
 			}
 			case 4:		// Word Integer
 			{
-				sint16 d = READ_EA_16(ea);
+				int16_t d = READ_EA_16(ea);
 				source = (double)(d);
 				break;
 			}
@@ -812,7 +812,7 @@ static void fmove_reg_mem(uint16 w2)
 		}
 		case 4:		// Word Integer
 		{
-			sint16 d = (sint16)(REG_FP[src].f);
+			int16_t d = (int16_t)(REG_FP[src].f);
 			WRITE_EA_16(ea, d);
 			break;
 		}
@@ -824,7 +824,7 @@ static void fmove_reg_mem(uint16 w2)
 		}
 		case 6:		// Byte Integer
 		{
-			int8_t d = (sint16)(REG_FP[src].f);
+			int8_t d = (int16_t)(REG_FP[src].f);
 			WRITE_EA_8(ea, d);
 			break;
 		}
@@ -923,7 +923,7 @@ static void fbcc16(void)
 	sint32 offset;
 	int condition = REG_IR & 0x3f;
 
-	offset = (sint16)(OPER_I_16());
+	offset = (int16_t)(OPER_I_16());
 
 	// TODO: condition and jump!!!
 	if (TEST_CONDITION(condition))

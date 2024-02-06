@@ -37,12 +37,12 @@ You will have only one address space, no tracing, and no instruction prefetch.
 To implement the basic configuration:
 
 - In your host program, implement the following functions:
-    unsigned int  m68k_read_memory_8(unsigned int address);
-    unsigned int  m68k_read_memory_16(unsigned int address);
-    unsigned int  m68k_read_memory_32(unsigned int address);
-    void m68k_write_memory_8(unsigned int address, unsigned int value);
-    void m68k_write_memory_16(unsigned int address, unsigned int value);
-    void m68k_write_memory_32(unsigned int address, unsigned int value);
+    unsigned  m68k_read_memory_8(unsigned address);
+    unsigned  m68k_read_memory_16(unsigned address);
+    unsigned  m68k_read_memory_32(unsigned address);
+    void m68k_write_memory_8(unsigned address, unsigned value);
+    void m68k_write_memory_16(unsigned address, unsigned value);
+    void m68k_write_memory_32(unsigned address, unsigned value);
 
 - In your host program, be sure to call m68k_pulse_reset() once before calling
   any of the other functions as this initializes the core.
@@ -102,13 +102,13 @@ To enable separate immediate reads:
 - In m68kconf.h, turn on M68K_SEPARATE_READ_IMM.
 
 - In your host program, implement the following functions:
-    unsigned int  m68k_read_immediate_16(unsigned int address);
-    unsigned int  m68k_read_immediate_32(unsigned int address);
+    unsigned  m68k_read_immediate_16(unsigned address);
+    unsigned  m68k_read_immediate_32(unsigned address);
 
     Now you also have the pcrelative stuff:
-    unsigned int  m68k_read_pcrelative_8(unsigned int address);
-    unsigned int  m68k_read_pcrelative_16(unsigned int address);
-    unsigned int  m68k_read_pcrelative_32(unsigned int address);
+    unsigned  m68k_read_pcrelative_8(unsigned address);
+    unsigned  m68k_read_pcrelative_16(unsigned address);
+    unsigned  m68k_read_pcrelative_32(unsigned address);
 
 - If you need to know the current PC (for banking and such), set
   M68K_MONITOR_PC to OPT_SPECIFY_HANDLER, and set M68K_SET_PC_CALLBACK(A) to

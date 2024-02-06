@@ -195,8 +195,8 @@ typedef struct
 {
 	char* fname_add;
 	char* ea_add;
-	unsigned int mask_add;
-	unsigned int match_add;
+	unsigned mask_add;
+	unsigned match_add;
 } ea_info_struct;
 
 

@@ -928,15 +928,15 @@ typedef struct
 
 	/* Callbacks to host */
 	int  (*int_ack_callback)(int int_line);           /* Interrupt Acknowledge */
-	void (*bkpt_ack_callback)(unsigned int data);     /* Breakpoint Acknowledge */
+	void (*bkpt_ack_callback)(unsigned data);         /* Breakpoint Acknowledge */
 	void (*reset_instr_callback)(void);               /* Called when a RESET instruction is encountered */
-	void (*cmpild_instr_callback)(unsigned int, int); /* Called when a CMPI.L #v, Dn instruction is encountered */
+	void (*cmpild_instr_callback)(unsigned, int);     /* Called when a CMPI.L #v, Dn instruction is encountered */
 	void (*rte_instr_callback)(void);                 /* Called when a RTE instruction is encountered */
 	int  (*tas_instr_callback)(void);                 /* Called when a TAS instruction is encountered, allows / disallows writeback */
 	int  (*illg_instr_callback)(int);                 /* Called when an illegal instruction is encountered, allows handling */
-	void (*pc_changed_callback)(unsigned int new_pc); /* Called when the PC changes by a large amount */
-	void (*set_fc_callback)(unsigned int new_fc);     /* Called when the CPU function code changes */
-	void (*instr_hook_callback)(unsigned int pc);     /* Called every instruction cycle prior to execution */
+	void (*pc_changed_callback)(unsigned new_pc);     /* Called when the PC changes by a large amount */
+	void (*set_fc_callback)(unsigned new_fc);         /* Called when the CPU function code changes */
+	void (*instr_hook_callback)(unsigned pc);         /* Called every instruction cycle prior to execution */
 
 } m68ki_cpu_core;
 
@@ -962,7 +962,7 @@ static inline unsigned m68ki_get_ea_ix(unsigned An);
 static inline void m68ki_check_interrupts(void);            /* ASG: check for interrupts */
 
 /* quick disassembly (used for logging) */
-char* m68ki_disassemble_quick(unsigned int pc, unsigned int cpu_type);
+char* m68ki_disassemble_quick(unsigned pc, unsigned cpu_type);
 
 
 /* ======================================================================== */

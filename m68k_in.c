@@ -143,8 +143,8 @@ unsigned char m68ki_cycles[NUM_CPU_TYPES][0x10000]; /* Cycles used by CPU type *
 typedef struct
 {
 	void (*opcode_handler)(void);        /* handler function */
-	unsigned int  mask;                  /* mask on opcode */
-	unsigned int  match;                 /* what to match after masking */
+	unsigned      mask;                  /* mask on opcode */
+	unsigned      match;                 /* what to match after masking */
 	unsigned char cycles[NUM_CPU_TYPES]; /* cycles each cpu type takes */
 } opcode_handler_struct;
 

@@ -541,8 +541,8 @@ static int default_int_ack_callback(int int_level)
 }
 
 /* Breakpoint acknowledge */
-static unsigned int default_bkpt_ack_callback_data;
-static void default_bkpt_ack_callback(unsigned int data)
+static unsigned default_bkpt_ack_callback_data;
+static void default_bkpt_ack_callback(unsigned data)
 {
 	default_bkpt_ack_callback_data = data;
 }
@@ -553,7 +553,7 @@ static void default_reset_instr_callback(void)
 }
 
 /* Called when a cmpi.l #v, dn instruction is executed */
-static void default_cmpild_instr_callback(unsigned int val, int reg)
+static void default_cmpild_instr_callback(unsigned val, int reg)
 {
 	(void)val;
 	(void)reg;
@@ -578,21 +578,21 @@ static int default_illg_instr_callback(int opcode)
 }
 
 /* Called when the program counter changed by a large value */
-static unsigned int default_pc_changed_callback_data;
-static void default_pc_changed_callback(unsigned int new_pc)
+static unsigned default_pc_changed_callback_data;
+static void default_pc_changed_callback(unsigned new_pc)
 {
 	default_pc_changed_callback_data = new_pc;
 }
 
 /* Called every time there's bus activity (read/write to/from memory */
-static unsigned int default_set_fc_callback_data;
-static void default_set_fc_callback(unsigned int new_fc)
+static unsigned default_set_fc_callback_data;
+static void default_set_fc_callback(unsigned new_fc)
 {
 	default_set_fc_callback_data = new_fc;
 }
 
 /* Called every instruction cycle prior to execution */
-static void default_instr_hook_callback(unsigned int pc)
+static void default_instr_hook_callback(unsigned pc)
 {
 	(void)pc;
 }
@@ -608,7 +608,7 @@ static void default_instr_hook_callback(unsigned int pc)
 /* ======================================================================== */
 
 /* Access the internals of the CPU */
-unsigned int m68k_get_reg(void* context, m68k_register_t regnum)
+unsigned m68k_get_reg(void* context, m68k_register_t regnum)
 {
 	m68ki_cpu_core* cpu = context != NULL ?(m68ki_cpu_core*)context : &m68ki_cpu;
 
@@ -657,11 +657,11 @@ unsigned int m68k_get_reg(void* context, m68k_register_t regnum)
 		case M68K_REG_CPU_TYPE:
 			switch(cpu->cpu_type)
 			{
-				case CPU_TYPE_000:		return (unsigned int)M68K_CPU_TYPE_68000;
-				case CPU_TYPE_010:		return (unsigned int)M68K_CPU_TYPE_68010;
-				case CPU_TYPE_EC020:	return (unsigned int)M68K_CPU_TYPE_68EC020;
-				case CPU_TYPE_020:		return (unsigned int)M68K_CPU_TYPE_68020;
-				case CPU_TYPE_040:		return (unsigned int)M68K_CPU_TYPE_68040;
+				case CPU_TYPE_000:		return (unsigned)M68K_CPU_TYPE_68000;
+				case CPU_TYPE_010:		return (unsigned)M68K_CPU_TYPE_68010;
+				case CPU_TYPE_EC020:	return (unsigned)M68K_CPU_TYPE_68EC020;
+				case CPU_TYPE_020:		return (unsigned)M68K_CPU_TYPE_68020;
+				case CPU_TYPE_040:		return (unsigned)M68K_CPU_TYPE_68040;
 			}
 			return M68K_CPU_TYPE_INVALID;
 		default:			return 0;
@@ -669,7 +669,7 @@ unsigned int m68k_get_reg(void* context, m68k_register_t regnum)
 	return 0;
 }
 
-void m68k_set_reg(m68k_register_t regnum, unsigned int value)
+void m68k_set_reg(m68k_register_t regnum, unsigned value)
 {
 	switch(regnum)
 	{
@@ -725,7 +725,7 @@ void m68k_set_int_ack_callback(int  (*callback)(int int_level))
 	CALLBACK_INT_ACK = callback ? callback : default_int_ack_callback;
 }
 
-void m68k_set_bkpt_ack_callback(void  (*callback)(unsigned int data))
+void m68k_set_bkpt_ack_callback(void  (*callback)(unsigned data))
 {
 	CALLBACK_BKPT_ACK = callback ? callback : default_bkpt_ack_callback;
 }
@@ -735,7 +735,7 @@ void m68k_set_reset_instr_callback(void  (*callback)(void))
 	CALLBACK_RESET_INSTR = callback ? callback : default_reset_instr_callback;
 }
 
-static void m68k_set_cmpild_instr_callback(void  (*callback)(unsigned int, int))
+static void m68k_set_cmpild_instr_callback(void  (*callback)(unsigned, int))
 {
 	CALLBACK_CMPILD_INSTR = callback ? callback : default_cmpild_instr_callback;
 }
@@ -755,23 +755,23 @@ void m68k_set_illg_instr_callback(int  (*callback)(int))
 	CALLBACK_ILLG_INSTR = callback ? callback : default_illg_instr_callback;
 }
 
-void m68k_set_pc_changed_callback(void  (*callback)(unsigned int new_pc))
+void m68k_set_pc_changed_callback(void  (*callback)(unsigned new_pc))
 {
 	CALLBACK_PC_CHANGED = callback ? callback : default_pc_changed_callback;
 }
 
-void m68k_set_fc_callback(void  (*callback)(unsigned int new_fc))
+void m68k_set_fc_callback(void  (*callback)(unsigned new_fc))
 {
 	CALLBACK_SET_FC = callback ? callback : default_set_fc_callback;
 }
 
-void m68k_set_instr_hook_callback(void  (*callback)(unsigned int pc))
+void m68k_set_instr_hook_callback(void  (*callback)(unsigned pc))
 {
 	CALLBACK_INSTR_HOOK = callback ? callback : default_instr_hook_callback;
 }
 
 /* Set the CPU type. */
-void m68k_set_cpu_type(unsigned int cpu_type)
+void m68k_set_cpu_type(unsigned cpu_type)
 {
 	switch(cpu_type)
 	{
@@ -1033,7 +1033,7 @@ void m68k_end_timeslice(void)
 /* KS: Modified so that IPL* bits match with mask positions in the SR
  *     and cleaned out remenants of the interrupt controller.
  */
-void m68k_set_irq(unsigned int int_level)
+void m68k_set_irq(unsigned int_level)
 {
 	unsigned old_level = CPU_INT_LEVEL;
 	CPU_INT_LEVEL = int_level << 8;
@@ -1044,7 +1044,7 @@ void m68k_set_irq(unsigned int int_level)
 		m68ki_cpu.nmi_pending = TRUE;
 }
 
-void m68k_set_virq(unsigned int level, unsigned int active)
+void m68k_set_virq(unsigned level, unsigned active)
 {
 	unsigned state = m68ki_cpu.virq_state;
 	unsigned blevel;
@@ -1061,7 +1061,7 @@ void m68k_set_virq(unsigned int level, unsigned int active)
 	m68k_set_irq(blevel);
 }
 
-unsigned int m68k_get_virq(unsigned int level)
+unsigned m68k_get_virq(unsigned level)
 {
 	return (m68ki_cpu.virq_state & (1 << level)) ? 1 : 0;
 }
@@ -1145,12 +1145,12 @@ void m68k_pulse_halt(void)
 
 /* Get and set the current CPU context */
 /* This is to allow for multiple CPUs */
-unsigned int m68k_context_size(void)
+unsigned m68k_context_size(void)
 {
 	return sizeof(m68ki_cpu_core);
 }
 
-unsigned int m68k_get_context(void* dst)
+unsigned m68k_get_context(void* dst)
 {
 	if(dst) *(m68ki_cpu_core*)dst = m68ki_cpu;
 	return sizeof(m68ki_cpu_core);

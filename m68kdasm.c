@@ -201,7 +201,7 @@ static void (*g_instruction_table[0x10000])(void);
 static int  g_initialized = 0;
 
 /* Address mask to simulate address lines */
-static unsigned int g_address_mask = 0xffffffff;
+static unsigned g_address_mask = 0xffffffff;
 
 static char g_dasm_str[100]; /* string to hold disassembly */
 static char g_helper_str[100]; /* string to hold helpful info */
@@ -3589,7 +3589,7 @@ static void build_opcode_table(void)
 /* ======================================================================== */
 
 /* Disasemble one instruction at pc and store in str_buff */
-unsigned int m68k_disassemble(char* str_buff, unsigned int pc, unsigned int cpu_type)
+unsigned m68k_disassemble(char* str_buff, unsigned pc, unsigned cpu_type)
 {
 	if(!g_initialized)
 	{
@@ -3638,7 +3638,7 @@ unsigned int m68k_disassemble(char* str_buff, unsigned int pc, unsigned int cpu_
 	return COMBINE_OPCODE_FLAGS(g_cpu_pc - pc);
 }
 
-char* m68ki_disassemble_quick(unsigned int pc, unsigned int cpu_type)
+char* m68ki_disassemble_quick(unsigned pc, unsigned cpu_type)
 {
 	static char buff[100];
 	buff[0] = 0;
@@ -3646,9 +3646,9 @@ char* m68ki_disassemble_quick(unsigned int pc, unsigned int cpu_type)
 	return buff;
 }
 
-unsigned int m68k_disassemble_raw(char* str_buff, unsigned int pc, const unsigned char* opdata, const unsigned char* argdata, unsigned int cpu_type)
+unsigned m68k_disassemble_raw(char* str_buff, unsigned pc, const unsigned char* opdata, const unsigned char* argdata, unsigned cpu_type)
 {
-	unsigned int result;
+	unsigned result;
 	(void)argdata;
 
 	g_rawop = opdata;
@@ -3659,7 +3659,7 @@ unsigned int m68k_disassemble_raw(char* str_buff, unsigned int pc, const unsigne
 }
 
 /* Check if the instruction is a valid one */
-unsigned int m68k_is_valid_instruction(unsigned int instruction, unsigned int cpu_type)
+unsigned m68k_is_valid_instruction(unsigned instruction, unsigned cpu_type)
 {
 	if(!g_initialized)
 	{

@@ -93,7 +93,7 @@ unsigned    m68ki_aerr_fc;
 jmp_buf m68ki_bus_error_jmp_buf;
 
 /* Used by shift & rotate instructions */
-const uint8 m68ki_shift_8_table[65] =
+const uint8_t m68ki_shift_8_table[65] =
 {
 	0x00, 0x80, 0xc0, 0xe0, 0xf0, 0xf8, 0xfc, 0xfe, 0xff, 0xff, 0xff, 0xff,
 	0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,
@@ -132,7 +132,7 @@ const unsigned m68ki_shift_32_table[65] =
 /* Number of clock cycles to use for exception processing.
  * I used 4 for any vectors that are undocumented for processing times.
  */
-const uint8 m68ki_exception_cycle_table[5][256] =
+const uint8_t m68ki_exception_cycle_table[5][256] =
 {
 	{ /* 000 */
 		 40, /*  0: Reset - Initial Stack Pointer                      */
@@ -501,7 +501,7 @@ const uint8 m68ki_exception_cycle_table[5][256] =
 	}
 };
 
-const uint8 m68ki_ea_idx_cycle_table[64] =
+const uint8_t m68ki_ea_idx_cycle_table[64] =
 {
 	 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 	 0, /* ..01.000 no memory indirect, base NULL             */

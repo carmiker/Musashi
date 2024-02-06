@@ -109,7 +109,7 @@ static inline int TEST_CONDITION(int condition)
 	return r;
 }
 
-static uint8 READ_EA_8(int ea_)
+static uint8_t READ_EA_8(int ea_)
 {
 	int mode = (ea_ >> 3) & 0x7;
 	int reg = (ea_ & 0x7);
@@ -344,7 +344,7 @@ static uint64_t READ_EA_64(int ea_)
 	return 0;
 }
 
-static void WRITE_EA_8(int ea_, uint8 data)
+static void WRITE_EA_8(int ea_, uint8_t data)
 {
 	int mode = (ea_ >> 3) & 0x7;
 	int reg = (ea_ & 0x7);

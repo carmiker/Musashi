@@ -54,11 +54,6 @@ extern "C" {
 	#define M68K_INT_GT_32_BIT  0
 #endif
 
-/* Data types used in this emulation core */
-#undef uint8
-
-#define uint8  unsigned char
-
 
 /* ======================================================================== */
 /* ============================ GENERAL DEFINES =========================== */
@@ -898,8 +893,8 @@ typedef struct
 	unsigned mmu_tc;
 	uint16_t mmu_sr;
 
-	const uint8* cyc_instruction;
-	const uint8* cyc_exception;
+	const uint8_t* cyc_instruction;
+	const uint8_t* cyc_exception;
 
 	/* Callbacks to host */
 	int  (*int_ack_callback)(int int_line);           /* Interrupt Acknowledge */
@@ -919,12 +914,12 @@ typedef struct
 extern m68ki_cpu_core m68ki_cpu;
 extern int           m68ki_remaining_cycles;
 extern unsigned           m68ki_tracing;
-extern const uint8    m68ki_shift_8_table[];
+extern const uint8_t    m68ki_shift_8_table[];
 extern const uint16_t   m68ki_shift_16_table[];
 extern const unsigned     m68ki_shift_32_table[];
-extern const uint8    m68ki_exception_cycle_table[][256];
+extern const uint8_t    m68ki_exception_cycle_table[][256];
 extern unsigned           m68ki_address_space;
-extern const uint8    m68ki_ea_idx_cycle_table[];
+extern const uint8_t    m68ki_ea_idx_cycle_table[];
 
 extern unsigned           m68ki_aerr_address;
 extern unsigned           m68ki_aerr_write_mode;

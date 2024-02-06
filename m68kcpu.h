@@ -38,6 +38,7 @@ extern "C" {
 #endif
 
 #include "m68k.h"
+#include <stdint.h>
 #include <limits.h>
 
 #include <setjmp.h>
@@ -54,7 +55,6 @@ extern "C" {
 #endif
 
 /* Data types used in this emulation core */
-#undef sint8
 #undef sint16
 #undef sint32
 #undef sint64
@@ -64,7 +64,6 @@ extern "C" {
 #undef uint64
 #undef sint
 
-#define sint8  signed   char			/* ASG: changed from char to signed char */
 #define sint16 signed   short
 #define sint32 signed   int			/* AWJ: changed from long to int */
 #define uint8  unsigned char
@@ -81,53 +80,6 @@ extern "C" {
 #define sint64 sint32
 #define uint64 uint32
 #endif /* M68K_USE_64_BIT */
-
-
-
-/* Allow for architectures that don't have 8-bit sizes */
-#if UCHAR_MAX == 0xff
-	#define MAKE_INT_8(A) (sint8)(A)
-#else
-	#undef  sint8
-	#define sint8  signed   int
-	#undef  uint8
-	#define uint8  unsigned int
-	static inline sint MAKE_INT_8(unsigned value)
-	{
-		return (value & 0x80) ? value | ~0xff : value & 0xff;
-	}
-#endif /* UCHAR_MAX == 0xff */
-
-
-/* Allow for architectures that don't have 16-bit sizes */
-#if USHRT_MAX == 0xffff
-	#define MAKE_INT_16(A) (sint16)(A)
-#else
-	#undef  sint16
-	#define sint16 signed   int
-	#undef  uint16
-	#define uint16 unsigned int
-	static inline sint MAKE_INT_16(unsigned value)
-	{
-		return (value & 0x8000) ? value | ~0xffff : value & 0xffff;
-	}
-#endif /* USHRT_MAX == 0xffff */
-
-
-/* Allow for architectures that don't have 32-bit sizes */
-#if UINT_MAX == 0xffffffff
-	#define MAKE_INT_32(A) (sint32)(A)
-#else
-	#undef  sint32
-	#define sint32  signed   int
-	#undef  uint32
-	#define uint32  unsigned int
-	static inline sint MAKE_INT_32(unsigned value)
-	{
-		return (value & 0x80000000) ? value | ~0xffffffff : value & 0xffffffff;
-	}
-#endif /* UINT_MAX == 0xffffffff */
-
 
 
 

@@ -689,7 +689,7 @@ static void fpgen_rm_reg(uint16 w2)
 			}
 			case 6:		// Byte Integer
 			{
-				sint8 d = READ_EA_8(ea);
+				int8_t d = READ_EA_8(ea);
 				source = (double)(d);
 				break;
 			}
@@ -824,7 +824,7 @@ static void fmove_reg_mem(uint16 w2)
 		}
 		case 6:		// Byte Integer
 		{
-			sint8 d = (sint16)(REG_FP[src].f);
+			int8_t d = (sint16)(REG_FP[src].f);
 			WRITE_EA_8(ea, d);
 			break;
 		}

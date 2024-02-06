@@ -653,7 +653,7 @@ static void fpgen_rm_reg(uint16 w2)
 		{
 			case 0:		// Long-Word Integer
 			{
-				sint32 d = READ_EA_32(ea);
+				int32_t d = READ_EA_32(ea);
 				source = (double)(d);
 				break;
 			}
@@ -789,7 +789,7 @@ static void fmove_reg_mem(uint16 w2)
 	{
 		case 0:		// Long-Word Integer
 		{
-			sint32 d = (sint32)(REG_FP[src].f);
+			int32_t d = (int32_t)(REG_FP[src].f);
 			WRITE_EA_32(ea, d);
 			break;
 		}
@@ -920,7 +920,7 @@ static void fmovem(uint16 w2)
 
 static void fbcc16(void)
 {
-	sint32 offset;
+	int32_t offset;
 	int condition = REG_IR & 0x3f;
 
 	offset = (int16_t)(OPER_I_16());
@@ -937,7 +937,7 @@ static void fbcc16(void)
 
 static void fbcc32(void)
 {
-	sint32 offset;
+	int32_t offset;
 	int condition = REG_IR & 0x3f;
 
 	offset = OPER_I_32();

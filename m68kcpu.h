@@ -55,7 +55,6 @@ extern "C" {
 #endif
 
 /* Data types used in this emulation core */
-#undef sint32
 #undef sint64
 #undef uint8
 #undef uint16
@@ -63,7 +62,6 @@ extern "C" {
 #undef uint64
 #undef sint
 
-#define sint32 signed   int			/* AWJ: changed from long to int */
 #define uint8  unsigned char
 #define uint16 unsigned short
 #define uint32 unsigned int			/* AWJ: changed from long to int */
@@ -75,7 +73,7 @@ extern "C" {
 #define sint64 signed   long long
 #define uint64 unsigned long long
 #else
-#define sint64 sint32
+#define sint64 int32_t
 #define uint64 uint32
 #endif /* M68K_USE_64_BIT */
 

@@ -2433,7 +2433,7 @@ M68KMAKE_OP(bfchg, 32, ., d)
 		unsigned offset = (word2>>6)&31;
 		unsigned width = word2;
 		unsigned* data = &DY;
-		uint64 mask;
+		uint64_t mask;
 
 
 		if(BIT_B(word2))
@@ -2522,7 +2522,7 @@ M68KMAKE_OP(bfclr, 32, ., d)
 		unsigned offset = (word2>>6)&31;
 		unsigned width = word2;
 		unsigned* data = &DY;
-		uint64 mask;
+		uint64_t mask;
 
 
 		if(BIT_B(word2))
@@ -2612,7 +2612,7 @@ M68KMAKE_OP(bfexts, 32, ., d)
 		unsigned word2 = OPER_I_16();
 		unsigned offset = (word2>>6)&31;
 		unsigned width = word2;
-		uint64 data = DY;
+		uint64_t data = DY;
 
 
 		if(BIT_B(word2))
@@ -2694,7 +2694,7 @@ M68KMAKE_OP(bfextu, 32, ., d)
 		unsigned word2 = OPER_I_16();
 		unsigned offset = (word2>>6)&31;
 		unsigned width = word2;
-		uint64 data = DY;
+		uint64_t data = DY;
 
 
 		if(BIT_B(word2))
@@ -2775,7 +2775,7 @@ M68KMAKE_OP(bfffo, 32, ., d)
 		unsigned word2 = OPER_I_16();
 		unsigned offset = (word2>>6)&31;
 		unsigned width = word2;
-		uint64 data = DY;
+		uint64_t data = DY;
 		unsigned bit;
 
 
@@ -2866,8 +2866,8 @@ M68KMAKE_OP(bfins, 32, ., d)
 		unsigned offset = (word2>>6)&31;
 		unsigned width = word2;
 		unsigned* data = &DY;
-		uint64 mask;
-		uint64 insert = REG_D[(word2>>12)&7];
+		uint64_t mask;
+		uint64_t insert = REG_D[(word2>>12)&7];
 
 
 		if(BIT_B(word2))
@@ -2969,7 +2969,7 @@ M68KMAKE_OP(bfset, 32, ., d)
 		unsigned offset = (word2>>6)&31;
 		unsigned width = word2;
 		unsigned* data = &DY;
-		uint64 mask;
+		uint64_t mask;
 
 
 		if(BIT_B(word2))
@@ -3061,7 +3061,7 @@ M68KMAKE_OP(bftst, 32, ., d)
 		unsigned offset = (word2>>6)&31;
 		unsigned width = word2;
 		unsigned* data = &DY;
-		uint64 mask;
+		uint64_t mask;
 
 
 		if(BIT_B(word2))
@@ -4631,10 +4631,10 @@ M68KMAKE_OP(divl, 32, ., d)
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
 		unsigned word2 = OPER_I_16();
-		uint64 divisor   = DY;
-		uint64 dividend  = 0;
-		uint64 quotient  = 0;
-		uint64 remainder = 0;
+		uint64_t divisor   = DY;
+		uint64_t dividend  = 0;
+		uint64_t quotient  = 0;
+		uint64_t remainder = 0;
 
 		if(divisor != 0)
 		{
@@ -4646,8 +4646,8 @@ M68KMAKE_OP(divl, 32, ., d)
 
 				if(BIT_B(word2))	   /* signed */
 				{
-					quotient  = (uint64)((int64_t)dividend / (int64_t)((int32_t)divisor));
-					remainder = (uint64)((int64_t)dividend % (int64_t)((int32_t)divisor));
+					quotient  = (uint64_t)((int64_t)dividend / (int64_t)((int32_t)divisor));
+					remainder = (uint64_t)((int64_t)dividend % (int64_t)((int32_t)divisor));
 					if((int64_t)quotient != (int64_t)((int32_t)quotient))
 					{
 						FLAG_V = VFLAG_SET;
@@ -4670,8 +4670,8 @@ M68KMAKE_OP(divl, 32, ., d)
 				dividend = REG_D[(word2 >> 12) & 7];
 				if(BIT_B(word2))	   /* signed */
 				{
-					quotient  = (uint64)((int64_t)((int32_t)dividend) / (int64_t)((int32_t)divisor));
-					remainder = (uint64)((int64_t)((int32_t)dividend) % (int64_t)((int32_t)divisor));
+					quotient  = (uint64_t)((int64_t)((int32_t)dividend) / (int64_t)((int32_t)divisor));
+					remainder = (uint64_t)((int64_t)((int32_t)dividend) % (int64_t)((int32_t)divisor));
 				}
 				else					/* unsigned */
 				{
@@ -4842,10 +4842,10 @@ M68KMAKE_OP(divl, 32, ., .)
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
 		unsigned word2 = OPER_I_16();
-		uint64 divisor = M68KMAKE_GET_OPER_AY_32;
-		uint64 dividend  = 0;
-		uint64 quotient  = 0;
-		uint64 remainder = 0;
+		uint64_t divisor = M68KMAKE_GET_OPER_AY_32;
+		uint64_t dividend  = 0;
+		uint64_t quotient  = 0;
+		uint64_t remainder = 0;
 
 		if(divisor != 0)
 		{
@@ -4857,8 +4857,8 @@ M68KMAKE_OP(divl, 32, ., .)
 
 				if(BIT_B(word2))	   /* signed */
 				{
-					quotient  = (uint64)((int64_t)dividend / (int64_t)((int32_t)divisor));
-					remainder = (uint64)((int64_t)dividend % (int64_t)((int32_t)divisor));
+					quotient  = (uint64_t)((int64_t)dividend / (int64_t)((int32_t)divisor));
+					remainder = (uint64_t)((int64_t)dividend % (int64_t)((int32_t)divisor));
 					if((int64_t)quotient != (int64_t)((int32_t)quotient))
 					{
 						FLAG_V = VFLAG_SET;
@@ -4881,8 +4881,8 @@ M68KMAKE_OP(divl, 32, ., .)
 				dividend = REG_D[(word2 >> 12) & 7];
 				if(BIT_B(word2))	   /* signed */
 				{
-					quotient  = (uint64)((int64_t)((int32_t)dividend) / (int64_t)((int32_t)divisor));
-					remainder = (uint64)((int64_t)((int32_t)dividend) % (int64_t)((int32_t)divisor));
+					quotient  = (uint64_t)((int64_t)((int32_t)dividend) / (int64_t)((int32_t)divisor));
+					remainder = (uint64_t)((int64_t)((int32_t)dividend) % (int64_t)((int32_t)divisor));
 				}
 				else					/* unsigned */
 				{
@@ -7574,9 +7574,9 @@ M68KMAKE_OP(mull, 32, ., d)
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
 		unsigned word2 = OPER_I_16();
-		uint64 src = DY;
-		uint64 dst = REG_D[(word2 >> 12) & 7];
-		uint64 res;
+		uint64_t src = DY;
+		uint64_t dst = REG_D[(word2 >> 12) & 7];
+		uint64_t res;
 
 		FLAG_C = CFLAG_CLEAR;
 
@@ -7698,9 +7698,9 @@ M68KMAKE_OP(mull, 32, ., .)
 	if(CPU_TYPE_IS_EC020_PLUS(CPU_TYPE))
 	{
 		unsigned word2 = OPER_I_16();
-		uint64 src = M68KMAKE_GET_OPER_AY_32;
-		uint64 dst = REG_D[(word2 >> 12) & 7];
-		uint64 res;
+		uint64_t src = M68KMAKE_GET_OPER_AY_32;
+		uint64_t dst = REG_D[(word2 >> 12) & 7];
+		uint64_t res;
 
 		FLAG_C = CFLAG_CLEAR;
 
@@ -8526,7 +8526,7 @@ M68KMAKE_OP(ror, 32, s, .)
 {
 	unsigned* r_dst = &DY;
 	unsigned shift = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint64 src = *r_dst;
+	uint64_t src = *r_dst;
 	unsigned res = ROR_32(src, shift);
 
 	if(shift != 0)
@@ -8600,7 +8600,7 @@ M68KMAKE_OP(ror, 32, r, .)
 	unsigned* r_dst = &DY;
 	unsigned orig_shift = DX & 0x3f;
 	unsigned shift = orig_shift & 31;
-	uint64 src = *r_dst;
+	uint64_t src = *r_dst;
 	unsigned res = ROR_32(src, shift);
 
 	if(orig_shift != 0)
@@ -8680,7 +8680,7 @@ M68KMAKE_OP(rol, 32, s, .)
 {
 	unsigned* r_dst = &DY;
 	unsigned shift = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint64 src = *r_dst;
+	uint64_t src = *r_dst;
 	unsigned res = ROL_32(src, shift);
 
 	if(shift != 0)
@@ -8770,7 +8770,7 @@ M68KMAKE_OP(rol, 32, r, .)
 	unsigned* r_dst = &DY;
 	unsigned orig_shift = DX & 0x3f;
 	unsigned shift = orig_shift & 31;
-	uint64 src = *r_dst;
+	uint64_t src = *r_dst;
 	unsigned res = ROL_32(src, shift);
 
 	if(orig_shift != 0)
@@ -8856,8 +8856,8 @@ M68KMAKE_OP(roxr, 32, s, .)
 
 	unsigned*  r_dst = &DY;
 	unsigned   shift = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint64 src   = *r_dst;
-	uint64 res   = src | (((uint64)XFLAG_AS_1()) << 32);
+	uint64_t src   = *r_dst;
+	uint64_t res   = src | (((uint64_t)XFLAG_AS_1()) << 32);
 
 	if(shift != 0)
 		USE_CYCLES(shift<<CYC_SHIFT);
@@ -8965,8 +8965,8 @@ M68KMAKE_OP(roxr, 32, r, .)
 	if(orig_shift != 0)
 	{
 		unsigned   shift = orig_shift % 33;
-		uint64 src   = *r_dst;
-		uint64 res   = src | (((uint64)XFLAG_AS_1()) << 32);
+		uint64_t src   = *r_dst;
+		uint64_t res   = src | (((uint64_t)XFLAG_AS_1()) << 32);
 
 		res = ROR_33_64(res, shift);
 
@@ -9080,8 +9080,8 @@ M68KMAKE_OP(roxl, 32, s, .)
 
 	unsigned*  r_dst = &DY;
 	unsigned   shift = (((REG_IR >> 9) - 1) & 7) + 1;
-	uint64 src   = *r_dst;
-	uint64 res   = src | (((uint64)XFLAG_AS_1()) << 32);
+	uint64_t src   = *r_dst;
+	uint64_t res   = src | (((uint64_t)XFLAG_AS_1()) << 32);
 
 	if(shift != 0)
 		USE_CYCLES(shift<<CYC_SHIFT);
@@ -9190,8 +9190,8 @@ M68KMAKE_OP(roxl, 32, r, .)
 	if(orig_shift != 0)
 	{
 		unsigned   shift = orig_shift % 33;
-		uint64 src   = *r_dst;
-		uint64 res   = src | (((uint64)XFLAG_AS_1()) << 32);
+		uint64_t src   = *r_dst;
+		uint64_t res   = src | (((uint64_t)XFLAG_AS_1()) << 32);
 
 		res = ROL_33_64(res, shift);
 

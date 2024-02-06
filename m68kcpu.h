@@ -58,7 +58,6 @@ extern "C" {
 #undef uint8
 #undef uint16
 #undef uint32
-#undef uint64
 
 #define uint8  unsigned char
 #define uint16 unsigned short
@@ -837,7 +836,7 @@ extern jmp_buf m68ki_aerr_trap;
 
 typedef union
 {
-	uint64 i;
+	uint64_t i;
 	double f;
 } fp_reg;
 

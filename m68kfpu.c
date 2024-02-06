@@ -51,7 +51,7 @@ static void fatalerror(char *format, ...) {
 #define DOUBLE_MANTISSA					(unsigned long long)(0x000fffffffffffff)
 
 union fu32 { float f; uint32 u; };
-union du64 { double d; uint64 u; };
+union du64 { double d; uint64_t u; };
 
 static inline void SET_CONDITION_CODES(fp_reg reg)
 {
@@ -287,7 +287,7 @@ static uint32 READ_EA_32(int ea_)
 	return 0;
 }
 
-static uint64 READ_EA_64(int ea_)
+static uint64_t READ_EA_64(int ea_)
 {
 	int mode = (ea_ >> 3) & 0x7;
 	int reg = (ea_ & 0x7);
@@ -300,7 +300,7 @@ static uint64 READ_EA_64(int ea_)
 			uint32 ea = REG_A[reg];
 			h1 = m68ki_read_32(ea+0);
 			h2 = m68ki_read_32(ea+4);
-			return  (uint64)(h1) << 32 | (uint64)(h2);
+			return  (uint64_t)(h1) << 32 | (uint64_t)(h2);
 		}
 		case 3:		// (An)+
 		{
@@ -308,14 +308,14 @@ static uint64 READ_EA_64(int ea_)
 			REG_A[reg] += 8;
 			h1 = m68ki_read_32(ea+0);
 			h2 = m68ki_read_32(ea+4);
-			return  (uint64)(h1) << 32 | (uint64)(h2);
+			return  (uint64_t)(h1) << 32 | (uint64_t)(h2);
 		}
 		case 5:		// (d16, An)
 		{
 			uint32 ea = EA_AY_DI_32();
 			h1 = m68ki_read_32(ea+0);
 			h2 = m68ki_read_32(ea+4);
-			return  (uint64)(h1) << 32 | (uint64)(h2);
+			return  (uint64_t)(h1) << 32 | (uint64_t)(h2);
 		}
 		case 7:
 		{
@@ -325,14 +325,14 @@ static uint64 READ_EA_64(int ea_)
 				{
 					h1 = OPER_I_32();
 					h2 = OPER_I_32();
-					return  (uint64)(h1) << 32 | (uint64)(h2);
+					return  (uint64_t)(h1) << 32 | (uint64_t)(h2);
 				}
 				case 2:		// (d16, PC)
 				{
 					uint32 ea = EA_PCDI_32();
 					h1 = m68ki_read_32(ea+0);
 					h2 = m68ki_read_32(ea+4);
-					return  (uint64)(h1) << 32 | (uint64)(h2);
+					return  (uint64_t)(h1) << 32 | (uint64_t)(h2);
 				}
 				default:	fatalerror("MC68040: READ_EA_64: unhandled mode %d, reg %d at %08X\n", mode, reg, REG_PC);
 			}
@@ -553,7 +553,7 @@ static void WRITE_EA_32(int ea_, uint32 data)
 	}
 }
 
-static void WRITE_EA_64(int ea_, uint64 data)
+static void WRITE_EA_64(int ea_, uint64_t data)
 {
 	int mode = (ea_ >> 3) & 0x7;
 	int reg = (ea_ & 0x7);
@@ -605,7 +605,7 @@ static fp_reg READ_EA_FPE(int ea_)
 			d1 = m68ki_read_32(ea+0);
 			d2 = m68ki_read_32(ea+4);
 			// d3 = m68ki_read_32(ea+8);
-			r.i = (uint64)(d1) << 32 | (uint64)(d2);
+			r.i = (uint64_t)(d1) << 32 | (uint64_t)(d2);
 			break;
 		}
 		default:	fatalerror("MC68040: READ_EA_FPE: unhandled mode %d, reg %d, at %08X\n", mode, reg, REG_PC);
@@ -818,7 +818,7 @@ static void fmove_reg_mem(uint16 w2)
 		}
 		case 5:		// Double-precision Real
 		{
-			uint64 d = REG_FP[src].i;
+			uint64_t d = REG_FP[src].i;
 			WRITE_EA_64(ea, d);
 			break;
 		}

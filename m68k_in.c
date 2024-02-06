@@ -4646,9 +4646,9 @@ M68KMAKE_OP(divl, 32, ., d)
 
 				if(BIT_B(word2))	   /* signed */
 				{
-					quotient  = (uint64)((sint64)dividend / (sint64)((int32_t)divisor));
-					remainder = (uint64)((sint64)dividend % (sint64)((int32_t)divisor));
-					if((sint64)quotient != (sint64)((int32_t)quotient))
+					quotient  = (uint64)((int64_t)dividend / (int64_t)((int32_t)divisor));
+					remainder = (uint64)((int64_t)dividend % (int64_t)((int32_t)divisor));
+					if((int64_t)quotient != (int64_t)((int32_t)quotient))
 					{
 						FLAG_V = VFLAG_SET;
 						return;
@@ -4670,8 +4670,8 @@ M68KMAKE_OP(divl, 32, ., d)
 				dividend = REG_D[(word2 >> 12) & 7];
 				if(BIT_B(word2))	   /* signed */
 				{
-					quotient  = (uint64)((sint64)((int32_t)dividend) / (sint64)((int32_t)divisor));
-					remainder = (uint64)((sint64)((int32_t)dividend) % (sint64)((int32_t)divisor));
+					quotient  = (uint64)((int64_t)((int32_t)dividend) / (int64_t)((int32_t)divisor));
+					remainder = (uint64)((int64_t)((int32_t)dividend) % (int64_t)((int32_t)divisor));
 				}
 				else					/* unsigned */
 				{
@@ -4857,9 +4857,9 @@ M68KMAKE_OP(divl, 32, ., .)
 
 				if(BIT_B(word2))	   /* signed */
 				{
-					quotient  = (uint64)((sint64)dividend / (sint64)((int32_t)divisor));
-					remainder = (uint64)((sint64)dividend % (sint64)((int32_t)divisor));
-					if((sint64)quotient != (sint64)((int32_t)quotient))
+					quotient  = (uint64)((int64_t)dividend / (int64_t)((int32_t)divisor));
+					remainder = (uint64)((int64_t)dividend % (int64_t)((int32_t)divisor));
+					if((int64_t)quotient != (int64_t)((int32_t)quotient))
 					{
 						FLAG_V = VFLAG_SET;
 						return;
@@ -4881,8 +4881,8 @@ M68KMAKE_OP(divl, 32, ., .)
 				dividend = REG_D[(word2 >> 12) & 7];
 				if(BIT_B(word2))	   /* signed */
 				{
-					quotient  = (uint64)((sint64)((int32_t)dividend) / (sint64)((int32_t)divisor));
-					remainder = (uint64)((sint64)((int32_t)dividend) % (sint64)((int32_t)divisor));
+					quotient  = (uint64)((int64_t)((int32_t)dividend) / (int64_t)((int32_t)divisor));
+					remainder = (uint64)((int64_t)((int32_t)dividend) % (int64_t)((int32_t)divisor));
 				}
 				else					/* unsigned */
 				{
@@ -7582,12 +7582,12 @@ M68KMAKE_OP(mull, 32, ., d)
 
 		if(BIT_B(word2))			   /* signed */
 		{
-			res = (sint64)((int32_t)src) * (sint64)((int32_t)dst);
+			res = (int64_t)((int32_t)src) * (int64_t)((int32_t)dst);
 			if(!BIT_A(word2))
 			{
 				FLAG_Z = MASK_OUT_ABOVE_32(res);
 				FLAG_N = NFLAG_32(res);
-				FLAG_V = ((sint64)res != (int32_t)res)<<7;
+				FLAG_V = ((int64_t)res != (int32_t)res)<<7;
 				REG_D[(word2 >> 12) & 7] = FLAG_Z;
 				return;
 			}
@@ -7706,12 +7706,12 @@ M68KMAKE_OP(mull, 32, ., .)
 
 		if(BIT_B(word2))			   /* signed */
 		{
-			res = (sint64)((int32_t)src) * (sint64)((int32_t)dst);
+			res = (int64_t)((int32_t)src) * (int64_t)((int32_t)dst);
 			if(!BIT_A(word2))
 			{
 				FLAG_Z = MASK_OUT_ABOVE_32(res);
 				FLAG_N = NFLAG_32(res);
-				FLAG_V = ((sint64)res != (int32_t)res)<<7;
+				FLAG_V = ((int64_t)res != (int32_t)res)<<7;
 				REG_D[(word2 >> 12) & 7] = FLAG_Z;
 				return;
 			}

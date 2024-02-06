@@ -266,10 +266,10 @@ extern "C" {
 #define CPU_TYPE         m68ki_cpu.cpu_type
 
 #define REG_DA           m68ki_cpu.dar /* easy access to data and address regs */
-#define REG_DA_SAVE           m68ki_cpu.dar_save
+#define REG_DA_SAVE      m68ki_cpu.dar_save
 #define REG_D            m68ki_cpu.dar
 #define REG_A            (m68ki_cpu.dar+8)
-#define REG_PPC 		 m68ki_cpu.ppc
+#define REG_PPC          m68ki_cpu.ppc
 #define REG_PC           m68ki_cpu.pc
 #define REG_SP_BASE      m68ki_cpu.sp
 #define REG_USP          m68ki_cpu.sp[0]
@@ -319,21 +319,21 @@ extern "C" {
 #define CYC_MOVEM_L      m68ki_cpu.cyc_movem_l
 #define CYC_SHIFT        m68ki_cpu.cyc_shift
 #define CYC_RESET        m68ki_cpu.cyc_reset
-#define HAS_PMMU	 m68ki_cpu.has_pmmu
-#define PMMU_ENABLED	 m68ki_cpu.pmmu_enabled
-#define RESET_CYCLES	 m68ki_cpu.reset_cycles
+#define HAS_PMMU         m68ki_cpu.has_pmmu
+#define PMMU_ENABLED     m68ki_cpu.pmmu_enabled
+#define RESET_CYCLES     m68ki_cpu.reset_cycles
 
 
-#define CALLBACK_INT_ACK     m68ki_cpu.int_ack_callback
-#define CALLBACK_BKPT_ACK    m68ki_cpu.bkpt_ack_callback
-#define CALLBACK_RESET_INSTR m68ki_cpu.reset_instr_callback
-#define CALLBACK_CMPILD_INSTR m68ki_cpu.cmpild_instr_callback
-#define CALLBACK_RTE_INSTR    m68ki_cpu.rte_instr_callback
-#define CALLBACK_TAS_INSTR    m68ki_cpu.tas_instr_callback
-#define CALLBACK_ILLG_INSTR    m68ki_cpu.illg_instr_callback
-#define CALLBACK_PC_CHANGED  m68ki_cpu.pc_changed_callback
-#define CALLBACK_SET_FC      m68ki_cpu.set_fc_callback
-#define CALLBACK_INSTR_HOOK  m68ki_cpu.instr_hook_callback
+#define CALLBACK_INT_ACK        m68ki_cpu.int_ack_callback
+#define CALLBACK_BKPT_ACK       m68ki_cpu.bkpt_ack_callback
+#define CALLBACK_RESET_INSTR    m68ki_cpu.reset_instr_callback
+#define CALLBACK_CMPILD_INSTR   m68ki_cpu.cmpild_instr_callback
+#define CALLBACK_RTE_INSTR      m68ki_cpu.rte_instr_callback
+#define CALLBACK_TAS_INSTR      m68ki_cpu.tas_instr_callback
+#define CALLBACK_ILLG_INSTR     m68ki_cpu.illg_instr_callback
+#define CALLBACK_PC_CHANGED     m68ki_cpu.pc_changed_callback
+#define CALLBACK_SET_FC         m68ki_cpu.set_fc_callback
+#define CALLBACK_INSTR_HOOK     m68ki_cpu.instr_hook_callback
 
 
 
@@ -865,9 +865,9 @@ typedef struct
 {
 	unsigned cpu_type;     /* CPU Type: 68000, 68008, 68010, 68EC020, 68020, 68EC030, 68030, 68EC040, or 68040 */
 	unsigned dar[16];      /* Data and Address Registers */
-	unsigned dar_save[16];  /* Saved Data and Address Registers (pushed onto the
-						   stack when a bus error occurs)*/
-	unsigned ppc;		   /* Previous program counter */
+	unsigned dar_save[16]; /* Saved Data and Address Registers (pushed onto the
+	                          stack when a bus error occurs)*/
+	unsigned ppc;          /* Previous program counter */
 	unsigned pc;           /* Program Counter */
 	unsigned sp[7];        /* User, Interrupt, and Master Stack Pointers */
 	unsigned vbr;          /* Vector Base Register (m68010+) */
@@ -876,7 +876,7 @@ typedef struct
 	unsigned cacr;         /* Cache Control Register (m68020, unemulated) */
 	unsigned caar;         /* Cache Address Register (m68020, unemulated) */
 	unsigned ir;           /* Instruction Register */
-    fp_reg fpr[8];     /* FPU Data Register (m68040) */
+	fp_reg   fpr[8];       /* FPU Data Register (m68040) */
 	unsigned fpiar;        /* FPU Instruction Address Register (m68040) */
 	unsigned fpsr;         /* FPU Status Register (m68040) */
 	unsigned fpcr;         /* FPU Control Register (m68040) */
@@ -898,8 +898,8 @@ typedef struct
 	unsigned sr_mask;      /* Implemented status register bits */
 	unsigned instr_mode;   /* Stores whether we are in instruction mode or group 0/1 exception mode */
 	unsigned run_mode;     /* Stores whether we are processing a reset, bus error, address error, or something else */
-	int    has_pmmu;     /* Indicates if a PMMU available (yes on 030, 040, no on EC030) */
-	int    pmmu_enabled; /* Indicates if the PMMU is enabled */
+	int      has_pmmu;     /* Indicates if a PMMU available (yes on 030, 040, no on EC030) */
+	int      pmmu_enabled; /* Indicates if the PMMU is enabled */
 	unsigned reset_cycles;
 
 	/* Clocks required for instructions / exceptions */
@@ -930,8 +930,8 @@ typedef struct
 	int  (*int_ack_callback)(int int_line);           /* Interrupt Acknowledge */
 	void (*bkpt_ack_callback)(unsigned int data);     /* Breakpoint Acknowledge */
 	void (*reset_instr_callback)(void);               /* Called when a RESET instruction is encountered */
- 	void (*cmpild_instr_callback)(unsigned int, int); /* Called when a CMPI.L #v, Dn instruction is encountered */
- 	void (*rte_instr_callback)(void);                 /* Called when a RTE instruction is encountered */
+	void (*cmpild_instr_callback)(unsigned int, int); /* Called when a CMPI.L #v, Dn instruction is encountered */
+	void (*rte_instr_callback)(void);                 /* Called when a RTE instruction is encountered */
 	int  (*tas_instr_callback)(void);                 /* Called when a TAS instruction is encountered, allows / disallows writeback */
 	int  (*illg_instr_callback)(int);                 /* Called when an illegal instruction is encountered, allows handling */
 	void (*pc_changed_callback)(unsigned int new_pc); /* Called when the PC changes by a large amount */
@@ -942,18 +942,18 @@ typedef struct
 
 
 extern m68ki_cpu_core m68ki_cpu;
-extern int           m68ki_remaining_cycles;
-extern unsigned           m68ki_tracing;
+extern int              m68ki_remaining_cycles;
+extern unsigned         m68ki_tracing;
 extern const uint8_t    m68ki_shift_8_table[];
 extern const uint16_t   m68ki_shift_16_table[];
-extern const unsigned     m68ki_shift_32_table[];
+extern const unsigned   m68ki_shift_32_table[];
 extern const uint8_t    m68ki_exception_cycle_table[][256];
-extern unsigned           m68ki_address_space;
+extern unsigned         m68ki_address_space;
 extern const uint8_t    m68ki_ea_idx_cycle_table[];
 
-extern unsigned           m68ki_aerr_address;
-extern unsigned           m68ki_aerr_write_mode;
-extern unsigned           m68ki_aerr_fc;
+extern unsigned         m68ki_aerr_address;
+extern unsigned         m68ki_aerr_write_mode;
+extern unsigned         m68ki_aerr_fc;
 
 /* Forward declarations to keep some of the macros happy */
 static inline unsigned m68ki_read_16_fc (unsigned address, unsigned fc);

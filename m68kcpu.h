@@ -54,6 +54,36 @@ extern "C" {
 	#define M68K_INT_GT_32_BIT  0
 #endif
 
+/* Allow for architectures that don't have 8-bit sizes */
+#if UCHAR_MAX == 0xff
+	#define MAKE_INT_8(A) (int8_t)(A)
+#else
+	static inline int MAKE_INT_8(unsigned value) {
+		return (value & 0x80) ? value | ~0xff : value & 0xff;
+	}
+#endif /* UCHAR_MAX == 0xff */
+
+
+/* Allow for architectures that don't have 16-bit sizes */
+#if USHRT_MAX == 0xffff
+	#define MAKE_INT_16(A) (int16_t)(A)
+#else
+	static inline int MAKE_INT_16(unsigned value) {
+		return (value & 0x8000) ? value | ~0xffff : value & 0xffff;
+	}
+#endif /* USHRT_MAX == 0xffff */
+
+
+/* Allow for architectures that don't have 32-bit sizes */
+#if UINT_MAX == 0xffffffff
+	#define MAKE_INT_32(A) (int32_t)(A)
+#else
+	static inline int MAKE_INT_32(unsigned value) {
+		return (value & 0x80000000) ? value | ~0xffffffff : value & 0xffffffff;
+	}
+#endif /* UINT_MAX == 0xffffffff */
+
+
 
 /* ======================================================================== */
 /* ============================ GENERAL DEFINES =========================== */

@@ -29,16 +29,17 @@
 
 #include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdarg.h>
 
-extern void exit(int);
-
 static void fatalerror(char *format, ...) {
-      va_list ap;
-      va_start(ap,format);
-      fprintf(stderr,format,ap);
-      va_end(ap);
-      exit(1);
+    char outbuf[512];
+    va_list va;
+    va_start(va, format);
+    vsnprintf(outbuf, sizeof(outbuf), format, va);
+    va_end(va);
+    fprintf(stderr, "%s", outbuf);
+    exit(1);
 }
 
 #define FPCC_N			0x08000000

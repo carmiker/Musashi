@@ -32,15 +32,7 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
-static void fatalerror(char *format, ...) {
-    char outbuf[512];
-    va_list va;
-    va_start(va, format);
-    vsnprintf(outbuf, sizeof(outbuf), format, va);
-    va_end(va);
-    fprintf(stderr, "%s", outbuf);
-    exit(1);
-}
+#define fatalerror(...) fprintf(stderr, __VA_ARGS__); exit(EXIT_FAILURE);
 
 #define FPCC_N			0x08000000
 #define FPCC_Z			0x04000000

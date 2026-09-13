@@ -313,14 +313,11 @@ static unsigned m68ki_muls_cycles(unsigned src)
  * (the divisor is subtracted without a test), 2 if the test passed and
  * the divisor was subtracted, 4 if it failed. Overflow costs 10.
  */
-static unsigned m68ki_divu_cycles(unsigned dividend, unsigned divisor)
+static unsigned m68ki_div_loop_cycles(unsigned dividend, unsigned divisor)
 {
 	unsigned hdivisor = divisor << 16;
-	unsigned cycles = 76;
+	unsigned cycles = 0;
 	unsigned i;
-
-	if((dividend >> 16) >= divisor)
-		return 10;
 
 	for(i = 0; i < 15; i++)
 	{
@@ -338,6 +335,35 @@ static unsigned m68ki_divu_cycles(unsigned dividend, unsigned divisor)
 	}
 
 	return cycles;
+}
+
+static unsigned m68ki_divu_cycles(unsigned dividend, unsigned divisor)
+{
+	if((dividend >> 16) >= divisor)
+		return 10;
+
+	return 76 + m68ki_div_loop_cycles(dividend, divisor);
+}
+
+/* A signed divide runs the same division on the magnitudes, after 90
+ * cycles rather than 76, and pays 4 more for a negative dividend and 2
+ * more for a result that should be negative. Overflow is only spotted
+ * early when the magnitude of the quotient would not fit in 16 bits, for
+ * 16 cycles, or 18 with a negative dividend; the rest is found at the
+ * end, after the full division.
+ */
+static unsigned m68ki_divs_cycles(unsigned dividend, unsigned divisor)
+{
+	unsigned dneg = dividend >> 31;
+	unsigned sneg = (divisor >> 15) & 1;
+	unsigned adividend = dneg ? -dividend : dividend;
+	unsigned adivisor = (sneg ? -divisor : divisor) & 0xffff;
+
+	if((adividend >> 16) >= adivisor)
+		return 16 + (dneg << 1);
+
+	return 90 + (dneg << 2) + ((dneg ^ sneg) << 1) +
+		m68ki_div_loop_cycles(adividend, adivisor);
 }
 
 /* ======================================================================== */
@@ -620,8 +646,8 @@ cptrapcc  32  .     .     1111...001111...  ..........  . . U U .   .   .   4   
 dbt       16  .     .     0101000011001...  ..........  U U U U U  12  12   6   6   6
 dbf       16  .     .     0101000111001...  ..........  U U U U U  12  12   6   6   6
 dbcc      16  .     .     0101....11001...  ..........  U U U U U  12  12   6   6   6
-divs      16  .     d     1000...111000...  ..........  U U U U U 158 122  56  56  56
-divs      16  .     .     1000...111......  A+-DXWLdxI  U U U U U 158 122  56  56  56
+divs      16  .     d     1000...111000...  ..........  U U U U U   0 122  56  56  56
+divs      16  .     .     1000...111......  A+-DXWLdxI  U U U U U   0 122  56  56  56
 divu      16  .     d     1000...011000...  ..........  U U U U U   0 108  44  44  44
 divu      16  .     .     1000...011......  A+-DXWLdxI  U U U U U   0 108  44  44  44
 divl      32  .     d     0100110001000...  ..........  . . U U U   .   .  84  84  84
@@ -4573,6 +4599,9 @@ M68KMAKE_OP(divs, 16, ., d)
 
 	if(src != 0)
 	{
+		if(CPU_TYPE_IS_000(CPU_TYPE))
+			USE_CYCLES(m68ki_divs_cycles(*r_dst, src));
+
 		if((uint32_t)*r_dst == 0x80000000 && src == -1)
 		{
 			FLAG_Z = 0;
@@ -4611,6 +4640,9 @@ M68KMAKE_OP(divs, 16, ., .)
 
 	if(src != 0)
 	{
+		if(CPU_TYPE_IS_000(CPU_TYPE))
+			USE_CYCLES(m68ki_divs_cycles(*r_dst, src));
+
 		if((uint32_t)*r_dst == 0x80000000 && src == -1)
 		{
 			FLAG_Z = 0;

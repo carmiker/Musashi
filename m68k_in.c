@@ -307,6 +307,39 @@ static unsigned m68ki_muls_cycles(unsigned src)
 	return m68ki_mul_bits((src ^ (src << 1)) & 0xffff) << 1;
 }
 
+/* On the 68000 an unsigned divide that does not overflow takes 76 cycles
+ * plus the cost of its restoring division: for each of the first fifteen
+ * quotient bits, nothing if the bit shifted out of the dividend was set
+ * (the divisor is subtracted without a test), 2 if the test passed and
+ * the divisor was subtracted, 4 if it failed. Overflow costs 10.
+ */
+static unsigned m68ki_divu_cycles(unsigned dividend, unsigned divisor)
+{
+	unsigned hdivisor = divisor << 16;
+	unsigned cycles = 76;
+	unsigned i;
+
+	if((dividend >> 16) >= divisor)
+		return 10;
+
+	for(i = 0; i < 15; i++)
+	{
+		unsigned carry = dividend & 0x80000000;
+		dividend <<= 1;
+		if(carry)
+			dividend -= hdivisor;
+		else if(dividend >= hdivisor)
+		{
+			dividend -= hdivisor;
+			cycles += 2;
+		}
+		else
+			cycles += 4;
+	}
+
+	return cycles;
+}
+
 /* ======================================================================== */
 /* ========================= INSTRUCTION HANDLERS ========================= */
 /* ======================================================================== */
@@ -517,7 +550,8 @@ bset      32  s     d     0000100011000...  ..........  U U U U U  12  12   4   
 bsr        8  .     .     01100001........  ..........  U U U U U  18  18   7   7   7
 bsr       16  .     .     0110000100000000  ..........  U U U U U  18  18   7   7   7
 bsr       32  .     .     0110000111111111  ..........  U U U U U  18  18   7   7   7
-btst       8  r     .     0000...100......  A+-DXWLdxI  U U U U U   4   4   4   4   4
+btst       8  r     .     0000...100......  A+-DXWLdx.  U U U U U   4   4   4   4   4
+btst       8  r     i     0000...100111100  ..........  U U U U U  10   8   8   8   8
 btst      32  r     d     0000...100000...  ..........  U U U U U   6   6   4   4   4
 btst       8  s     .     0000100000......  A+-DXWLdx.  U U U U U   8   8   4   4   4
 btst      32  s     d     0000100000000...  ..........  U U U U U  10  10   4   4   4
@@ -588,8 +622,8 @@ dbf       16  .     .     0101000111001...  ..........  U U U U U  12  12   6   
 dbcc      16  .     .     0101....11001...  ..........  U U U U U  12  12   6   6   6
 divs      16  .     d     1000...111000...  ..........  U U U U U 158 122  56  56  56
 divs      16  .     .     1000...111......  A+-DXWLdxI  U U U U U 158 122  56  56  56
-divu      16  .     d     1000...011000...  ..........  U U U U U 140 108  44  44  44
-divu      16  .     .     1000...011......  A+-DXWLdxI  U U U U U 140 108  44  44  44
+divu      16  .     d     1000...011000...  ..........  U U U U U   0 108  44  44  44
+divu      16  .     .     1000...011......  A+-DXWLdxI  U U U U U   0 108  44  44  44
 divl      32  .     d     0100110001000...  ..........  . . U U U   .   .  84  84  84
 divl      32  .     .     0100110001......  A+-DXWLdxI  . . U U U   .   .  84  84  84
 eor        8  .     d     1011...100000...  ..........  U U U U U   4   4   2   2   2
@@ -881,7 +915,7 @@ subx      16  mm    .     1001...101001...  ..........  U U U U U  18  18  12  1
 subx      32  mm    .     1001...110001...  ..........  U U U U U  30  30  12  12  12
 swap      32  .     .     0100100001000...  ..........  U U U U U   4   4   4   4   4
 tas        8  .     d     0100101011000...  ..........  U U U U U   4   4   4   4   4
-tas        8  .     .     0100101011......  A+-DXWL...  U U U U U  14  14  12  12  12
+tas        8  .     .     0100101011......  A+-DXWL...  U U U U U  10  14  12  12  12
 trap       0  .     .     010011100100....  ..........  U U U U U   4   4   4   4   4
 trapt      0  .     .     0101000011111100  ..........  . . U U U   .   .   4   4   4
 trapt     16  .     .     0101000011111010  ..........  . . U U U   .   .   6   6   6
@@ -3311,6 +3345,12 @@ M68KMAKE_OP(btst, 8, r, .)
 }
 
 
+M68KMAKE_OP(btst, 8, r, i)
+{
+	FLAG_Z = OPER_I_8() & (1 << (DX & 7));
+}
+
+
 M68KMAKE_OP(btst, 32, s, d)
 {
 	FLAG_Z = DY & (1 << (OPER_I_8() & 0x1f));
@@ -4607,6 +4647,9 @@ M68KMAKE_OP(divu, 16, ., d)
 
 	if(src != 0)
 	{
+		if(CPU_TYPE_IS_000(CPU_TYPE))
+			USE_CYCLES(m68ki_divu_cycles(*r_dst, src));
+
 		unsigned quotient = *r_dst / src;
 		unsigned remainder = *r_dst % src;
 
@@ -4633,6 +4676,9 @@ M68KMAKE_OP(divu, 16, ., .)
 
 	if(src != 0)
 	{
+		if(CPU_TYPE_IS_000(CPU_TYPE))
+			USE_CYCLES(m68ki_divu_cycles(*r_dst, src));
+
 		unsigned quotient = *r_dst / src;
 		unsigned remainder = *r_dst % src;
 

@@ -3600,6 +3600,9 @@ M68KMAKE_OP(chk, 16, ., d)
 	{
 		return;
 	}
+	/* On the 68000 the trap costs 38 cycles plus the operand fetch */
+	if(CPU_TYPE_IS_000(CPU_TYPE))
+		USE_CYCLES(CYC_INSTRUCTION[REG_IR] - 10);
 	FLAG_N = (src < 0)<<7;
 	m68ki_exception_trap(EXCEPTION_CHK);
 }
@@ -3618,6 +3621,9 @@ M68KMAKE_OP(chk, 16, ., .)
 	{
 		return;
 	}
+	/* On the 68000 the trap costs 38 cycles plus the operand fetch */
+	if(CPU_TYPE_IS_000(CPU_TYPE))
+		USE_CYCLES(CYC_INSTRUCTION[REG_IR] - 10);
 	FLAG_N = (src < 0)<<7;
 	m68ki_exception_trap(EXCEPTION_CHK);
 }
@@ -4627,6 +4633,9 @@ M68KMAKE_OP(divs, 16, ., d)
 		FLAG_V = VFLAG_SET;
 		return;
 	}
+	/* On the 68000 the trap costs 38 cycles plus the operand fetch */
+	if(CPU_TYPE_IS_000(CPU_TYPE))
+		USE_CYCLES(CYC_INSTRUCTION[REG_IR]);
 	m68ki_exception_trap(EXCEPTION_ZERO_DIVIDE);
 }
 
@@ -4668,6 +4677,9 @@ M68KMAKE_OP(divs, 16, ., .)
 		FLAG_V = VFLAG_SET;
 		return;
 	}
+	/* On the 68000 the trap costs 38 cycles plus the operand fetch */
+	if(CPU_TYPE_IS_000(CPU_TYPE))
+		USE_CYCLES(CYC_INSTRUCTION[REG_IR]);
 	m68ki_exception_trap(EXCEPTION_ZERO_DIVIDE);
 }
 
@@ -4697,6 +4709,9 @@ M68KMAKE_OP(divu, 16, ., d)
 		FLAG_V = VFLAG_SET;
 		return;
 	}
+	/* On the 68000 the trap costs 38 cycles plus the operand fetch */
+	if(CPU_TYPE_IS_000(CPU_TYPE))
+		USE_CYCLES(CYC_INSTRUCTION[REG_IR]);
 	m68ki_exception_trap(EXCEPTION_ZERO_DIVIDE);
 }
 
@@ -4726,6 +4741,9 @@ M68KMAKE_OP(divu, 16, ., .)
 		FLAG_V = VFLAG_SET;
 		return;
 	}
+	/* On the 68000 the trap costs 38 cycles plus the operand fetch */
+	if(CPU_TYPE_IS_000(CPU_TYPE))
+		USE_CYCLES(CYC_INSTRUCTION[REG_IR]);
 	m68ki_exception_trap(EXCEPTION_ZERO_DIVIDE);
 }
 

@@ -632,7 +632,10 @@ int get_oper_cycles(opcode_struct* op, int ea_mode, int cpu_type)
 		}
 
 		/* ASG: added these cases -- immediate modes take 2 extra cycles here */
-		if(cpu_type == CPU_TYPE_000 && ea_mode == EA_MODE_I &&
+		/* Only for long operations: the base of six is eight if the source
+		 * is register direct or immediate, byte and word are four either way
+		 */
+		if(cpu_type == CPU_TYPE_000 && ea_mode == EA_MODE_I && size == 2 &&
 		   ((strcmp(op->name, "add") == 0 && strcmp(op->spec_proc, "er") == 0) ||
 			strcmp(op->name, "adda")   == 0                                    ||
 			(strcmp(op->name, "and") == 0 && strcmp(op->spec_proc, "er") == 0) ||
